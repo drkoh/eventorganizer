@@ -1,5 +1,6 @@
 package com.cs446teameo.Evfac;
 
+import com.cs446teameo.Event.Event;
 import com.cs446teameo.Event.EventAccess;
 import com.cs446teameo.Storage.EventDatabase;
 import com.cs446teameo.Storage.ProfileDatabase;
@@ -13,7 +14,7 @@ public class EventManager implements EventAccess{
 	}
 	
 	
-	public EventManager getInstance(){
+	public static EventManager getInstance(){
 		if(_instance == null)
 			_instance = new EventManager();
 		return _instance;
@@ -21,6 +22,10 @@ public class EventManager implements EventAccess{
 	
 	
 	public int initEventDatabase(){
+		return 0;
+	}
+	
+	public int createNew(Event e){
 		return 0;
 	}
 	
