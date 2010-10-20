@@ -10,7 +10,8 @@
             </intent-filter>
         </activity>
 
-    </application>
+    <service android:name="com.cs446teameo.Backend.BG"></service>
+</application>
 
 
 </manifest> 
