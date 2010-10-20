@@ -1,12 +1,12 @@
 //reference:
 //http://svn.jimblackler.net/jimblackler/trunk/workspace/AndroidReadCalendarExample/src/net/jimblackler/readcalendar/Example.java
 
-package Evfac;
+package com.cs446teameo.Evfac;
 
 import java.util.Date;
 import java.util.HashSet;
 
-import Event.Event;
+import com.cs446teameo.Event.Event;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -59,7 +59,7 @@ public class Synchronizer extends EventCreator{
 				Date end = new Date(eventCursor.getLong(2));
 				Boolean allDay = !eventCursor.getString(3).equals("0");
 				
-				Event e = new Event()
+				Event e = new Event();
 			}
 			
 			
