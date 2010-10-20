@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashSet;
 
 import com.cs446teameo.Event.Event;
+import com.cs446teameo.Event.EventBuilder;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -50,7 +52,7 @@ public class Synchronizer extends EventCreator{
 			ContentUris.appendId(builder, current + DateUtils.YEAR_IN_MILLIS);
 			
 			Cursor eventCursor = contentResolver.query(builder.build(),
-							new String[] {"title", "start", "end", "allDay"}, "Calendars.id=" + id,
+							new String[] {"title", "start", "end", "allDay", "event_location"}, "Calendars.id=" + id,
 							null, "startDay ASC, startMinute ASC");
 			
 			while (eventCursor.moveToNext()){
@@ -58,8 +60,18 @@ public class Synchronizer extends EventCreator{
 				Date start = new Date(eventCursor.getLong(1));
 				Date end = new Date(eventCursor.getLong(2));
 				Boolean allDay = !eventCursor.getString(3).equals("0");
+				String location = eventCursor.getString(4);
 				
-				Event e = new Event();
+				EventBuilder eb = new EventBuilder();
+				eb.setDescription(title);
+				eb.setLocation(location);
+				eb.setTime(start.getYear(), start.getMonth(), start.getDay(), start.getHours(), start.getMinutes(), 
+						end.getYear(), end.getMonth(), end.getDay(), end.getHours(), end.getMinutes());
+				
+				Event e = eb.getEvent();
+				EventManager em = EventManager.getInstance();
+				
+				em.createNew(e);
 			}
 			
 			
