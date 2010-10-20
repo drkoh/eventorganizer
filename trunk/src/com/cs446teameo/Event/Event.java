@@ -11,27 +11,35 @@ public class Event implements Activicable,Serializable{
 	 */
 	private static final long serialVersionUID = 8901889794218787753L;
 
-	TextField text_field;
-	Reminder reminder;
-	//RepeatMode rpmode;
-	StatusSetting st_setting;
-	TimeToAttack time_to_attack;
-	Segment segment;
-	//event id
-	int eid;
+	private TextField description;
+	//private Reminder reminder;
+	//private RepeatMode rpmode;
+	private StatusSetting st_setting;
+	//private TimeToAttack time_to_attack;
+	private Segment time;
+	private int eid;
+	private Location location;
 	
-	public Event(){	
+	public void setDescription(SimpleText desc){
+		this.description = desc;
 	}
-
-
+	
+	public void setStatus(StatusSetting s){
+		this.st_setting = s;
+	}
+	
+	public void setTime(Segment t){
+		this.time = t;
+	}
+	
+	public void setLocation (Location l){
+		this.location = l;
+	}
+	
+	@Override
 	public int trigger(BgProcesser bgprocesser) {
 		// TODO Auto-generated method stub
 		return bgprocesser.trigger(this);
-	}
-	
-	public Event setTextField(String content){
-		
-		return this;
 	}
 	
 	//and the Integer returned is just the error code
