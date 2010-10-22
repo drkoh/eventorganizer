@@ -6,21 +6,31 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.IBinder;
 import java.util.TimerTask;
+import java.util.Timer;
 
 public class BG extends Service {
-	private AudioManager manager;
-	private Context context;
 	
 	@Override
 	public void onCreate() {
-		context = getApplicationContext();
-        manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        manager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+		TimerTask vibaret = new StatusChange();
+		Timer timer = new Timer();
+		timer.schedule(vibaret, 5000);
 	}
 
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	class StatusChange extends TimerTask {
+		private AudioManager manager;
+		private Context context;
+		
+		public void run(){
+			context = getApplicationContext();
+	        manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+	        manager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+		}
 	}
 }
