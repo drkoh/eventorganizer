@@ -26,14 +26,14 @@ public class Frame{
 			_instance = new Frame("abstract frame");
 		return _instance;
 	}
-	
+	public void setActivity(Activity owner){
+		this.owner = owner;
+	}
 	protected void registeListener(){}
 	protected void registeComponent(){}
-	public void init(Activity owner){
-		this.owner = owner;
+	public void init(){
 		registeListener();
 		registeComponent();
-		return;
 	}
 	
 	public int ContextSwitch(int serial){
