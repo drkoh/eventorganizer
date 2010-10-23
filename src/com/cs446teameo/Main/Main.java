@@ -27,9 +27,8 @@ public class Main extends Activity {
       //  if(super.findViewById(R.layout.menu) == null)
       //  	Log.e("www","-1");
         Log.e("www","10");
-        MenuUI mui = new MenuUI(this);
-        this.setContentView(R.layout.menu);
-        mui.init();
+        Frame.setActivity(this);
+        MenuUI.contextSwitch();
       //  Log.e("www","9");
         //this.addContentView(R.layout.eventadder, params)
        // EventAdderUI eui = new EventAdderUI(this);

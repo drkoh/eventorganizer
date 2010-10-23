@@ -10,14 +10,16 @@ import android.view.View;
 
 public abstract class Frame{
 	
-	protected Activity owner = null;
+	protected static Activity owner = null;
 	protected String field = null;
-	protected int serial;
 	
-	protected Frame(Activity owner,int serial,String field) {
+	
+	public static void setActivity(Activity src){
+		owner = src;
+	}
+	
+	protected Frame(String field) {
 		this.field = field;
-		this.owner = owner;
-		this.serial = serial;
 		// TODO Auto-generated constructor stub
 	}
 	protected abstract void registeListener();
