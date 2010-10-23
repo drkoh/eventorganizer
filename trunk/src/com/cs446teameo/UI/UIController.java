@@ -7,5 +7,6 @@ import com.cs446teameo.Actor.EventFactory;
 public class UIController {
 	BgProcesser bgprocesser;
 	EventFactory evfac;
+	
 }
 
