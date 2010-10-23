@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class EventAdderUI extends Frame{
@@ -52,8 +53,8 @@ public class EventAdderUI extends Frame{
 		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
 		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
 		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
-		this.descriptionText = (EditText) owner.findViewById(R.eventadder.description);
-		this.vibrateCheckBox = (CheckBox) owner.findViewById(R.eventadder.vibrate);
+		this.descriptionText = (Spinner)owner.findViewById(R.eventadder.description);
+		//this.vibrateCheckBox = (CheckBox) owner.findViewById(R.eventadder.vibrate);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class EventAdderUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				Log.i(field,"trigger clear button");
-				descriptionText.clearComposingText();
+				//descriptionText.
 				vibrateCheckBox.setSelected(false);
 			}
 		});
@@ -79,7 +80,7 @@ public class EventAdderUI extends Frame{
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
-				src.add(descriptionText.getText().toString());
+			//	src.add(descriptionText.getText().toString());
 				src.add(vibrateCheckBox.isSelected());
 				int res = EventFactory.getInstance().addEvent(src);
 				if(res != ErrorCode.SUCCESS){
