@@ -17,7 +17,7 @@ public class EventFactory {
 	
 	
 	private EventFactory(){
-		creator = null;
+		creator = new EventCreator();
 		accessor = null;
 		editor = null;
 	}
