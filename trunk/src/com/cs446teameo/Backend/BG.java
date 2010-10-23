@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.IBinder;
+import android.util.Log;
+
 import java.util.TimerTask;
 import java.util.Timer;
 
@@ -15,6 +17,7 @@ public class BG extends Service {
 		TimerTask vibaret = new StatusChange();
 		Timer timer = new Timer();
 		timer.schedule(vibaret, 5000);
+		Log.d("sd", "here wait 5sec");
 	}
 
 	@Override
