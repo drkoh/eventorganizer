@@ -16,5 +16,11 @@ public class ErrorCode {
 
 
 	public static final int CONTEXT_SWITCH_ERROR = 0;
+
+
+
+
+
+	public static final int INITIALIZATION = 0;
 	
 }
