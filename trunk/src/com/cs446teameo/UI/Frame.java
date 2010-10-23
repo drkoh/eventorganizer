@@ -1,23 +1,45 @@
 package com.cs446teameo.UI;
 
+import com.cs446teameo.Parameter.ErrorCode;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
-public abstract class Frame{
+public class Frame{
+	
+	private static Frame _instance= null;
+	
 
 	Activity owner = null;
 	View frameView = null;
 	
 	String field = null;
 	
-	public Frame(Activity owner,View parent,String field) {
-		this.owner = owner;
-		this.frameView = parent;
+	protected Frame(String field) {
 		this.field = field;
 		// TODO Auto-generated constructor stub
 	}
 	
-	public abstract void registeListener();
-	public abstract void registeComponent();
+	public static Frame getInstance(){
+		if(_instance == null)
+			_instance = new Frame("abstract frame");
+		return _instance;
+	}
+	
+	protected void registeListener(){}
+	protected void registeComponent(){}
+	public void init(Activity owner){
+		this.owner = owner;
+		registeListener();
+		registeComponent();
+		return;
+	}
+	public int ContextSwitch(int serial){
+		frameView = owner.findViewById(serial);
+		if(frameView == null)
+			return ErrorCode.CONTEXT_SWITCH_ERROR;
+		owner.setContentView(serial);
+		return ErrorCode.SUCCESS;
+	}
 }
