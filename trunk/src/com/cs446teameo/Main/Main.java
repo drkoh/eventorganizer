@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.cs446teameo.Backend.*;
 import com.cs446teameo.Storage.*;
+import com.cs446teameo.UI.Frame;
+import com.cs446teameo.UI.MenuUI;
 
 public class Main extends Activity {
 	
@@ -13,7 +15,11 @@ public class Main extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.eventadder);
+        Frame frame = Frame.getInstance();
+        frame.setActivity(this);
+        frame.ContextSwitch(R.layout.menu);
+        MenuUI.cast();
+        frame.init();
       //  Menu menu = new Menu(this,this.findViewById(R.layout.menu));
      //   menu.registeComponent();
       //  menu.registeListener();
