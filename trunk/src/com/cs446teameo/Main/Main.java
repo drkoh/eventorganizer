@@ -17,11 +17,11 @@ public class Main extends Activity {
       //  Menu menu = new Menu(this,this.findViewById(R.layout.menu));
      //   menu.registeComponent();
       //  menu.registeListener();
-        Intent bgtimer = new Intent(this, BG.class);
-        startService(bgtimer);
-        stopService(bgtimer);
-        EventDatabase db = new EventDatabase(this);
-        db.open();
+   //     Intent bgtimer = new Intent(this, BG.class);
+   //     startService(bgtimer);
+   //     stopService(bgtimer);
+   //     EventDatabase db = new EventDatabase(this);
+   //     db.open();
     }
     
     

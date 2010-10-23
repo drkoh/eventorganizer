@@ -8,7 +8,7 @@ import android.view.View;
 
 public class Frame{
 	
-	private static Frame _instance= null;
+	protected static Frame _instance= null;
 	
 
 	Activity owner = null;
@@ -35,6 +35,7 @@ public class Frame{
 		registeComponent();
 		return;
 	}
+	
 	public int ContextSwitch(int serial){
 		frameView = owner.findViewById(serial);
 		if(frameView == null)
@@ -42,4 +43,5 @@ public class Frame{
 		owner.setContentView(serial);
 		return ErrorCode.SUCCESS;
 	}
+	public static void cast(){}
 }
