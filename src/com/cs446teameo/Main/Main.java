@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.cs446teameo.Backend.*;
+import com.cs446teameo.Storage.*;
 
 public class Main extends Activity {
 	
@@ -14,6 +15,8 @@ public class Main extends Activity {
         Intent bgtimer = new Intent(this, BG.class);
         startService(bgtimer);
         stopService(bgtimer);
+        EventDatabase db = new EventDatabase(this);
+        db.open();
     }
 
 	public static void main(String[] args){
