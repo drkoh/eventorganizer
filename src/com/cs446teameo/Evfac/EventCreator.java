@@ -7,6 +7,10 @@ import com.cs446teameo.Event.Event;
 
 public class EventCreator implements CreateEvent{
 
+	
+	public EventCreator(){
+	}
+	
 	public Vector<Event> CreateSome() {
 		// TODO Auto-generated method stub
 		return null;

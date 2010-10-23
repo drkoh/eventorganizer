@@ -3,6 +3,7 @@ package com.cs446teameo.Main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.cs446teameo.Backend.*;
 import com.cs446teameo.Storage.*;
@@ -15,11 +16,12 @@ public class Main extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Frame frame = Frame.getInstance();
-        frame.setActivity(this);
-        frame.ContextSwitch(R.layout.menu);
-        MenuUI.cast();
-        frame.init();
+        MenuUI.refreshInstance(this);
+        Log.e("www","1");
+     //   Frame.getInstance().ContextSwitch(R.layout.menu);
+     //   Log.e("www","2");
+     //   Frame.getInstance().init();
+     //   Log.e("www","3");
       //  Menu menu = new Menu(this,this.findViewById(R.layout.menu));
      //   menu.registeComponent();
       //  menu.registeListener();
