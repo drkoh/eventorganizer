@@ -18,7 +18,7 @@ android:id="@+id/widget84"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Add a Repeated Event - Event Organizer"
-android:textSize="24sp"
+android:textSize="20sp"
 android:typeface="serif"
 android:gravity="center"
 >
@@ -29,6 +29,38 @@ android:layout_width="wrap_content"
 android:layout_height="30px"
 android:orientation="vertical"
 >
+</LinearLayout>
+<LinearLayout
+android:id="@+id/widget32"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+>
+<LinearLayout
+android:id="@+id/widget28"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget30"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Description: "
+android:textSize="16sp"
+android:typeface="serif"
+android:layout_gravity="center_vertical"
+>
+</TextView>
+<EditText
+android:id="@+repeatedevent/description"
+android:layout_width="100px"
+android:layout_height="wrap_content"
+android:text=""
+android:textSize="18sp"
+>
+</EditText>
+</LinearLayout>
 </LinearLayout>
 <LinearLayout
 android:id="@+id/widget93"

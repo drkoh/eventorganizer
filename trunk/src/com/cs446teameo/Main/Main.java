@@ -20,29 +20,10 @@ public class Main extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // MenuUI.refreshInstance();
-       // Frame.setActivity(this);
-       // Frame frame = Frame.getInstance();
-       // Log.e("www","1");
-      //  if(super.findViewById(R.layout.menu) == null)
-      //  	Log.e("www","-1");
         Log.e("www","10");
         Frame.setActivity(this);
         MenuUI.contextSwitch();
-      //  Log.e("www","9");
-        //this.addContentView(R.layout.eventadder, params)
-       // EventAdderUI eui = new EventAdderUI(this);
-       // eui.init();
-        //Frame.getInstance().ContextSwitch(R.layout.menu);
         Log.e("www","2");
-      //  Menu menu = new Menu(this,this.findViewById(R.layout.menu));
-     //   menu.registeComponent();
-      //  menu.registeListener();
-   //     Intent bgtimer = new Intent(this, BG.class);
-   //     startService(bgtimer);
-   //     stopService(bgtimer);
-   //     EventDatabase db = new EventDatabase(this);
-   //     db.open();
     }
     
     
