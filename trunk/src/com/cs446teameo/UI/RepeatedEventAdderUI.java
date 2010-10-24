@@ -15,7 +15,6 @@ import android.widget.*;
 
 public class RepeatedEventAdderUI extends Frame{
 
-	EditText description = null;
 	Spinner repeatOption = null;
 	AutoCompleteTextView repeatEvery = null;
 	Button clearButton = null;
@@ -41,6 +40,28 @@ public class RepeatedEventAdderUI extends Frame{
 	public void registeListener() {
 		// TODO
 		
+		// Clear Button
+		clearButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO!!!
+				Log.i(field,"trigger clear button");
+				RepeatedEventAdderUI.contextSwitch();
+			}
+		});
+		
+		// Create Button
+		createButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO!!!
+				Log.i(field,"trigger create button");
+				EventAdderUI.contextSwitch();
+			}
+		});
+		
 		// Exit Button
 		exitButton.setOnClickListener(new OnClickListener(){
 			
@@ -55,7 +76,6 @@ public class RepeatedEventAdderUI extends Frame{
 
 	@Override
 	public void registeComponent() {
-		this.description = (EditText) owner.findViewById(R.repeatedevent.description);
 		this.repeatOption = (Spinner) owner.findViewById(R.repeatedevent.repeatOption);
 		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.repeatedevent.repeatEvery);
 		this.clearButton = (Button) owner.findViewById(R.repeatedevent.clearButton);
