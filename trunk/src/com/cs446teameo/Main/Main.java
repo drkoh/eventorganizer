@@ -33,7 +33,7 @@ public class Main extends Activity {
         //this.addContentView(R.layout.eventadder, params)
        // EventAdderUI eui = new EventAdderUI(this);
        // eui.init();
-      //  Frame.getInstance().ContextSwitch(R.layout.menu);
+        //Frame.getInstance().ContextSwitch(R.layout.menu);
         Log.e("www","2");
       //  Menu menu = new Menu(this,this.findViewById(R.layout.menu));
      //   menu.registeComponent();
