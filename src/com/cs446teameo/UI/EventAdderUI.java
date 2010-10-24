@@ -20,9 +20,10 @@ import android.widget.TimePicker;
 
 public class EventAdderUI extends Frame{
 
+	EditText description = null;
 	TimePicker sTimePicker = null;
 	TimePicker eTimePicker = null;
-	Spinner descriptionText = null;
+	Spinner profile = null;
 	Button clearButton = null;
 	Button createButton = null;
 	Button exitButton = null;
@@ -48,13 +49,13 @@ public class EventAdderUI extends Frame{
 	@Override
 	public void registeComponent() {
 		// TODO Auto-generated method stub
+		this.description = (EditText) owner.findViewById(R.eventadder.description);
 		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
 		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);
 		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
 		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
 		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
-		this.descriptionText = (Spinner)owner.findViewById(R.eventadder.description);
-		//this.vibrateCheckBox = (CheckBox) owner.findViewById(R.eventadder.vibrate);
+		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
 	}
 
 	@Override
@@ -64,7 +65,6 @@ public class EventAdderUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				Log.i(field,"trigger clear button");
-				//descriptionText.
 				vibrateCheckBox.setSelected(false);
 			}
 		});
@@ -80,7 +80,6 @@ public class EventAdderUI extends Frame{
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
-			//	src.add(descriptionText.getText().toString());
 				src.add(vibrateCheckBox.isSelected());
 				int res = EventFactory.getInstance().addEvent(src);
 				if(res != ErrorCode.SUCCESS){
@@ -88,7 +87,6 @@ public class EventAdderUI extends Frame{
 					return;
 				}
 			}
-			
 		});
 		
 		exitButton.setOnClickListener(new OnClickListener(){
