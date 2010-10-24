@@ -27,7 +27,6 @@ public class EventAdderUI extends Frame{
 	Button clearButton = null;
 	Button createButton = null;
 	Button exitButton = null;
-	CheckBox vibrateCheckBox = null;
 	
 	private static EventAdderUI _instance = null;
 	
@@ -65,7 +64,7 @@ public class EventAdderUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				Log.i(field,"trigger clear button");
-				vibrateCheckBox.setSelected(false);
+				EventAdderUI.contextSwitch();
 			}
 		});
 		
@@ -80,12 +79,12 @@ public class EventAdderUI extends Frame{
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
-				src.add(vibrateCheckBox.isSelected());
 				int res = EventFactory.getInstance().addEvent(src);
 				if(res != ErrorCode.SUCCESS){
 					Log.e(field,"addevent error: " + res);
 					return;
 				}
+				MenuUI.contextSwitch();
 			}
 		});
 		

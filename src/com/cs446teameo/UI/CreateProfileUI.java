@@ -35,6 +35,28 @@ public class CreateProfileUI extends Frame{
 	public void registeListener() {
 		// TODO Auto-generated method stub
 		
+		// Clear Button
+		clearButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO!!!
+				Log.i(field,"trigger clear button");
+				CreateProfileUI.contextSwitch();
+			}
+		});
+		
+		// Create Button
+		createButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO!!!
+				Log.i(field,"trigger create button");
+				MenuUI.contextSwitch();
+			}
+		});
+		
 		// Exit Button
 		exitButton.setOnClickListener(new OnClickListener(){
 			
