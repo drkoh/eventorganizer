@@ -12,7 +12,6 @@ public class Event implements Activicable,Serializable{
 	private static final long serialVersionUID = 8901889794218787753L;
 
 	private TextField description;
-	//private Reminder reminder;
 	//private RepeatMode rpmode;
 	private StatusSetting st_setting;
 	//private TimeToAttack time_to_attack;

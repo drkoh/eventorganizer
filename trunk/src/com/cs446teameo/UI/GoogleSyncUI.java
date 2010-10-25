@@ -76,5 +76,4 @@ public class GoogleSyncUI extends Frame{
 		this.createButton = (Button) owner.findViewById(R.googlecalendar.synchronizeButton);
 		this.exitButton = (Button) owner.findViewById(R.googlecalendar.exitButton);
 	}
-
 }

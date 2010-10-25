@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -46,21 +47,6 @@ public class EventAdderUI extends Frame{
 		_instance.init();
 	}
 	
-
-	@Override
-	public void registeComponent() {
-		// TODO Auto-generated method stub
-		this.description = (EditText) owner.findViewById(R.eventadder.description);
-		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
-		this.repeatOption = (Spinner) owner.findViewById(R.eventadder.repeatOption);
-		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
-		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
-		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);
-		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
-		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
-		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
-	}
-
 	@Override
 	public void registeListener() {
 		// TODO Auto-generated method stub
@@ -68,12 +54,14 @@ public class EventAdderUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				Log.i(field,"trigger clear button");
-				EventAdderUI.contextSwitch();
+				description.setText("");
+				profile.setSelection(0);
+				repeatOption.setSelection(0);
+				repeatEvery.setText("");
 			}
 		});
 		
 		createButton.setOnClickListener(new OnClickListener(){
-
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -102,4 +90,26 @@ public class EventAdderUI extends Frame{
 			}
 		});
 	}
+	
+	@Override
+	public void registeComponent() {
+		// TODO Auto-generated method stub
+		this.description = (EditText) owner.findViewById(R.eventadder.description);
+		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
+		ArrayAdapter<CharSequence> profileAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
+		profileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    profile.setAdapter(profileAdapter);
+		this.repeatOption = (Spinner) owner.findViewById(R.eventadder.repeatOption);
+		ArrayAdapter<CharSequence> repeatAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.repeat_array, android.R.layout.simple_spinner_item);
+		repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    repeatOption.setAdapter(repeatAdapter);
+		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
+		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
+		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);
+		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
+		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
+		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
+	}
+
+
 }
