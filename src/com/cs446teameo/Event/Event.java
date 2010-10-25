@@ -11,13 +11,13 @@ public class Event implements Activicable,Serializable{
 	 */
 	private static final long serialVersionUID = 8901889794218787753L;
 
-	private TextField description;
+	public TextField description;
 	//private RepeatMode rpmode;
-	private StatusSetting st_setting;
+	public StatusSetting st_setting;
 	//private TimeToAttack time_to_attack;
-	private Segment time;
-	private int eid;
-	private Location location;
+	public Segment time;
+	public int eid;
+	public Location location;
 	
 	public Event(int style){
 
@@ -51,8 +51,8 @@ public class Event implements Activicable,Serializable{
 	}
 	
 	public String sqlizeEvent(){
-		String e = "_id " + eid + ", location " location.location + ", start_time" + time.startUnixTime() +
-		", end_time " + time.endUnixTime();
+		String e = "_id " + eid + ", location " +location.location + ", start_time" + time.startTime() +
+		", end_time " + time.endTime();
 		return e;
 	}
 	

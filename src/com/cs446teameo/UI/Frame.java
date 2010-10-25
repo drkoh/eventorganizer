@@ -4,7 +4,7 @@ import android.app.Activity;
 
 public abstract class Frame{
 	
-	protected static Activity owner = null;
+	public static Activity owner = null;
 	protected String field = null;
 	
 	

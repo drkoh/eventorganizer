@@ -21,8 +21,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 /*
-	Toast toast = Toast.makeText(Frame.owner, "Event Description: \t Profile: \t Start Time: \t End Time: \t Date: ", Toast.LENGTH_LONG);
-	toast.show();
  */
 
 public class EventAdderUI extends Frame{
