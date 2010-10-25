@@ -45,13 +45,14 @@ public class EventDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(Event_TABLE_CREATE);
+            Log.d("eosql", "here");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
+            db.execSQL("DROP TABLE IF EXISTS table");
             onCreate(db);
         }
     }
@@ -76,67 +77,10 @@ public class EventDatabase {
     }
     
     public Cursor query(String q) throws SQLException {
-
-        Cursor mCursor =
-            mDb.rawQuery(q, new String[] {"_id", "start_time", "end_time", "name"});
-        Log.d("sd", "here");
+        Cursor mCursor = mDb.rawQuery(q, new String[] {"_id", "start_time", "end_time", "name"});
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
         return mCursor;
     }
-	/*
-	private int currentId;
-	
-	private ObjectInputStream reader = null;
-	private ObjectOutputStream writer = null;
-	
-	private static EventDatabase _instance = null;
-	
-	
-	
-	private EventDatabase(){
-	}
-	
-	
-	public static EventDatabase getInstance(){
-		if(_instance == null)
-			_instance = new EventDatabase();
-		return _instance;
-	}
-	
-	
-	int getCurrentId(){
-		return 0;
-	}
-	
-	
-	int createNew(Event event){
-		return 0;
-	}
-	
-	int getReadable(Event event){
-		return 0;
-	}
-	
-	int getReadable(Vector<Event> list){
-		return 0;
-	}
-	
-	int getEditable(Event event){
-		return 0;
-	}
-	
-	int getEditable(Vector<Event> list){
-		return 0;
-	}
-	
-	int write(Event event){
-		return 0;
-	}
-	
-	int write(Vector<Event> list){
-		return 0;
-	}
-	*/
 }

@@ -1,12 +1,6 @@
 package com.cs446teameo.UI;
 
-import com.cs446teameo.Main.R;
-import com.cs446teameo.Parameter.ErrorCode;
-
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-import android.view.View;
 
 public abstract class Frame{
 	
