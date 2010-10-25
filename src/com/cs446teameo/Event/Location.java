@@ -1,7 +1,7 @@
 package com.cs446teameo.Event;
 
 public class Location {
-	String location;
+	public String location;
 	
 	public Location(String l){
 		location = l;

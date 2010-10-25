@@ -11,7 +11,6 @@ public class Segment{
 		start = new GregorianCalendar(start_year,start_month,start_day,start_hour,start_minute);
 		end = new GregorianCalendar(end_year,end_month,end_day,end_hour,end_minute);
 	}
-	
 	public Segment (long startTime, long endTime)
 	{
 		start = toGregorianCalendar(startTime);
