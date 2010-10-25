@@ -1,11 +1,6 @@
 package com.cs446teameo.UI;
 
 import com.cs446teameo.Main.R;
-import com.cs446teameo.Parameter.ErrorCode;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +25,7 @@ public class MenuUI extends Frame{
 		if(_instance == null){
 			_instance = new MenuUI();
 		}
+		Log.i("field", "switch to menu");
 		owner.setContentView(R.layout.menu);
 		_instance.init();
 	}
@@ -39,9 +35,10 @@ public class MenuUI extends Frame{
 	public void registeListener() {
 		// TODO Auto-generated method stub
 		this.AddEventButton.setOnClickListener((new OnClickListener(){
+			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Log.i(field, "trigger the click listener");
+				Log.i("field", "trigger the click listener");
 				EventAdderUI.contextSwitch();
 				return;
 			}
@@ -51,7 +48,7 @@ public class MenuUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Log.i(field,"trigger the calender button");
+				Log.i("field","trigger the calender button");
 			}
 		});
 		
@@ -66,9 +63,10 @@ public class MenuUI extends Frame{
 		});
 		
 		this.ExitButton.setOnClickListener((new OnClickListener(){
+			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Log.i(field, "trigger the exitButton");
+				Log.i("field", "trigger the exitButton");
 				owner.finish();
 			}
 		}));
@@ -78,7 +76,7 @@ public class MenuUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Log.i(field,"trigger the synchronize Button");
+				Log.i("field","trigger the synchronize Button");
 				GoogleSyncUI.contextSwitch();
 				return;
 			}
@@ -94,7 +92,7 @@ public class MenuUI extends Frame{
 		this.ExitButton = (Button)owner.findViewById(R.menuId.ExitButton);
 		this.SynchronizeButton = (Button)owner.findViewById(R.menuId.SynchronizeButton);
 		if(this.AddEventButton == null){
-			Log.e(field, "reg error");
+			Log.e("field", "reg error");
 		}
 	}
 }

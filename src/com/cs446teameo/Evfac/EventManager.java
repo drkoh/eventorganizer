@@ -1,7 +1,10 @@
 package com.cs446teameo.Evfac;
 
+import java.util.ArrayList;
+
 import com.cs446teameo.Event.Event;
 import com.cs446teameo.Event.EventAccess;
+import com.cs446teameo.Parameter.ErrorCode;
 import com.cs446teameo.Storage.EventDatabase;
 import com.cs446teameo.Storage.ProfileDatabase;
 
@@ -25,20 +28,27 @@ public class EventManager implements EventAccess{
 		return 0;
 	}
 	
-	public int createNew(Event e){
-		return 0;
+	public int createNewEvent(Event e){
+		return ErrorCode.SUCCESS;
 	}
 	
+	public int deleteEvent(int eId){
+		return ErrorCode.SUCCESS;
+	}	
+
+	public int filterEvent(String query){
+		return ErrorCode.SUCCESS;
+	}
+	
+	public int listEvent(ArrayList<Event> dst){
+		return ErrorCode.SUCCESS;
+	}
+	
+	public int updateEvent(Event e){
+		return ErrorCode.SUCCESS;
+	}
 	
 	public int initProfileDatabase(){
 		return 0;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

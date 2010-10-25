@@ -30,6 +30,7 @@ public class BG extends Service {
 		private AudioManager manager;
 		private Context context;
 		
+		@Override
 		public void run(){
 			context = getApplicationContext();
 	        manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);

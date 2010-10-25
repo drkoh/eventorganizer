@@ -6,10 +6,7 @@ import com.cs446teameo.Actor.EventFactory;
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Parameter.ErrorCode;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
