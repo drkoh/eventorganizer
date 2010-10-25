@@ -49,12 +49,12 @@ public class EventManager implements EventAccess{
 		Cursor list = ebase.query("select * from Events where ");
 		if (!list.isFirst())
 			list.moveToFirst();
-		Event tmpe = new Event("");
+		Event tmpe = new Event(0);
 		for (int i = 0; i < list.getCount(); i++) {
 			CharArrayBuffer buffer = new CharArrayBuffer(1);
 			list.copyStringToBuffer(1, buffer);
 			long time = Integer.parseInt(buffer.toString());
-			tmpe.setTime(new Segment(time));
+	//		tmpe.setTime(new Segment(time));
 			dst.add(tmpe);
 		}
 		return ErrorCode.SUCCESS;

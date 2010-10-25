@@ -16,6 +16,13 @@ public class Segment{
 		start = toGregorianCalendar(startTime);
 		end = toGregorianCalendar(endTime);
 	}
+	public long startTime(){
+		return toUnixTime(start);
+	}
+	
+	public long endTime(){
+		return toUnixTime(end);
+	}
 	
 	public static long toUnixTime(GregorianCalendar time)
 	{
