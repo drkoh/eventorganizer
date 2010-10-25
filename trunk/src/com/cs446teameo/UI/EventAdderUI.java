@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
@@ -23,6 +24,7 @@ public class EventAdderUI extends Frame{
 	Spinner profile = null;
 	Spinner repeatOption = null;
 	AutoCompleteTextView repeatEvery = null;
+	DatePicker date = null;
 	TimePicker sTimePicker = null;
 	TimePicker eTimePicker = null;
 	Button clearButton = null;
@@ -64,13 +66,21 @@ public class EventAdderUI extends Frame{
 				// TODO Auto-generated method stub
 				Log.i(field,"trigger create button");
 				ArrayList<Object> src = new ArrayList<Object>();
+				src.add(description.getText());
+				src.add((profile.getSelectedItem()).toString());
+				src.add((repeatOption.getSelectedItem()).toString());
+				src.add(repeatEvery.getText());
+				src.add(date.getYear());
+				src.add(date.getMonth());
+				src.add(date.getDayOfMonth());
 				src.add(sTimePicker.getCurrentHour());
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
 				int res = EventFactory.getInstance().addEvent(src);
-				if(res != ErrorCode.SUCCESS){
-					Log.e(field,"addevent error: " + res);
+				if(res != ErrorCode.SUCCESS)
+				{
+					Log.e(field,"Add Event Error: " + res);
 					return;
 				}
 				MenuUI.contextSwitch();
@@ -101,6 +111,7 @@ public class EventAdderUI extends Frame{
 		repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    repeatOption.setAdapter(repeatAdapter);
 		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
+		this.date = (DatePicker) owner.findViewById(R.eventadder.date);
 		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
 		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);
 		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);

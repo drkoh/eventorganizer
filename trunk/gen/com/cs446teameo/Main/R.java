@@ -26,9 +26,9 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class eventadder {
-        public static final int calendar=0x7f080004;
         public static final int clearButton=0x7f080007;
         public static final int createButton=0x7f080009;
+        public static final int date=0x7f080004;
         public static final int description=0x7f080000;
         public static final int eTime=0x7f080006;
         public static final int exitButton=0x7f080008;

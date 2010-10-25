@@ -214,7 +214,7 @@ android:layout_gravity="center_vertical"
 >
 </TextView>
 <DatePicker
-android:id="@+eventadder/calendar"
+android:id="@+eventadder/date"
 android:textSize="10sp"
 android:typeface="serif"
 android:layout_width="wrap_content"
