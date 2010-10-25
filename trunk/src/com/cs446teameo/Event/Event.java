@@ -50,6 +50,12 @@ public class Event implements Activicable,Serializable{
 		return ErrorCode.SUCCESS;
 	}
 	
+	public String sqlizeEvent(){
+		String e = "_id " + eid + ", location " location.location + ", start_time" + time.startUnixTime() +
+		", end_time " + time.endUnixTime();
+		return e;
+	}
+	
 	//Note:
 	//should we implement Serializable in this class???
 }
