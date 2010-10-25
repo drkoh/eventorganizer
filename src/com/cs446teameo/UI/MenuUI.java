@@ -14,15 +14,12 @@ import android.widget.Button;
 public class MenuUI extends Frame{
 
 	Button AddEventButton = null;
-	Button AddRepeatedEventButton = null;
 	Button CalendarButton = null;
 	Button CreateProfileButton = null;
 	Button ExitButton = null;
 	Button SynchronizeButton = null;
 	
-	
 	private static MenuUI _instance = null;
-	
 	
 	private MenuUI() {
 		super("Menu");
@@ -46,15 +43,6 @@ public class MenuUI extends Frame{
 				// TODO Auto-generated method stub
 				Log.i(field, "trigger the click listener");
 				EventAdderUI.contextSwitch();
-				return;
-			}
-		}));
-		
-		this.AddRepeatedEventButton.setOnClickListener((new OnClickListener(){
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Log.i(field, "trigger the repeated event button");
-				RepeatedEventAdderUI.contextSwitch();
 				return;
 			}
 		}));
@@ -100,7 +88,6 @@ public class MenuUI extends Frame{
 	@Override
 	public void registeComponent() {
 		// TODO Auto-generated method stub
-		this.AddRepeatedEventButton = (Button)owner.findViewById(R.menuId.AddRepeatedEventButton);
 		this.AddEventButton = (Button)owner.findViewById(R.menuId.AddEventButton);
 		this.CalendarButton = (Button)owner.findViewById(R.menuId.CalendarButton);
 		this.CreateProfileButton = (Button)owner.findViewById(R.menuId.CreateProfileButton);

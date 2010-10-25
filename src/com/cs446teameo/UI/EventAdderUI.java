@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -20,16 +21,17 @@ import android.widget.TimePicker;
 
 public class EventAdderUI extends Frame{
 
-	EditText description = null;
+	EditText description = null;	
+	Spinner profile = null;
+	Spinner repeatOption = null;
+	AutoCompleteTextView repeatEvery = null;
 	TimePicker sTimePicker = null;
 	TimePicker eTimePicker = null;
-	Spinner profile = null;
 	Button clearButton = null;
 	Button createButton = null;
 	Button exitButton = null;
 	
 	private static EventAdderUI _instance = null;
-	
 	
 	private EventAdderUI() {
 		super("EventAdder");
@@ -49,12 +51,14 @@ public class EventAdderUI extends Frame{
 	public void registeComponent() {
 		// TODO Auto-generated method stub
 		this.description = (EditText) owner.findViewById(R.eventadder.description);
+		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
+		this.repeatOption = (Spinner) owner.findViewById(R.eventadder.repeatOption);
+		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
 		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
 		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);
 		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
 		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
 		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
-		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
 	}
 
 	@Override

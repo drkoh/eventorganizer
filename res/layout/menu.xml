@@ -54,17 +54,7 @@ android:typeface="serif"
 >
 </Button>
 <Button
-android:id="@+menuId/AddRepeatedEventButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Add a repeated Event"
-android:textSize="16sp"
-android:typeface="serif"
->
-</Button>
-<Button
 android:id="@+menuId/CreateProfileButton"
-
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Create a Profile"
