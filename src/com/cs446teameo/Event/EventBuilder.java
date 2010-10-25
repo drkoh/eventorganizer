@@ -8,7 +8,7 @@ public class EventBuilder {
 	}
 	
 	public void createEvent(){
-		event = new Event();
+		event = new Event(0);
 	}
 	
 	public void setDescription(String desc){

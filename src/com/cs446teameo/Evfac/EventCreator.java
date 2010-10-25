@@ -1,20 +1,16 @@
 package com.cs446teameo.Evfac;
 
 import java.util.Vector;
-
-import com.cs446teameo.Event.CreateEvent;
 import com.cs446teameo.Event.Event;
 
-public class EventCreator implements CreateEvent{
+public abstract class EventCreator{
 
 	
-	public EventCreator(){
-	}
+	protected static EventCreator _instance = null;
 	
-	@Override
-	public Vector<Event> CreateSome() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract Event CreateEvent(int style);
 	
+	public static EventCreator getInstance(){
+		return _instance;
+	}
 }
