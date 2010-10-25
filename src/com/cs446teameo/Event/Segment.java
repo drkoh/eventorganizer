@@ -11,6 +11,24 @@ public class Segment{
 		start = new GregorianCalendar(start_year,start_month,start_day,start_hour,start_minute);
 		end = new GregorianCalendar(end_year,end_month,end_day,end_hour,end_minute);
 	}
+	
+	public Segment (long startTime, long endTime)
+	{
+		start = toGregorianCalendar(startTime);
+		end = toGregorianCalendar(endTime);
+	}
+	
+	public static long toUnixTime(GregorianCalendar time)
+	{
+		return time.getTimeInMillis() / 1000;
+	}
+	
+	public static GregorianCalendar toGregorianCalendar(long time)
+	{
+		GregorianCalendar temp = new GregorianCalendar();
+		temp.setTimeInMillis(time * 1000);
+		return temp;
+	}
 }
 
 
