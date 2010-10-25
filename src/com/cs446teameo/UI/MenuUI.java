@@ -97,5 +97,4 @@ public class MenuUI extends Frame{
 			Log.e(field, "reg error");
 		}
 	}
-	
 }

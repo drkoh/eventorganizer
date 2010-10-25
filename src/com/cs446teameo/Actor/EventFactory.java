@@ -32,9 +32,4 @@ public class EventFactory {
 		// TODO Auto-generated method stub
 		return ErrorCode.SUCCESS;
 	}
-	
-	
-	
-	
-	
 }

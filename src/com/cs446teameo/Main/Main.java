@@ -15,8 +15,6 @@ import com.cs446teameo.UI.MenuUI;
 
 public class Main extends Activity {
 	
-	
-	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
