@@ -3,6 +3,7 @@ package com.cs446teameo.UI;
 import java.util.ArrayList;
 
 import com.cs446teameo.Actor.EventFactory;
+import com.cs446teameo.Main.Main;
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Parameter.ErrorCode;
 
@@ -83,6 +84,7 @@ public class EventAdderUI extends Frame{
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
 				int res = EventFactory.getInstance().addEvent(src);
+				Log.d("error","the size of database" + Main.sharing.size());
 				if(res != ErrorCode.SUCCESS)
 				{
 					Log.e(field,"Add Event Error: " + res);
