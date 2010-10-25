@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.cs446teameo.UI.EventAdderUI;
 import com.cs446teameo.UI.Frame;
 import com.cs446teameo.UI.MenuUI;
 

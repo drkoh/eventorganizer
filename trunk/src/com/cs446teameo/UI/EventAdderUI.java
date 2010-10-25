@@ -88,7 +88,6 @@ public class EventAdderUI extends Frame{
 		});
 		
 		exitButton.setOnClickListener(new OnClickListener(){
-
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub

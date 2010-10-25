@@ -19,6 +19,10 @@ public class Event implements Activicable,Serializable{
 	private int eid;
 	private Location location;
 	
+	public Event(int style){
+
+	}
+	
 	public void setDescription(SimpleText desc){
 		this.description = desc;
 	}
