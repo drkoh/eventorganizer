@@ -6,6 +6,7 @@ import com.cs446teameo.Actor.EventFactory;
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Parameter.ErrorCode;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +18,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+/*
+	Toast toast = Toast.makeText(Frame.owner, "Event Description: \t Profile: \t Start Time: \t End Time: \t Date: ", Toast.LENGTH_LONG);
+	toast.show();
+ */
 
 public class EventAdderUI extends Frame{
 
@@ -66,10 +73,10 @@ public class EventAdderUI extends Frame{
 				// TODO Auto-generated method stub
 				Log.i(field,"trigger create button");
 				ArrayList<Object> src = new ArrayList<Object>();
-				src.add(description.getText());
+				src.add(description.getText().toString());
 				src.add((profile.getSelectedItem()).toString());
 				src.add((repeatOption.getSelectedItem()).toString());
-				src.add(repeatEvery.getText());
+				src.add(repeatEvery.getText().toString());
 				src.add(date.getYear());
 				src.add(date.getMonth());
 				src.add(date.getDayOfMonth());

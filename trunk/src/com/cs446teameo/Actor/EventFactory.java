@@ -2,6 +2,8 @@ package com.cs446teameo.Actor;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 import com.cs446teameo.Event.Event;
 import com.cs446teameo.Event.Segment;
 import com.cs446teameo.Event.SimpleText;
@@ -36,7 +38,7 @@ public class EventFactory {
 	public int addEvent(ArrayList<Object> src) {
 		// TODO Auto-generated method stub
 		ManualAdder.refreshInstance();
-		Event event = creator.CreateEvent(0);
+		Event event = new Event(0);
 		event.setDescription(new SimpleText((String)src.get(0)));
 		event.setStatus(new StatusSetting(src.get(1).toString()));
 		event.setTime(new Segment((Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(7),
