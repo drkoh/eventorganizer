@@ -22,46 +22,33 @@ public final class R {
         public static final int vibrate=0x7f070002;
         public static final int volume=0x7f070001;
     }
-    public static final class dbView {
-        public static final int clearButton=0x7f080009;
-        public static final int delete=0x7f080008;
-        public static final int eTime=0x7f080004;
-        public static final int edit=0x7f080007;
-        public static final int fbTime=0x7f080002;
-        public static final int filter=0x7f08000a;
-        public static final int leave=0x7f080006;
-        public static final int sTime=0x7f080003;
-        public static final int table=0x7f080005;
-        public static final int widget28=0x7f080000;
-        public static final int widget37=0x7f080001;
-    }
     public static final class drawable {
         public static final int icon=0x7f020000;
     }
     public static final class eventadder {
-        public static final int clearButton=0x7f090007;
-        public static final int createButton=0x7f090009;
-        public static final int date=0x7f090004;
-        public static final int description=0x7f090000;
-        public static final int eTime=0x7f090006;
-        public static final int exitButton=0x7f090008;
-        public static final int profile=0x7f090001;
-        public static final int repeatEvery=0x7f090003;
-        public static final int repeatOption=0x7f090002;
-        public static final int sTime=0x7f090005;
+        public static final int clearButton=0x7f080007;
+        public static final int createButton=0x7f080009;
+        public static final int date=0x7f080004;
+        public static final int description=0x7f080000;
+        public static final int eTime=0x7f080006;
+        public static final int exitButton=0x7f080008;
+        public static final int profile=0x7f080001;
+        public static final int repeatEvery=0x7f080003;
+        public static final int repeatOption=0x7f080002;
+        public static final int sTime=0x7f080005;
     }
     public static final class googlecalendar {
-        public static final int clearButton=0x7f0a0002;
-        public static final int exitButton=0x7f0a0003;
-        public static final int password=0x7f0a0001;
-        public static final int synchronizeButton=0x7f0a0004;
-        public static final int username=0x7f0a0000;
+        public static final int clearButton=0x7f090002;
+        public static final int exitButton=0x7f090003;
+        public static final int password=0x7f090001;
+        public static final int synchronizeButton=0x7f090004;
+        public static final int username=0x7f090000;
     }
     public static final class id {
-        public static final int ScrollView01=0x7f060015;
-        public static final int TextView01=0x7f060014;
-        public static final int widget103=0x7f060033;
-        public static final int widget125=0x7f060024;
+        public static final int ScrollView01=0x7f060013;
+        public static final int TextView01=0x7f060012;
+        public static final int widget103=0x7f060032;
+        public static final int widget125=0x7f060022;
         public static final int widget132=0x7f060000;
         public static final int widget133=0x7f060001;
         public static final int widget134=0x7f060003;
@@ -78,65 +65,63 @@ public final class R {
         public static final int widget148=0x7f06000d;
         public static final int widget149=0x7f06000f;
         public static final int widget153=0x7f06000e;
-        public static final int widget195=0x7f060023;
-        public static final int widget251=0x7f060016;
-        public static final int widget253=0x7f060022;
-        public static final int widget258=0x7f060021;
-        public static final int widget260=0x7f06001a;
-        public static final int widget28=0x7f060018;
-        public static final int widget29=0x7f060025;
-        public static final int widget30=0x7f060019;
-        public static final int widget31=0x7f060026;
-        public static final int widget32=0x7f060017;
-        public static final int widget33=0x7f060029;
-        public static final int widget35=0x7f06002b;
-        public static final int widget36=0x7f060010;
-        public static final int widget39=0x7f060011;
-        public static final int widget42=0x7f060028;
-        public static final int widget45=0x7f06002e;
-        public static final int widget47=0x7f060027;
-        public static final int widget48=0x7f06002a;
-        public static final int widget49=0x7f06002c;
-        public static final int widget52=0x7f06002d;
-        public static final int widget75=0x7f060012;
-        public static final int widget81=0x7f06002f;
-        public static final int widget82=0x7f060013;
-        public static final int widget83=0x7f060031;
-        public static final int widget84=0x7f060030;
-        public static final int widget90=0x7f06001c;
-        public static final int widget91=0x7f06001d;
-        public static final int widget93=0x7f06001b;
-        public static final int widget94=0x7f06001f;
-        public static final int widget96=0x7f060020;
-        public static final int widget97=0x7f06001e;
-        public static final int widget98=0x7f060032;
-        public static final int widget99=0x7f060034;
+        public static final int widget195=0x7f060021;
+        public static final int widget251=0x7f060014;
+        public static final int widget253=0x7f060020;
+        public static final int widget258=0x7f06001f;
+        public static final int widget260=0x7f060018;
+        public static final int widget28=0x7f060016;
+        public static final int widget29=0x7f060023;
+        public static final int widget30=0x7f060017;
+        public static final int widget31=0x7f060024;
+        public static final int widget32=0x7f060015;
+        public static final int widget33=0x7f060027;
+        public static final int widget35=0x7f060029;
+        public static final int widget36=0x7f06002a;
+        public static final int widget42=0x7f060026;
+        public static final int widget45=0x7f06002d;
+        public static final int widget47=0x7f060025;
+        public static final int widget48=0x7f060028;
+        public static final int widget49=0x7f06002b;
+        public static final int widget52=0x7f06002c;
+        public static final int widget75=0x7f060010;
+        public static final int widget81=0x7f06002e;
+        public static final int widget82=0x7f060011;
+        public static final int widget83=0x7f060030;
+        public static final int widget84=0x7f06002f;
+        public static final int widget90=0x7f06001a;
+        public static final int widget91=0x7f06001b;
+        public static final int widget93=0x7f060019;
+        public static final int widget94=0x7f06001d;
+        public static final int widget96=0x7f06001e;
+        public static final int widget97=0x7f06001c;
+        public static final int widget98=0x7f060031;
+        public static final int widget99=0x7f060033;
     }
     public static final class layout {
         public static final int createprofile=0x7f030000;
-        public static final int dbview=0x7f030001;
-        public static final int eventadder=0x7f030002;
-        public static final int googlesync=0x7f030003;
-        public static final int menu=0x7f030004;
-        public static final int repeatedeventadder=0x7f030005;
+        public static final int eventadder=0x7f030001;
+        public static final int googlesync=0x7f030002;
+        public static final int menu=0x7f030003;
+        public static final int repeatedeventadder=0x7f030004;
     }
     public static final class menuId {
-        public static final int AddEventButton=0x7f0b0005;
-        public static final int CalendarButton=0x7f0b0004;
-        public static final int CreateProfileButton=0x7f0b0006;
-        public static final int EmptyLayout1=0x7f0b0001;
-        public static final int EmptyLayout2=0x7f0b0003;
-        public static final int ExitButton=0x7f0b0008;
-        public static final int MainMenuTitle=0x7f0b0002;
-        public static final int SynchronizeButton=0x7f0b0007;
-        public static final int widget28=0x7f0b0000;
+        public static final int AddEventButton=0x7f0a0005;
+        public static final int CalendarButton=0x7f0a0004;
+        public static final int CreateProfileButton=0x7f0a0006;
+        public static final int EmptyLayout1=0x7f0a0001;
+        public static final int EmptyLayout2=0x7f0a0003;
+        public static final int ExitButton=0x7f0a0008;
+        public static final int MainMenuTitle=0x7f0a0002;
+        public static final int SynchronizeButton=0x7f0a0007;
+        public static final int widget28=0x7f0a0000;
     }
     public static final class repeatedevent {
-        public static final int clearButton=0x7f0c0002;
-        public static final int createButton=0x7f0c0004;
-        public static final int exitButton=0x7f0c0003;
-        public static final int repeatEvery=0x7f0c0001;
-        public static final int repeatOption=0x7f0c0000;
+        public static final int clearButton=0x7f0b0002;
+        public static final int createButton=0x7f0b0004;
+        public static final int exitButton=0x7f0b0003;
+        public static final int repeatEvery=0x7f0b0001;
+        public static final int repeatOption=0x7f0b0000;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

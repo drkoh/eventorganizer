@@ -59,8 +59,7 @@ public class BG extends Service {
 	class StatusChange extends TimerTask {
 		private AudioManager manager;
 		private Context context;
-		private CharSequence contentTitle = "";
-		private CharSequence contentText = "";
+
 
 		@Override
 		public void run(){  
@@ -77,6 +76,8 @@ public class BG extends Service {
 					// Notification Starts
 					NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 					int icon = R.drawable.icon;
+					CharSequence contentTitle = "Event Organizer";
+					CharSequence contentText = "Event Ended, Profile: Default";
 					CharSequence text = "Event Ended, Profile: Default";
 					long when = System.currentTimeMillis();
 					Intent intent = new Intent(BG.this, StatusChange.class);
@@ -93,6 +94,8 @@ public class BG extends Service {
 				// Notification Starts
 				NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 				int icon = R.drawable.icon;
+				CharSequence contentTitle = "Event Organizer";
+				CharSequence contentText = "Event Started, Profile: Vibrate";
 				CharSequence text = "Event Started, Profile: Vibrate";
 				long when = System.currentTimeMillis();
 				Intent intent = new Intent(BG.this, StatusChange.class);
@@ -108,7 +111,7 @@ public class BG extends Service {
 	        	manager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 	        	currentStatus = true;
 	        }else{
-	        	manager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+	        	manager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 	        	currentStatus = false;
 	        }
 		}

@@ -52,9 +52,11 @@ public class EventManager implements EventAccess{
 		Event tmpe = new Event(0);
 		for (int i = 0; i < list.getCount(); i++) {
 			CharArrayBuffer buffer = new CharArrayBuffer(1);
-			list.copyStringToBuffer(1, buffer);
-			long time = Integer.parseInt(buffer.toString());
-	//		tmpe.setTime(new Segment(time));
+			list.copyStringToBuffer(list.getColumnIndex("start_time") , buffer);
+			long starttime = Integer.parseInt(buffer.toString());
+			list.copyStringToBuffer(list.getColumnIndex("end_time") , buffer);
+			long endtime = Integer.parseInt(buffer.toString());
+			tmpe.setTime(new Segment(starttime, endtime));
 			dst.add(tmpe);
 		}
 		return ErrorCode.SUCCESS;

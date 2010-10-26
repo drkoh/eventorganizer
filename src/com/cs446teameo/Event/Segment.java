@@ -29,6 +29,16 @@ public class Segment{
 		return time.getTimeInMillis() / 1000;
 	}
 	
+	public long endUnixtime()
+	{
+		return toUnixTime(start);
+	}
+	
+	public long startUnixtime()
+	{
+		return toUnixTime(end);
+	}
+	
 	public static GregorianCalendar toGregorianCalendar(long time)
 	{
 		GregorianCalendar temp = new GregorianCalendar();
