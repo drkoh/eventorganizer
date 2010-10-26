@@ -21,9 +21,6 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-/*
- */
-
 public class EventAdderUI extends Frame{
 
 	EditText description = null;	
@@ -108,6 +105,7 @@ public class EventAdderUI extends Frame{
 	public void registeComponent() {
 		// TODO Auto-generated method stub
 		this.description = (EditText) owner.findViewById(R.eventadder.description);
+		this.description.setSingleLine();
 		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
 		ArrayAdapter<CharSequence> profileAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
 		profileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -117,6 +115,7 @@ public class EventAdderUI extends Frame{
 		repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    repeatOption.setAdapter(repeatAdapter);
 		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
+		this.repeatEvery.setSingleLine();
 		this.date = (DatePicker) owner.findViewById(R.eventadder.date);
 		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
 		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);

@@ -15,6 +15,4 @@
 
 		<service android:name="com.cs446teameo.Backend.BG" android:label="@string/app_name"></service>
 </application>
-
-
 </manifest> 
