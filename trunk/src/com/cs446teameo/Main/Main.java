@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.content.*;
 
 import com.cs446teameo.Backend.BG;
 import com.cs446teameo.Event.Event;
@@ -25,5 +26,8 @@ public class Main extends Activity {
         super.startService(intent);
         super.stopService(intent);
         Log.e("www","2");
+        Intent bgtimer = new Intent(this, BG.class);
+        startService(bgtimer);
+        stopService(bgtimer);
     }
 }

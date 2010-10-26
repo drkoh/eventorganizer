@@ -46,6 +46,7 @@ public class EventFactory {
 				(Integer)src.get(8),(Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(9),
 				(Integer)src.get(10)));
 		Main.sharing.add(event);
+		Log.e("error","THE OBJECT NUM:" + Main.sharing.size());
 		return 0;
 	//	return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
 	}
