@@ -10,7 +10,7 @@ public class MenuUI extends Frame{
 
 	Button AddEventButton = null;
 	Button CalendarButton = null;
-	Button CreateProfileButton = null;
+	Button ProfileButton = null;
 	Button ExitButton = null;
 	Button SynchronizeButton = null;
 	
@@ -52,12 +52,12 @@ public class MenuUI extends Frame{
 			}
 		});
 		
-		this.CreateProfileButton.setOnClickListener(new OnClickListener(){
+		this.ProfileButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Log.i(field,"trigger the create profile button");
-				CreateProfileUI.contextSwitch();
+				Log.i(field,"trigger the  profile button");
+				ProfileUI.contextSwitch();
 				return;
 			}
 		});
@@ -88,7 +88,7 @@ public class MenuUI extends Frame{
 		// TODO Auto-generated method stub
 		this.AddEventButton = (Button)owner.findViewById(R.menuId.AddEventButton);
 		this.CalendarButton = (Button)owner.findViewById(R.menuId.CalendarButton);
-		this.CreateProfileButton = (Button)owner.findViewById(R.menuId.CreateProfileButton);
+		this.ProfileButton = (Button)owner.findViewById(R.menuId.ProfileButton);
 		this.ExitButton = (Button)owner.findViewById(R.menuId.ExitButton);
 		this.SynchronizeButton = (Button)owner.findViewById(R.menuId.SynchronizeButton);
 		if(this.AddEventButton == null){
