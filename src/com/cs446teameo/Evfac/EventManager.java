@@ -13,7 +13,6 @@ public class EventManager implements EventAccess{
 	private static EventManager _instance = null;
 	private static Activity owner = null;
 	private EventDatabase ebase = null;
-	private ProfileDatabase pbase  = null;
 	
 	public static void setActivity(Activity ownergiven) {
 		owner = ownergiven;
