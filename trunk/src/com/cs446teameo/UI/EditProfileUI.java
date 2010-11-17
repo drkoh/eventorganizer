@@ -7,35 +7,34 @@ import android.widget.*;
 
 import com.cs446teameo.Main.R;
 
-public class CreateProfileUI extends Frame{
-
-	EditText name = null;
+public class EditProfileUI extends Frame{
+	
+	Spinner name = null;
 	SeekBar volume = null;
 	TextView volumeValue = null;
 	CheckBox vibrate = null;
 	Button clearButton = null;
 	Button exitButton = null;
-	Button createButton = null;
+	Button editButton = null;
 	
-	private static CreateProfileUI _instance = null;
+	private static EditProfileUI _instance = null;
 	
-	private CreateProfileUI() {
-		super("CreateProfile");
+	private EditProfileUI() {
+		super("EditProfile");
 		// TODO Auto-generated constructor stub
 	}
 	
 	public static void contextSwitch(){
 		if(_instance == null){
-			_instance = new CreateProfileUI();
+			_instance = new EditProfileUI();
 		}
-		owner.setContentView(R.layout.createprofile);
+		owner.setContentView(R.layout.editprofile);
 		_instance.init();
 	}
 
 	@Override
 	public void registeListener() {
 		// TODO Auto-generated method stub
-		
 		// Clear Button
 		volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 			
@@ -60,23 +59,23 @@ public class CreateProfileUI extends Frame{
 			
 			@Override
 			public void onClick(View arg0) {
-				name.setText("");
+				name.setSelection(0);
 				volume.setProgress(50);
 				volumeValue.setText(" 50");
 				vibrate.setChecked(true);
 				Log.i(field,"trigger clear button");
-				CreateProfileUI.contextSwitch();
+				EditProfileUI.contextSwitch();
 				
 			}
 		});
 		
 		// Create Button
-		createButton.setOnClickListener(new OnClickListener(){
+		editButton.setOnClickListener(new OnClickListener(){
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO!!!
-				Log.i(field,"trigger create button");
+				Log.i(field,"trigger edit button");
 				ProfileUI.contextSwitch();
 			}
 		});
@@ -95,13 +94,12 @@ public class CreateProfileUI extends Frame{
 
 	@Override
 	public void registeComponent() {
-		this.name = (EditText) owner.findViewById(R.createprofile.name);
-		this.volume = (SeekBar) owner.findViewById(R.createprofile.volume);
-		this.volumeValue = (TextView) owner.findViewById(R.createprofile.volumevalue);
-		this.vibrate = (CheckBox) owner.findViewById(R.createprofile.vibrate);
-		this.clearButton = (Button) owner.findViewById(R.createprofile.clearButton);
-		this.createButton = (Button) owner.findViewById(R.createprofile.createButton);
-		this.exitButton = (Button) owner.findViewById(R.createprofile.exitButton);	
+		this.name = (Spinner) owner.findViewById(R.editprofile.name);
+		this.volume = (SeekBar) owner.findViewById(R.editprofile.volume);
+		this.volumeValue = (TextView) owner.findViewById(R.editprofile.volumevalue);
+		this.vibrate = (CheckBox) owner.findViewById(R.editprofile.vibrate);
+		this.clearButton = (Button) owner.findViewById(R.editprofile.clearButton);
+		this.editButton = (Button) owner.findViewById(R.editprofile.editButton);
+		this.exitButton = (Button) owner.findViewById(R.editprofile.exitButton);	
 	}
-
 }

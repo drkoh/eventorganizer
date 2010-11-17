@@ -54,10 +54,10 @@ android:typeface="serif"
 >
 </Button>
 <Button
-android:id="@+menuId/CreateProfileButton"
+android:id="@+menuId/ProfileButton"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Create a Profile"
+android:text="Customized Profiles"
 android:textSize="16sp"
 android:typeface="serif"
 >
