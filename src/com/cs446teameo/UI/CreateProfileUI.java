@@ -10,7 +10,8 @@ import com.cs446teameo.Main.R;
 public class CreateProfileUI extends Frame{
 
 	EditText name = null;
-	Spinner volume = null;
+	SeekBar volume = null;
+	TextView volumeValue = null;
 	CheckBox vibrate = null;
 	Button clearButton = null;
 	Button exitButton = null;
@@ -34,6 +35,25 @@ public class CreateProfileUI extends Frame{
 	@Override
 	public void registeListener() {
 		// TODO Auto-generated method stub
+		
+		// Clear Button
+		volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+			
+			public void onProgressChanged(SeekBar volume, int progress, boolean fromUser) {
+				    // TODO Auto-generated method stub
+				    volumeValue.setText(" " + String.valueOf(progress));
+		    }
+		
+			public void onStartTrackingTouch(SeekBar arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void onStopTrackingTouch(SeekBar arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		// Clear Button
 		clearButton.setOnClickListener(new OnClickListener(){
@@ -72,7 +92,8 @@ public class CreateProfileUI extends Frame{
 	@Override
 	public void registeComponent() {
 		this.name = (EditText) owner.findViewById(R.createprofile.name);
-		this.volume = (Spinner) owner.findViewById(R.createprofile.volume);
+		this.volume = (SeekBar) owner.findViewById(R.createprofile.volume);
+		this.volumeValue = (TextView) owner.findViewById(R.createprofile.volumevalue);
 		this.vibrate = (CheckBox) owner.findViewById(R.createprofile.vibrate);
 		this.clearButton = (Button) owner.findViewById(R.createprofile.clearButton);
 		this.createButton = (Button) owner.findViewById(R.createprofile.createButton);
