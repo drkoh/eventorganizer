@@ -54,7 +54,7 @@ android:layout_gravity="center_vertical"
 </TextView>
 <EditText
 android:id="@+createprofile/name"
-android:layout_width="150px"
+android:layout_width="175px"
 android:layout_height="wrap_content"
 android:textSize="18sp"
 >
@@ -83,12 +83,23 @@ android:typeface="serif"
 android:layout_gravity="center_vertical"
 >
 </TextView>
-<Spinner
-android:id="@+createprofile/volume"
-android:layout_width="150px"
+<SeekBar
+android:layout_width="135px"
 android:layout_height="wrap_content"
+android:id="@+createprofile/volume"
+android:max="100"
+android:progress="50"
 >
-</Spinner>
+</SeekBar>
+<TextView 
+android:layout_width="35px"
+android:layout_height="wrap_content"
+android:textSize="16sp"
+android:typeface="serif"
+android:layout_gravity="center_vertical"
+android:id="@+createprofile/volumevalue"
+android:text=" 50"
+/>
 </LinearLayout>
 </LinearLayout>
 <LinearLayout
