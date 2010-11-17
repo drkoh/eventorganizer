@@ -71,7 +71,7 @@ public class Database {
      *         initialization call)
      * @throws SQLException if the database could be neither opened or created
      */
-    public static EventDatabase open(Context ctx) throws SQLException {
+    public static Database open(Context ctx) throws SQLException {
     	if (mCtx == null) {
     		mCtx = ctx;
     		mDbHelper = new DatabaseHelper(mCtx);
