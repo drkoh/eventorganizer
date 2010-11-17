@@ -17,14 +17,18 @@ public class EventDatabase {
 	private DatabaseHelper mDbHelper;
 	private SQLiteDatabase mDb;
 	
-	private final Context mCtx;
+	private Context mCtx;
 	    
 	private static final String DATABASE_NAME = "EO";
 	private static final int DATABASE_VERSION = 2;
     private static final String Event_TABLE_NAME = "Events";
+    private static final String Profile_TABLE_NAME = "Profile";
     private static final String Event_TABLE_CREATE =
     	"create table events (_id integer primary key autoincrement, "
         + "name text not null, start_time integer not null, end_time integer not null);";
+    private static final String Profile_TABLE_CREATE =
+    	"create table profile (_id integer primary key autoincrement, "
+    	+ "name text not null, volume integer not null, vibrate boolean not null);";
     
     /**
      * Constructor - takes the context to allow the database to be
@@ -33,7 +37,8 @@ public class EventDatabase {
      * @param ctx the Context within which to work
      */
     public EventDatabase(Context ctx) {
-        this.mCtx = ctx;
+    	this.mCtx = ctx;
+    	mDbHelper = new DatabaseHelper(mCtx);
     }
     
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -45,6 +50,7 @@ public class EventDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(Event_TABLE_CREATE);
+            db.execSQL(Profile_TABLE_CREATE);
             Log.d("eosql", "here");
         }
 
@@ -67,7 +73,6 @@ public class EventDatabase {
      * @throws SQLException if the database could be neither opened or created
      */
     public EventDatabase open() throws SQLException {
-        mDbHelper = new DatabaseHelper(mCtx);
         mDb = mDbHelper.getWritableDatabase();
         return this;
     }
@@ -76,7 +81,7 @@ public class EventDatabase {
         mDbHelper.close();
     }
     
-    public Cursor query(String q) throws SQLException {
+    public Cursor queryEvent(String q) throws SQLException {
         Cursor mCursor = mDb.rawQuery(q, new String[] {"_id", "start_time", "end_time", "name"});
         if (mCursor != null) {
             mCursor.moveToFirst();
