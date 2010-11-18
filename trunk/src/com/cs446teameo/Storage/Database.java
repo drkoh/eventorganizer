@@ -1,6 +1,7 @@
 package com.cs446teameo.Storage;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -10,10 +11,17 @@ import android.util.Log;
 public class Database {
 	private static final Database INSTANCE = new Database();
 	//Here we have to design our database considering concurrency
-	public static final String KEY_TITLE = "title";
-	public static final String KEY_BODY = "body";
-	public static final String KEY_ROWID = "_id"; 
-	private static final String TAG = "EventDatabase";
+	public static final String EVENT_ID = "_id"; 
+	public static final String EVENT_NAME = "name";
+	public static final String EVENT_START = "start_time";
+	public static final String EVENT_END = "end_time";
+	public static final String EVENT_LOCATION = "location";
+	public static final String EVENT_PROFILE_ID = "profileID";
+	public static final String PROFILE_ID = "_id";
+	public static final String PROFILE_NAME = "name";
+	public static final String PROFILE_VOL = "volume";
+	public static final String PROFILE_VIB = "vibrate";
+	private static final String TAG = "Database";
 	
 	private static DatabaseHelper mDbHelper;
 	private static SQLiteDatabase mDb;
@@ -26,7 +34,8 @@ public class Database {
     private static final String Profile_TABLE_NAME = "Profile";
     private static final String Event_TABLE_CREATE =
     	"create table events (_id integer primary key autoincrement, "
-        + "name text not null, start_time integer not null, end_time integer not null);";
+        + "name text not null, start_time integer not null, end_time integer not null, "
+        + "location text not null, profileID);";
     private static final String Profile_TABLE_CREATE =
     	"create table profile (_id integer primary key autoincrement, "
     	+ "name text not null, volume integer not null, vibrate boolean not null);";
@@ -84,11 +93,35 @@ public class Database {
         mDbHelper.close();
     }
     
-    public static Cursor query(String q) throws SQLException {
+    public long insert(String table, ContentValues val){
+    	return mDb.insert(table, null, val);
+    }
+    
+    public int delete(String table, String cond){
+    	return mDb.delete(table, cond, null);
+    }
+    
+    public int update(String table, ContentValues val, String cond){	
+    	return mDb.update(table, val, cond, null);
+    }
+    
+    public Cursor select(String sel){
+    	return mDb.rawQuery(sel, null);
+    }
+    
+    public String getEventTable(){
+    	return Event_TABLE_NAME;
+    }
+    
+    public String getProfileTable(){
+    	return Profile_TABLE_NAME;
+    }
+    
+    /*public static Cursor query(String q) throws SQLException {
         Cursor mCursor = mDb.rawQuery(q, new String[] {});
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
         return mCursor;
-    }
+    }*/
 }
