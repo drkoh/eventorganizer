@@ -16,6 +16,7 @@ public class EditProfileUI extends Frame{
 	Button clearButton = null;
 	Button exitButton = null;
 	Button editButton = null;
+	Button deleteButton = null;
 	
 	private static EditProfileUI _instance = null;
 	
@@ -35,6 +36,18 @@ public class EditProfileUI extends Frame{
 	@Override
 	public void registeListener() {
 		// TODO Auto-generated method stub
+		
+		// Create Button
+		deleteButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO!!!
+				Log.i(field,"trigger create button");
+				ProfileUI.contextSwitch();
+			}
+		});
+		
 		// Clear Button
 		volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 			
@@ -100,6 +113,7 @@ public class EditProfileUI extends Frame{
 		this.vibrate = (CheckBox) owner.findViewById(R.editprofile.vibrate);
 		this.clearButton = (Button) owner.findViewById(R.editprofile.clearButton);
 		this.editButton = (Button) owner.findViewById(R.editprofile.editButton);
-		this.exitButton = (Button) owner.findViewById(R.editprofile.exitButton);	
+		this.exitButton = (Button) owner.findViewById(R.editprofile.exitButton);
+		this.deleteButton = (Button) owner.findViewById(R.editprofile.deleteButton);	
 	}
 }

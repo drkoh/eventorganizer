@@ -11,7 +11,6 @@ public class ProfileUI extends Frame{
 
 	Button createButton = null;
 	Button editButton = null;
-	Button deleteButton = null;
 	Button exitButton = null;
 	
 	private static ProfileUI _instance = null;
@@ -55,17 +54,6 @@ public class ProfileUI extends Frame{
 			}
 		});
 		
-		// Create Button
-		deleteButton.setOnClickListener(new OnClickListener(){
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO!!!
-				Log.i(field,"trigger create button");
-				DeleteProfileUI.contextSwitch();
-			}
-		});
-		
 		// Exit Button
 		exitButton.setOnClickListener(new OnClickListener(){
 			
@@ -83,7 +71,6 @@ public class ProfileUI extends Frame{
 
 		this.createButton = (Button) owner.findViewById(R.profile.createButton);
 		this.editButton = (Button) owner.findViewById(R.profile.editButton);
-		this.deleteButton = (Button) owner.findViewById(R.profile.deleteButton);
 		this.exitButton = (Button) owner.findViewById(R.profile.exitButton);		
 	}
 }
