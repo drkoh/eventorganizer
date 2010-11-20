@@ -48,41 +48,37 @@ public final class R {
         public static final int weeklyTab=0x7f090002;
         public static final int yearlyTab=0x7f090000;
     }
-    public static final class deleteprofile {
-        public static final int deleteButton=0x7f0a0002;
-        public static final int exitButton=0x7f0a0001;
-        public static final int profile=0x7f0a0000;
-    }
     public static final class drawable {
         public static final int icon=0x7f020000;
     }
     public static final class editprofile {
-        public static final int clearButton=0x7f0b0004;
-        public static final int editButton=0x7f0b0006;
-        public static final int exitButton=0x7f0b0005;
-        public static final int name=0x7f0b0000;
-        public static final int vibrate=0x7f0b0003;
-        public static final int volume=0x7f0b0001;
-        public static final int volumevalue=0x7f0b0002;
+        public static final int clearButton=0x7f0a0004;
+        public static final int deleteButton=0x7f0a0006;
+        public static final int editButton=0x7f0a0007;
+        public static final int exitButton=0x7f0a0005;
+        public static final int name=0x7f0a0000;
+        public static final int vibrate=0x7f0a0003;
+        public static final int volume=0x7f0a0001;
+        public static final int volumevalue=0x7f0a0002;
     }
     public static final class eventadder {
-        public static final int clearButton=0x7f0c0007;
-        public static final int createButton=0x7f0c0009;
-        public static final int date=0x7f0c0004;
-        public static final int description=0x7f0c0000;
-        public static final int eTime=0x7f0c0006;
-        public static final int exitButton=0x7f0c0008;
-        public static final int profile=0x7f0c0001;
-        public static final int repeatEvery=0x7f0c0003;
-        public static final int repeatOption=0x7f0c0002;
-        public static final int sTime=0x7f0c0005;
+        public static final int clearButton=0x7f0b0007;
+        public static final int createButton=0x7f0b0009;
+        public static final int date=0x7f0b0004;
+        public static final int description=0x7f0b0000;
+        public static final int eTime=0x7f0b0006;
+        public static final int exitButton=0x7f0b0008;
+        public static final int profile=0x7f0b0001;
+        public static final int repeatEvery=0x7f0b0003;
+        public static final int repeatOption=0x7f0b0002;
+        public static final int sTime=0x7f0b0005;
     }
     public static final class googlecalendar {
-        public static final int clearButton=0x7f0d0002;
-        public static final int exitButton=0x7f0d0003;
-        public static final int password=0x7f0d0001;
-        public static final int synchronizeButton=0x7f0d0004;
-        public static final int username=0x7f0d0000;
+        public static final int clearButton=0x7f0c0002;
+        public static final int exitButton=0x7f0c0003;
+        public static final int password=0x7f0c0001;
+        public static final int synchronizeButton=0x7f0c0004;
+        public static final int username=0x7f0c0000;
     }
     public static final class id {
         public static final int ScrollView01=0x7f070016;
@@ -135,29 +131,27 @@ public final class R {
     public static final class layout {
         public static final int createprofile=0x7f030000;
         public static final int dailycalendar=0x7f030001;
-        public static final int deleteprofile=0x7f030002;
-        public static final int editprofile=0x7f030003;
-        public static final int eventadder=0x7f030004;
-        public static final int googlesync=0x7f030005;
-        public static final int menu=0x7f030006;
-        public static final int profile=0x7f030007;
+        public static final int editprofile=0x7f030002;
+        public static final int eventadder=0x7f030003;
+        public static final int googlesync=0x7f030004;
+        public static final int menu=0x7f030005;
+        public static final int profile=0x7f030006;
     }
     public static final class menuId {
-        public static final int AddEventButton=0x7f0e0005;
-        public static final int CalendarButton=0x7f0e0004;
-        public static final int EmptyLayout1=0x7f0e0001;
-        public static final int EmptyLayout2=0x7f0e0003;
-        public static final int ExitButton=0x7f0e0008;
-        public static final int MainMenuTitle=0x7f0e0002;
-        public static final int ProfileButton=0x7f0e0006;
-        public static final int SynchronizeButton=0x7f0e0007;
-        public static final int widget28=0x7f0e0000;
+        public static final int AddEventButton=0x7f0d0005;
+        public static final int CalendarButton=0x7f0d0004;
+        public static final int EmptyLayout1=0x7f0d0001;
+        public static final int EmptyLayout2=0x7f0d0003;
+        public static final int ExitButton=0x7f0d0008;
+        public static final int MainMenuTitle=0x7f0d0002;
+        public static final int ProfileButton=0x7f0d0006;
+        public static final int SynchronizeButton=0x7f0d0007;
+        public static final int widget28=0x7f0d0000;
     }
     public static final class profile {
-        public static final int createButton=0x7f0f0000;
-        public static final int deleteButton=0x7f0f0002;
-        public static final int editButton=0x7f0f0001;
-        public static final int exitButton=0x7f0f0003;
+        public static final int createButton=0x7f0e0000;
+        public static final int editButton=0x7f0e0001;
+        public static final int exitButton=0x7f0e0002;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

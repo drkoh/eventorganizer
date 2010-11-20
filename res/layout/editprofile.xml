@@ -17,7 +17,7 @@ android:orientation="vertical"
 android:id="@+id/widget135"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Edit a Profile"
+android:text="Edit/Delete a Profile"
 android:textSize="20sp"
 android:typeface="serif"
 android:gravity="center"
@@ -167,6 +167,13 @@ android:id="@+editprofile/exitButton"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Cancel"
+>
+</Button>
+<Button
+android:id="@+editprofile/deleteButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Delete"
 >
 </Button>
 <Button
