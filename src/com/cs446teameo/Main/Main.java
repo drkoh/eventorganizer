@@ -14,7 +14,7 @@ import com.cs446teameo.UI.EventAdderUI;
 import com.cs446teameo.UI.Frame;
 import com.cs446teameo.UI.MenuUI;
 
-public class Main extends Activity {
+public class Main extends Activity{
 	public static ArrayList<Event> sharing = new ArrayList<Event>(); 
     @Override
     public void onCreate(Bundle savedInstanceState) {

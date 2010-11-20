@@ -14,9 +14,9 @@ public class Event implements Activicable,Serializable{
 	
 	private int eId;
 	private TextField description;
-	private Segment time;
+	public Segment time;
 	private Location location;
-	private StatusSetting st_setting;
+	public StatusSetting st_setting;
 	//private TimeToAttack time_to_attack;
 	//private RepeatMode rpmode;
 	

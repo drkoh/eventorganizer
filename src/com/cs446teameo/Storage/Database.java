@@ -116,12 +116,4 @@ public class Database {
     public String getProfileTable(){
     	return Profile_TABLE_NAME;
     }
-    
-    /*public static Cursor query(String q) throws SQLException {
-        Cursor mCursor = mDb.rawQuery(q, new String[] {});
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-        return mCursor;
-    }*/
 }
