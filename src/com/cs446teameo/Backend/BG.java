@@ -1,119 +1,94 @@
 package com.cs446teameo.Backend;
 
-import android.app.Notification;
-
-import com.cs446teameo.Main.R;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
+import android.app.*;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.os.IBinder;
-import android.os.SystemClock;
+import android.os.*;
 import android.provider.SyncStateContract.Constants;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.util.TimerTask;
-import java.util.Timer;
+import java.util.*;
 
-import com.cs446teameo.Event.Event;
-import com.cs446teameo.Main.Main;
-import com.cs446teameo.UI.Frame;
+import com.cs446teameo.Event.*;
+import com.cs446teameo.UI.*;
+import com.cs446teameo.Evfac.*;
 
 public class BG extends Service {
 	
 	Event currentEvent = null;
 	boolean currentStatus = false;
+	EventManager EM = EventManager.getInstance();
+	HashMap<Integer ,Event> emap = null;
+	Timer schEvent = new Timer();
+	
+	public class LocalBinder extends Binder {
+        BG getService() {
+            return BG.this;
+        }
+    }
 	
 	@Override
 	public void onCreate() {
-		TimerTask vibrate = new StatusChange();
-		long delay = 60000 - System.currentTimeMillis() % 60000;
-		Timer timer = new Timer();
-		timer.schedule(vibrate, delay, 60000);
-		Log.d("sd", "here wait 5sec");
+		//pull the data from the database and store them into some global array
+		ArrayList<Event> elist = new ArrayList();
+		EM.listEvent(elist);
+		emap = new HashMap();
+		if (elist.size() != 0) {
+			Log.i("bg", "got data");
+		} else {
+			Log.i("bg", "no data");
+		}
+		for (int i=0; i < elist.size(); i++) {
+			emap.put(elist.get(i).getEid(), elist.get(i));
+		}
+		Log.i("bg", "end create");
 	}
+	
 	@Override
-	public IBinder onBind(Intent arg0) {
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		//schedule what ever is pulled out of the database
+		Log.i("bg", "start onStartCommand");
+		Log.i("bg", "NO. Events " + emap.size());
+		Iterator<Integer> keys = emap.keySet().iterator();
+		while(true) {
+			if (!keys.hasNext()) break;
+			int k = keys.next();
+			Log.i("bg", "work "+k);
+			
+			TimerTask start = new StatusChange(k);
+			schEvent.schedule(start, new Date(emap.get(k).getStartTime()));
+			//TimerTask end = new StatusChange(k);
+			//schEvent.schedule(end, new Date(emap.get(k).getStartTime()));
+		}
+		return START_STICKY;
+	}
+	
+	@Override
+	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public Event toTrigger(){
-		Log.d("error","checking in the database");
-		for(int i = 0 ;i < Main.sharing.size();i++)
-			if(Main.sharing.get(i).time.startTime()/60 == System.currentTimeMillis()/60000){
-				Log.d("error","got one");
-				return Main.sharing.get(i);
-			}
-		return null;
-	}
-	
-	public void popup (String message, int duration)
-	{
-		Toast.makeText(Frame.owner, message, duration).show();
+	public void onDestory() {
+		Log.i("bg", "BG killed");
 	}
 	
 	class StatusChange extends TimerTask {
 		private AudioManager manager;
 		private Context context;
+		private int eventid;
 
-
-		@Override
-		public void run(){  
-			Event src = toTrigger();
-			boolean vibrate = false;
+		StatusChange(int id){
+			this.eventid = id;
+		}
+		
+		public void run() {
+			Event src = emap.get(eventid);
 			context = getApplicationContext();
-	        manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-			if(src == null){
-				if(currentEvent == null)
-					return;
-				if(currentEvent.time.endTime()/60 == System.currentTimeMillis() / 60000){
-					vibrate = false;
-
-					// Notification Starts
-					NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-					int icon = R.drawable.icon;
-					CharSequence contentTitle = "Event Organizer";
-					CharSequence contentText = "Event Ended, Profile: Default";
-					CharSequence text = "Event Ended, Profile: Default";
-					long when = System.currentTimeMillis();
-					Intent intent = new Intent(BG.this, StatusChange.class);
-					PendingIntent contentIntent = PendingIntent.getActivity(BG.this, 0, intent, 0);
-					Notification notification = new Notification(icon, text, when);
-					notification.setLatestEventInfo(BG.this, contentTitle, contentText, contentIntent);
-					notificationManager.notify(1, notification);
-					// Notification Ends
-				}
-			}else{
-				currentEvent = src;
-				vibrate = src.st_setting.vibrate();
-
-				// Notification Starts
-				NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-				int icon = R.drawable.icon;
-				CharSequence contentTitle = "Event Organizer";
-				CharSequence contentText = "Event Started, Profile: Vibrate";
-				CharSequence text = "Event Started, Profile: Vibrate";
-				long when = System.currentTimeMillis();
-				Intent intent = new Intent(BG.this, StatusChange.class);
-				PendingIntent contentIntent = PendingIntent.getActivity(BG.this, 0, intent, 0);
-				Notification notification = new Notification(icon, text, when);
-				notification.setLatestEventInfo(BG.this, contentTitle, contentText, contentIntent);
-				notificationManager.notify(1, notification);
-				// Notification Ends
-			}
-			if(vibrate == currentStatus)
-				return;
-	        if(vibrate){
-	        	manager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-	        	currentStatus = true;
-	        }else{
-	        	manager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-	        	currentStatus = false;
-	        }
+			manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+			manager.setRingerMode(src.getStatus());
 		}
 	}
+	
 }

@@ -1,23 +1,33 @@
 package com.cs446teameo.Event;
 
+import android.util.Log;
+import android.media.AudioManager;
+
 public class StatusSetting extends EField{
-	public String status;
+	private String status;
+	private int statusCode;
 	
 	public StatusSetting(String status){
 		this.status = status;
-	}
-
-	public StatusSetting(boolean s) {
-		if(!s)
-			status = "silent";
-		else
-			status = "default";
-		// TODO Auto-generated constructor stub
+		setStatusCode();
 	}
 	
-	public boolean vibrate(){
-		if(status.equals("silent"))
-			return false;
-		return true;
+	public int getStatus(){
+		return statusCode;
 	}
+	
+	private void setStatusCode(){
+		if (status.equals("vibarte")) {
+			statusCode = AudioManager.RINGER_MODE_VIBRATE;
+		} else if (status.equals("silent")) {
+			statusCode = AudioManager.RINGER_MODE_SILENT;
+		} else if (status.equals("low")) {
+			statusCode = AudioManager.ADJUST_LOWER;
+		} else if (status.equals("high")) {
+			statusCode = AudioManager.ADJUST_RAISE;
+		} else {
+			Log.e("Status", "Unspported status String");
+		}
+	}
+	
 }

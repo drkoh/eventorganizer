@@ -40,8 +40,8 @@ public class Event implements Activicable,Serializable{
 		this.st_setting = s;
 	}
 	
-	public String getStatus(){
-		return st_setting.toString();
+	public int getStatus(){
+		return st_setting.getStatus();
 	}
 	
 	public void setTime(Segment t){
