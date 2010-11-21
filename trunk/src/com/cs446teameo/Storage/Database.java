@@ -116,4 +116,13 @@ public class Database {
     public String getProfileTable(){
     	return Profile_TABLE_NAME;
     }
+    
+    public int getNewestID(){
+    	Cursor c = mDb.rawQuery("select max(" + PROFILE_ID + ") from " + Event_TABLE_NAME+";", null);
+    	if (c.moveToFirst()) {
+    		//Since there could be only a single row
+    		return c.getInt(1);
+    	}
+    	return -1;
+    }
 }
