@@ -49,6 +49,8 @@ public class MenuUI extends Frame{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Log.i("field","trigger the calender button");
+				DailyCalendarUI.contextSwitch();
+				return;
 			}
 		});
 		
