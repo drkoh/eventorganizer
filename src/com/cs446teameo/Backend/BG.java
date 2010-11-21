@@ -23,14 +23,12 @@ public class BG extends Service {
 	Timer schEvent = new Timer();
 	
 	public class LocalBinder extends Binder {
-        BG getService() {
+        public BG getService() {
             return BG.this;
         }
     }
 	
-	@Override
-	public void onCreate() {
-		//pull the data from the database and store them into some global array
+	private void gatherEvents() {
 		ArrayList<Event> elist = new ArrayList();
 		EM.listEvent(elist);
 		emap = new HashMap();
@@ -42,14 +40,9 @@ public class BG extends Service {
 		for (int i=0; i < elist.size(); i++) {
 			emap.put(elist.get(i).getEid(), elist.get(i));
 		}
-		Log.i("bg", "end create");
 	}
 	
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		//schedule what ever is pulled out of the database
-		Log.i("bg", "start onStartCommand");
-		Log.i("bg", "NO. Events " + emap.size());
+	private void setEvents() {
 		Iterator<Integer> keys = emap.keySet().iterator();
 		while(true) {
 			if (!keys.hasNext()) break;
@@ -61,13 +54,38 @@ public class BG extends Service {
 			//TimerTask end = new StatusChange(k);
 			//schEvent.schedule(end, new Date(emap.get(k).getStartTime()));
 		}
-		return START_STICKY;
+	}
+	
+	public void notifyME() {
+		Log.i("bg", "notify recived");
+		gatherEvents();
+		setEvents();
 	}
 	
 	@Override
+	public void onCreate() {
+		//pull the data from the database and store them into some global array
+		gatherEvents();
+		Log.i("bg", "end create");
+	}
+	
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		//schedule what ever is pulled out of the database
+		Log.i("bg", "start onStartCommand");
+		Log.i("bg", "NO. Events " + emap.size());
+		setEvents();
+		return START_STICKY;
+	}
+	
+	private final IBinder mBinder = new LocalBinder();
+	
+	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
+		//binding only used for notification
+		Log.i("bg", "binding done: "+intent.getDataString());
+		notifyME();
+		return mBinder;
 	}
 	
 	public void onDestory() {
