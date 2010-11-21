@@ -16,7 +16,7 @@ public class EventBuilder {
 	}
 	
 	public void setStatus(boolean s){
-		event.setStatus(new StatusSetting(s));
+		//event.setStatus(new StatusSetting(s));
 	}
 	
 	public void setLocation(String l){

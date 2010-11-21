@@ -26,6 +26,14 @@ public class Driver {
 		lexer.setParser(parser);
 		parser.setLexer(lexer);
 	}
+	public TimeSet parse(String target){
+		return null;
+	}
+	
+	public String parse(TimeSet set){
+		return null;
+	}
+	
 	public static Driver getInstance() throws FileNotFoundException{
 		if(_instance == null)
 			_instance = new Driver();
