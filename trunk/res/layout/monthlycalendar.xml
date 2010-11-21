@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+android:id="@+id/widget30"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<LinearLayout
+android:id="@+id/widget35"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="@color/silver"
+android:orientation="vertical"
+>
+<LinearLayout
+android:id="@+id/widget32"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_horizontal"
+>
+<Button
+android:id="@+monthlycalendar/yearlyTab"
+android:layout_width="63px"
+android:layout_height="wrap_content"
+android:text="Year"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyTab"
+android:layout_width="63px"
+android:layout_height="wrap_content"
+android:textColor="@color/purple"
+android:text="Month"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/weeklyTab"
+android:layout_width="63px"
+android:layout_height="wrap_content"
+android:text="Week"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/dailyTab"
+android:layout_width="63px"
+android:layout_height="wrap_content"
+android:text="Day"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/listTab"
+android:layout_width="63px"
+android:layout_height="wrap_content"
+android:text="List"
+>
+</Button>
+</LinearLayout>
+</LinearLayout>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:stretchColumns="1">
+<TableRow>
+<Button
+android:id="@+monthlycalendar/leftButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="left"
+android:text="&lt;"
+>
+</Button>
+<TextView
+android:id="@+monthlycalendar/date"
+android:text="Month, Year"
+android:layout_gravity="center_vertical"
+android:gravity="center"
+android:padding="3dip"/>
+<Button
+android:id="@+monthlycalendar/rightButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="right"
+android:text='&gt;'
+>
+</Button>
+</TableRow>
+</TableLayout>
+<View
+android:layout_height="1dip"
+android:background="@color/gray"
+/>
+<TableLayout
+android:id="@+monthlycalendar/eventTable"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+android:layout_marginBottom="50dip"
+android:layout_marginTop="1dip"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1">
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Sun"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Mon"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Tue"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Wed"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Thu"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Fri"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+<TextView
+android:id="@+monthlycalendar/text"
+android:text="Sat"
+android:gravity="center"
+android:layout_weight="1"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1"
+android:layout_marginTop="5dip">
+<Button
+android:id="@+monthlycalendar/monthlyButton0x0"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton0x1"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton0x2"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton0x3"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton0x4"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton0x5"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton0x6"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+</TableRow>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1">
+<Button
+android:id="@+monthlycalendar/monthlyButton1x0"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton1x1"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton1x2"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton1x3"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton1x4"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton1x5"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton1x6"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+</TableRow>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1">
+<Button
+android:id="@+monthlycalendar/monthlyButton2x0"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton2x1"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton2x2"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton2x3"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton2x4"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton2x5"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton2x6"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+</TableRow>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1">
+<Button
+android:id="@+monthlycalendar/monthlyButton3x0"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton3x1"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton3x2"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton3x3"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton3x4"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton3x5"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton3x6"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+</TableRow>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1">
+<Button
+android:id="@+monthlycalendar/monthlyButton4x0"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton4x1"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton4x2"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton4x3"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton4x4"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton4x5"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton4x6"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+</TableRow>
+<TableRow
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_weight="1">
+<Button
+android:id="@+monthlycalendar/monthlyButton5x0"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton5x1"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton5x2"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton5x3"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton5x4"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton5x5"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/monthlyButton5x6"
+android:text=" "
+android:layout_weight="1"
+>
+</Button>
+</TableRow>
+</TableLayout>
+<RelativeLayout
+android:id="@+id/widget195"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="-50dip"
+android:gravity="center_horizontal"
+>
+<LinearLayout
+android:id="@+id/widget125"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentTop="true"
+android:layout_alignParentLeft="true"
+>
+<Button
+android:id="@+monthlycalendar/exitButton"
+android:layout_width="125px"
+android:layout_height="wrap_content"
+android:text="Back to Menu"
+>
+</Button>
+<Button
+android:id="@+monthlycalendar/createButton"
+android:layout_width="125px"
+android:layout_height="wrap_content"
+android:text="Create an Event"
+>
+</Button>
+</LinearLayout>
+</RelativeLayout>
+</TableLayout>
