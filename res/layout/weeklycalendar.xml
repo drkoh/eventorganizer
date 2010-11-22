@@ -107,7 +107,7 @@ android:layout_marginTop="1dip"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/sundayText"
 android:text="Sunday"
 android:gravity="center">
 </TextView>
@@ -121,7 +121,7 @@ android:layout_height="1dip"
 android:background="@color/silver"
 />
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/mondayText"
 android:text="Monday"
 android:gravity="center">
 </TextView>
@@ -135,7 +135,7 @@ android:layout_height="1dip"
 android:background="@color/silver"
 />
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/tuesdayText"
 android:text="Tuesday"
 android:gravity="center">
 </TextView>
@@ -149,7 +149,7 @@ android:layout_height="1dip"
 android:background="@color/silver"
 />
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/wednesdayText"
 android:text="Wednesday"
 android:gravity="center">
 </TextView>
@@ -163,7 +163,7 @@ android:layout_height="1dip"
 android:background="@color/silver"
 />
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/thursdayText"
 android:text="Thursday"
 android:gravity="center">
 </TextView>
@@ -177,7 +177,7 @@ android:layout_height="1dip"
 android:background="@color/silver"
 />
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/fridayText"
 android:text="Friday"
 android:gravity="center">
 </TextView>
@@ -191,7 +191,7 @@ android:layout_height="1dip"
 android:background="@color/silver"
 />
 <TextView
-android:id="@+weeklycalendar/text"
+android:id="@+weeklycalendar/saturdayText"
 android:text="Saturday"
 android:gravity="center">
 </TextView>
