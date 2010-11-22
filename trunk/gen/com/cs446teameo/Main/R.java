@@ -42,48 +42,67 @@ public final class R {
         public static final int volumevalue=0x7f080002;
     }
     public static final class dailycalendar {
+        public static final int createButton=0x7f09000a;
         public static final int dailyTab=0x7f090003;
+        public static final int date=0x7f090006;
+        public static final int eventTable=0x7f090008;
+        public static final int exitButton=0x7f090009;
+        public static final int leftButton=0x7f090005;
         public static final int listTab=0x7f090004;
         public static final int monthlyTab=0x7f090001;
+        public static final int rightButton=0x7f090007;
         public static final int weeklyTab=0x7f090002;
         public static final int yearlyTab=0x7f090000;
+    }
+    public static final class dbView {
+        public static final int clearButton=0x7f0a0009;
+        public static final int delete=0x7f0a0008;
+        public static final int eTime=0x7f0a0004;
+        public static final int edit=0x7f0a0007;
+        public static final int fbTime=0x7f0a0002;
+        public static final int filter=0x7f0a000a;
+        public static final int leave=0x7f0a0006;
+        public static final int sTime=0x7f0a0003;
+        public static final int table=0x7f0a0005;
+        public static final int widget28=0x7f0a0000;
+        public static final int widget37=0x7f0a0001;
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
     }
     public static final class editprofile {
-        public static final int clearButton=0x7f0a0004;
-        public static final int deleteButton=0x7f0a0006;
-        public static final int editButton=0x7f0a0007;
-        public static final int exitButton=0x7f0a0005;
-        public static final int name=0x7f0a0000;
-        public static final int vibrate=0x7f0a0003;
-        public static final int volume=0x7f0a0001;
-        public static final int volumevalue=0x7f0a0002;
+        public static final int clearButton=0x7f0b0004;
+        public static final int deleteButton=0x7f0b0006;
+        public static final int editButton=0x7f0b0007;
+        public static final int exitButton=0x7f0b0005;
+        public static final int name=0x7f0b0000;
+        public static final int vibrate=0x7f0b0003;
+        public static final int volume=0x7f0b0001;
+        public static final int volumevalue=0x7f0b0002;
     }
     public static final class eventadder {
-        public static final int clearButton=0x7f0b0007;
-        public static final int createButton=0x7f0b0009;
-        public static final int date=0x7f0b0004;
-        public static final int description=0x7f0b0000;
-        public static final int eTime=0x7f0b0006;
-        public static final int exitButton=0x7f0b0008;
-        public static final int profile=0x7f0b0001;
-        public static final int repeatEvery=0x7f0b0003;
-        public static final int repeatOption=0x7f0b0002;
-        public static final int sTime=0x7f0b0005;
+        public static final int clearButton=0x7f0c0007;
+        public static final int createButton=0x7f0c0009;
+        public static final int date=0x7f0c0004;
+        public static final int description=0x7f0c0000;
+        public static final int eTime=0x7f0c0006;
+        public static final int exitButton=0x7f0c0008;
+        public static final int profile=0x7f0c0001;
+        public static final int repeatEvery=0x7f0c0003;
+        public static final int repeatOption=0x7f0c0002;
+        public static final int sTime=0x7f0c0005;
     }
     public static final class googlecalendar {
-        public static final int clearButton=0x7f0c0002;
-        public static final int exitButton=0x7f0c0003;
-        public static final int password=0x7f0c0001;
-        public static final int synchronizeButton=0x7f0c0004;
-        public static final int username=0x7f0c0000;
+        public static final int clearButton=0x7f0d0002;
+        public static final int exitButton=0x7f0d0003;
+        public static final int password=0x7f0d0001;
+        public static final int synchronizeButton=0x7f0d0004;
+        public static final int username=0x7f0d0000;
     }
     public static final class id {
-        public static final int ScrollView01=0x7f070016;
-        public static final int TextView01=0x7f070015;
-        public static final int widget125=0x7f070023;
+        public static final int ScrollView01=0x7f070013;
+        public static final int TextView01=0x7f07001a;
+        public static final int widget125=0x7f070015;
         public static final int widget132=0x7f070000;
         public static final int widget133=0x7f070001;
         public static final int widget134=0x7f070003;
@@ -100,63 +119,187 @@ public final class R {
         public static final int widget148=0x7f07000d;
         public static final int widget149=0x7f07000f;
         public static final int widget153=0x7f07000e;
-        public static final int widget195=0x7f070022;
-        public static final int widget251=0x7f070017;
-        public static final int widget253=0x7f070021;
-        public static final int widget258=0x7f070020;
-        public static final int widget260=0x7f070019;
-        public static final int widget28=0x7f070018;
-        public static final int widget29=0x7f070024;
+        public static final int widget195=0x7f070014;
+        public static final int widget251=0x7f07001b;
+        public static final int widget253=0x7f070025;
+        public static final int widget258=0x7f070024;
+        public static final int widget260=0x7f07001d;
+        public static final int widget28=0x7f07001c;
+        public static final int widget29=0x7f070026;
         public static final int widget30=0x7f070010;
-        public static final int widget31=0x7f070025;
+        public static final int widget31=0x7f070027;
         public static final int widget32=0x7f070012;
-        public static final int widget33=0x7f070028;
+        public static final int widget33=0x7f07002a;
         public static final int widget35=0x7f070011;
-        public static final int widget36=0x7f07002a;
-        public static final int widget42=0x7f070027;
-        public static final int widget45=0x7f07002d;
-        public static final int widget47=0x7f070026;
-        public static final int widget48=0x7f070029;
-        public static final int widget49=0x7f07002b;
-        public static final int widget52=0x7f07002c;
-        public static final int widget75=0x7f070013;
-        public static final int widget82=0x7f070014;
-        public static final int widget90=0x7f07001b;
-        public static final int widget91=0x7f07001c;
-        public static final int widget93=0x7f07001a;
-        public static final int widget94=0x7f07001e;
-        public static final int widget96=0x7f07001f;
-        public static final int widget97=0x7f07001d;
+        public static final int widget36=0x7f070016;
+        public static final int widget39=0x7f070017;
+        public static final int widget42=0x7f070029;
+        public static final int widget45=0x7f07002e;
+        public static final int widget47=0x7f070028;
+        public static final int widget48=0x7f07002b;
+        public static final int widget49=0x7f07002c;
+        public static final int widget52=0x7f07002d;
+        public static final int widget75=0x7f070018;
+        public static final int widget82=0x7f070019;
+        public static final int widget90=0x7f07001f;
+        public static final int widget91=0x7f070020;
+        public static final int widget93=0x7f07001e;
+        public static final int widget94=0x7f070022;
+        public static final int widget96=0x7f070023;
+        public static final int widget97=0x7f070021;
     }
     public static final class layout {
         public static final int createprofile=0x7f030000;
         public static final int dailycalendar=0x7f030001;
-        public static final int editprofile=0x7f030002;
-        public static final int eventadder=0x7f030003;
-        public static final int googlesync=0x7f030004;
-        public static final int menu=0x7f030005;
-        public static final int profile=0x7f030006;
+        public static final int dbview=0x7f030002;
+        public static final int editprofile=0x7f030003;
+        public static final int eventadder=0x7f030004;
+        public static final int googlesync=0x7f030005;
+        public static final int listcalendar=0x7f030006;
+        public static final int menu=0x7f030007;
+        public static final int monthlycalendar=0x7f030008;
+        public static final int profile=0x7f030009;
+        public static final int weeklycalendar=0x7f03000a;
+        public static final int yearlycalendar=0x7f03000b;
+    }
+    public static final class listcalendar {
+        public static final int createButton=0x7f0e0007;
+        public static final int dailyTab=0x7f0e0003;
+        public static final int eventTable=0x7f0e0005;
+        public static final int exitButton=0x7f0e0006;
+        public static final int listTab=0x7f0e0004;
+        public static final int monthlyTab=0x7f0e0001;
+        public static final int weeklyTab=0x7f0e0002;
+        public static final int yearlyTab=0x7f0e0000;
     }
     public static final class menuId {
-        public static final int AddEventButton=0x7f0d0005;
-        public static final int CalendarButton=0x7f0d0004;
-        public static final int EmptyLayout1=0x7f0d0001;
-        public static final int EmptyLayout2=0x7f0d0003;
-        public static final int ExitButton=0x7f0d0008;
-        public static final int MainMenuTitle=0x7f0d0002;
-        public static final int ProfileButton=0x7f0d0006;
-        public static final int SynchronizeButton=0x7f0d0007;
-        public static final int widget28=0x7f0d0000;
+        public static final int AddEventButton=0x7f0f0005;
+        public static final int CalendarButton=0x7f0f0004;
+        public static final int EmptyLayout1=0x7f0f0001;
+        public static final int EmptyLayout2=0x7f0f0003;
+        public static final int ExitButton=0x7f0f0008;
+        public static final int MainMenuTitle=0x7f0f0002;
+        public static final int ProfileButton=0x7f0f0006;
+        public static final int SynchronizeButton=0x7f0f0007;
+        public static final int widget28=0x7f0f0000;
+    }
+    public static final class monthlycalendar {
+        public static final int createButton=0x7f100035;
+        public static final int dailyTab=0x7f100003;
+        public static final int date=0x7f100006;
+        public static final int eventTable=0x7f100008;
+        public static final int exitButton=0x7f100034;
+        public static final int leftButton=0x7f100005;
+        public static final int listTab=0x7f100004;
+        public static final int monthlyButton0x0=0x7f10000a;
+        public static final int monthlyButton0x1=0x7f10000b;
+        public static final int monthlyButton0x2=0x7f10000c;
+        public static final int monthlyButton0x3=0x7f10000d;
+        public static final int monthlyButton0x4=0x7f10000e;
+        public static final int monthlyButton0x5=0x7f10000f;
+        public static final int monthlyButton0x6=0x7f100010;
+        public static final int monthlyButton1x0=0x7f100011;
+        public static final int monthlyButton1x1=0x7f100012;
+        public static final int monthlyButton1x2=0x7f100013;
+        public static final int monthlyButton1x3=0x7f100014;
+        public static final int monthlyButton1x4=0x7f100015;
+        public static final int monthlyButton1x5=0x7f100016;
+        public static final int monthlyButton1x6=0x7f100017;
+        public static final int monthlyButton2x0=0x7f100018;
+        public static final int monthlyButton2x1=0x7f100019;
+        public static final int monthlyButton2x2=0x7f10001a;
+        public static final int monthlyButton2x3=0x7f10001b;
+        public static final int monthlyButton2x4=0x7f10001c;
+        public static final int monthlyButton2x5=0x7f10001d;
+        public static final int monthlyButton2x6=0x7f10001e;
+        public static final int monthlyButton3x0=0x7f10001f;
+        public static final int monthlyButton3x1=0x7f100020;
+        public static final int monthlyButton3x2=0x7f100021;
+        public static final int monthlyButton3x3=0x7f100022;
+        public static final int monthlyButton3x4=0x7f100023;
+        public static final int monthlyButton3x5=0x7f100024;
+        public static final int monthlyButton3x6=0x7f100025;
+        public static final int monthlyButton4x0=0x7f100026;
+        public static final int monthlyButton4x1=0x7f100027;
+        public static final int monthlyButton4x2=0x7f100028;
+        public static final int monthlyButton4x3=0x7f100029;
+        public static final int monthlyButton4x4=0x7f10002a;
+        public static final int monthlyButton4x5=0x7f10002b;
+        public static final int monthlyButton4x6=0x7f10002c;
+        public static final int monthlyButton5x0=0x7f10002d;
+        public static final int monthlyButton5x1=0x7f10002e;
+        public static final int monthlyButton5x2=0x7f10002f;
+        public static final int monthlyButton5x3=0x7f100030;
+        public static final int monthlyButton5x4=0x7f100031;
+        public static final int monthlyButton5x5=0x7f100032;
+        public static final int monthlyButton5x6=0x7f100033;
+        public static final int monthlyTab=0x7f100001;
+        public static final int rightButton=0x7f100007;
+        public static final int text=0x7f100009;
+        public static final int weeklyTab=0x7f100002;
+        public static final int yearlyTab=0x7f100000;
     }
     public static final class profile {
-        public static final int createButton=0x7f0e0000;
-        public static final int editButton=0x7f0e0001;
-        public static final int exitButton=0x7f0e0002;
+        public static final int createButton=0x7f110000;
+        public static final int editButton=0x7f110001;
+        public static final int exitButton=0x7f110002;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
         public static final int debug=0x7f040002;
         public static final int hello=0x7f040000;
         public static final int planet_prompt=0x7f040003;
+    }
+    public static final class weeklycalendar {
+        public static final int createButton=0x7f120018;
+        public static final int dailyTab=0x7f120003;
+        public static final int date=0x7f120006;
+        public static final int eventTable=0x7f120008;
+        public static final int exitButton=0x7f120017;
+        public static final int fridayLayout=0x7f120014;
+        public static final int fridayText=0x7f120013;
+        public static final int leftButton=0x7f120005;
+        public static final int listTab=0x7f120004;
+        public static final int mondayLayout=0x7f12000c;
+        public static final int mondayText=0x7f12000b;
+        public static final int monthlyTab=0x7f120001;
+        public static final int rightButton=0x7f120007;
+        public static final int saturdayLayout=0x7f120016;
+        public static final int saturdayText=0x7f120015;
+        public static final int sundayLayout=0x7f12000a;
+        public static final int sundayText=0x7f120009;
+        public static final int thursdayLayout=0x7f120012;
+        public static final int thursdayText=0x7f120011;
+        public static final int tuesdayLayout=0x7f12000e;
+        public static final int tuesdayText=0x7f12000d;
+        public static final int wednesdayLayout=0x7f120010;
+        public static final int wednesdayText=0x7f12000f;
+        public static final int weeklyTab=0x7f120002;
+        public static final int yearlyTab=0x7f120000;
+    }
+    public static final class yearlycalendar {
+        public static final int aprilButton=0x7f13000c;
+        public static final int augustButton=0x7f130010;
+        public static final int createButton=0x7f130016;
+        public static final int dailyTab=0x7f130003;
+        public static final int date=0x7f130006;
+        public static final int decemberButton=0x7f130014;
+        public static final int eventTable=0x7f130008;
+        public static final int exitButton=0x7f130015;
+        public static final int februaryButton=0x7f13000a;
+        public static final int januaryButton=0x7f130009;
+        public static final int julyButton=0x7f13000f;
+        public static final int juneButton=0x7f13000e;
+        public static final int leftButton=0x7f130005;
+        public static final int listTab=0x7f130004;
+        public static final int marchButton=0x7f13000b;
+        public static final int mayButton=0x7f13000d;
+        public static final int monthlyTab=0x7f130001;
+        public static final int novemberButton=0x7f130013;
+        public static final int octoberButton=0x7f130012;
+        public static final int rightButton=0x7f130007;
+        public static final int septemberButton=0x7f130011;
+        public static final int weeklyTab=0x7f130002;
+        public static final int yearlyTab=0x7f130000;
     }
 }

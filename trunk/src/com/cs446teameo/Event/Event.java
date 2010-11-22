@@ -20,6 +20,11 @@ public class Event implements Activicable,Serializable{
 	//private TimeToAttack time_to_attack;
 	//private RepeatMode rpmode;
 	
+	
+	
+	public Event(){
+		
+	}
 	public Event(int style){
 
 	}

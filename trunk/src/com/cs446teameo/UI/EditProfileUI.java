@@ -1,11 +1,17 @@
 package com.cs446teameo.UI;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
 import com.cs446teameo.Main.R;
+import com.cs446teameo.Parameter.ErrorCode;
+import com.cs446teameo.Profile.Profile;
+import com.cs446teameo.Profile.ProfileManager;
 
 public class EditProfileUI extends Frame{
 	
@@ -18,6 +24,9 @@ public class EditProfileUI extends Frame{
 	Button editButton = null;
 	Button deleteButton = null;
 	
+	
+	//Here You should first load on all created profiles, or how can you delete it
+	
 	private static EditProfileUI _instance = null;
 	
 	private EditProfileUI() {
@@ -28,9 +37,13 @@ public class EditProfileUI extends Frame{
 	public static void contextSwitch(){
 		if(_instance == null){
 			_instance = new EditProfileUI();
+			owner.setContentView(R.layout.editprofile);
+			_instance.init();
+			_instance.loadProfile();
+		}else{
+			owner.setContentView(R.layout.editprofile);
+			_instance.init();
 		}
-		owner.setContentView(R.layout.editprofile);
-		_instance.init();
 	}
 
 	@Override
@@ -43,6 +56,11 @@ public class EditProfileUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				// TODO!!!
+				int res = ProfileManager.getInstance().deleteProfile(((Profile)name.getSelectedItem()).getId());
+				if (res != ErrorCode.SUCCESS){
+					Log.e(field, "Delete Profile Error");
+					return;
+				}
 				Log.i(field,"trigger create button");
 				ProfileUI.contextSwitch();
 			}
@@ -84,7 +102,7 @@ public class EditProfileUI extends Frame{
 		
 		// Create Button
 		editButton.setOnClickListener(new OnClickListener(){
-			
+			//DO YOU MEAN EDITButton a save button here?? I don't know what to do here
 			@Override
 			public void onClick(View arg0) {
 				// TODO!!!
@@ -116,4 +134,19 @@ public class EditProfileUI extends Frame{
 		this.exitButton = (Button) owner.findViewById(R.editprofile.exitButton);
 		this.deleteButton = (Button) owner.findViewById(R.editprofile.deleteButton);	
 	}
+	
+	private void loadProfile(){
+		ArrayList<Profile> list = new ArrayList<Profile>();
+		ProfileManager.getInstance().listProfile(list);
+		Iterator<Profile> it = list.iterator();
+		ArrayAdapter<Profile> adapter = new ArrayAdapter<Profile>(this.owner, name.getId());
+		while(it.hasNext()){
+			adapter.add(it.next());
+		}
+		adapter.setDropDownViewResource(name.getId());
+		name.setAdapter(adapter);
+	}
+	
+	
 }
+
