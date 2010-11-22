@@ -1,5 +1,7 @@
 package com.cs446teameo.UI;
 
+import java.util.Calendar;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +34,8 @@ public class YearlyCalendarUI extends Frame{
 	Button exitButton = null;
 	Button createButton = null;
 	TableLayout eventTable = null;
+	int currentYear, currentMonth, currentDay, currentDayOfTheWeek;
+	Calendar calendar;
 	
 	private static YearlyCalendarUI _instance = null;
 	
@@ -52,6 +56,25 @@ public class YearlyCalendarUI extends Frame{
 	public void registeListener() {
 		// TODO Auto-generated method stub
 
+		leftButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				calendar.add(Calendar.YEAR, -1);
+				setUI(calendar);
+			}
+		});
+		
+
+		rightButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				calendar.add(Calendar.YEAR, 1);
+				setUI(calendar);
+			}
+		});
+		
 		// Create Button
 		dailyTab.setOnClickListener(new OnClickListener(){
 			
@@ -145,7 +168,22 @@ public class YearlyCalendarUI extends Frame{
 		this.rightButton = (Button) owner.findViewById(R.yearlycalendar.rightButton);	
 		this.createButton = (Button) owner.findViewById(R.yearlycalendar.createButton);
 		this.exitButton = (Button) owner.findViewById(R.yearlycalendar.exitButton);	
-		this.eventTable = (TableLayout) owner.findViewById(R.yearlycalendar.eventTable);	
+		this.eventTable = (TableLayout) owner.findViewById(R.yearlycalendar.eventTable);
+		calendar = Calendar.getInstance();
+		setUI(calendar);
+	}
+	
+	// Sets all the text-based UI components
+	public void setUI (Calendar c)
+	{
+        currentYear = c.get(Calendar.YEAR);
+		this.date.setText("" + currentYear);
+        setEventsUI(c);
+	}
+
+	// Sets all the event-based UI components
+	public void setEventsUI(Calendar c)
+	{
 	}
 
 }

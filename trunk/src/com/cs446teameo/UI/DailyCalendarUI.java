@@ -1,5 +1,7 @@
 package com.cs446teameo.UI;
 
+import java.util.Calendar;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +22,15 @@ public class DailyCalendarUI extends Frame{
 	Button exitButton = null;
 	Button createButton = null;
 	TableLayout eventTable = null;
+	int currentYear, currentMonth, currentDay, currentDayOfTheWeek;
+	String dateString;
+	Calendar calendar;
+	String[] monthNames = {"January", "February", "March", 
+			"April", "May", "June", "July", "August", 
+			"September", "October", "November", "December"};
+	String[] dayNames = new String[] { "Sunday", "Monday", "Tuesday", 
+			"Wednesday", "Thusday", "Friday", "Saturday" };
+
 	
 	private static DailyCalendarUI _instance = null;
 	
@@ -39,6 +50,26 @@ public class DailyCalendarUI extends Frame{
 	@Override
 	public void registeListener() {
 		// TODO Auto-generated method stub
+		
+
+		leftButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				calendar.add(Calendar.DAY_OF_MONTH, -1);
+				setUI(calendar);
+			}
+		});
+		
+
+		rightButton.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				calendar.add(Calendar.DAY_OF_MONTH, 1);
+				setUI(calendar);
+			}
+		});
 		
 		// Create Button
 		yearlyTab.setOnClickListener(new OnClickListener(){
@@ -116,11 +147,30 @@ public class DailyCalendarUI extends Frame{
 		this.dailyTab.setEnabled(false);
 		this.listTab = (Button) owner.findViewById(R.dailycalendar.listTab);
 		this.date = (TextView) owner.findViewById(R.dailycalendar.date);
+		calendar = Calendar.getInstance();
+		setUI(calendar);
 		this.leftButton = (Button) owner.findViewById(R.dailycalendar.leftButton);
 		this.rightButton = (Button) owner.findViewById(R.dailycalendar.rightButton);	
 		this.createButton = (Button) owner.findViewById(R.dailycalendar.createButton);
 		this.exitButton = (Button) owner.findViewById(R.dailycalendar.exitButton);	
 		this.eventTable = (TableLayout) owner.findViewById(R.dailycalendar.eventTable);	
+	}
+
+	// Sets all the text-based UI components
+	public void setUI (Calendar c)
+	{
+        currentYear = c.get(Calendar.YEAR);
+        currentMonth = c.get(Calendar.MONTH);
+        currentDay = c.get(Calendar.DAY_OF_MONTH);
+        currentDayOfTheWeek = c.get(Calendar.DAY_OF_WEEK);
+        dateString = dayNames[currentDayOfTheWeek - 1] + ", " + monthNames[currentMonth]  + " " + currentDay + ", " + currentYear;
+        date.setText(dateString);
+        setEventsUI(c);
+	}
+
+	// Sets all the event-based UI components
+	public void setEventsUI(Calendar c)
+	{
 	}
 
 }
