@@ -1,5 +1,7 @@
 package com.cs446teameo.Profile;
 
+import java.util.ArrayList;
+
 import com.cs446teameo.Parameter.ErrorCode;
 import com.cs446teameo.Storage.Database;
 
@@ -12,6 +14,12 @@ public class ProfileManager {
 	private static Activity owner = null;
 	private Database ebase = null;
 
+	
+	
+	//TODO: Culvin, I set the id to be -1 now, coz I cannot get the id to be allocated.
+	//I think It is done inside the database, YOu can check for the available id.
+	
+	
 	public static void setActivity(Activity ownergiven) {
 		owner = ownergiven;
 	}
@@ -67,6 +75,12 @@ public class ProfileManager {
 		}
 		
 		return ebase.select(sel);
+	}
+	
+	//TODO add a listProfile function
+	public int listProfile(ArrayList<Profile> list){
+		//list all profiles in the database into 'list'
+		return 0;
 	}
 	
 }

@@ -2,10 +2,7 @@ package com.cs446teameo.Profile;
 
 import java.io.Serializable;
 
-public class Profile implements Serializable{
-
-        private static final long serialVersionUID = 2789089601153968331L;
-       
+public class Profile{
         public static final short SHUTDOWN = 0;
        
         private int pId;
@@ -46,5 +43,8 @@ public class Profile implements Serializable{
        
         public int getVolume(){
                 return volume;
+        }
+        public String toString(){
+        	return description;
         }
 }

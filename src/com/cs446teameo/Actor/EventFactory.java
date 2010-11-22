@@ -25,6 +25,7 @@ public class EventFactory {
 	
 	
 	private EventFactory(){
+		ManualAdder.refreshInstance();
 		creator = EventCreator.getInstance();
 		accessor = EventManager.getInstance();
 		editor = null;
@@ -36,18 +37,16 @@ public class EventFactory {
 		return _instance;
 	}
 
-	public int addEvent(ArrayList<Object> src) {
+	public int createEvent(ArrayList<Object> src) {
 		// TODO Auto-generated method stub
-		ManualAdder.refreshInstance();
-		Event event = new Event(0);
+		//ManualAdder.refreshInstance();
+		Event event = new Event();
 		event.setDescription(new SimpleText((String)src.get(0)));
 		event.setStatus(new StatusSetting(src.get(1).toString()));
 		event.setTime(new Segment((Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(7),
 				(Integer)src.get(8),(Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(9),
 				(Integer)src.get(10)));
-		Main.sharing.add(event);
-		Log.e("error","THE OBJECT NUM:" + Main.sharing.size());
-		return 0;
-	//	return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
+	//	return accessor.createNewEvent(event);
+		return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
 	}
 }

@@ -80,10 +80,9 @@ public class EventAdderUI extends Frame{
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
-				int res = EventFactory.getInstance().addEvent(src);
-				Log.d("error","the size of database" + Main.sharing.size());
-				if(res != ErrorCode.SUCCESS)
-				{
+				int res = EventFactory.getInstance().createEvent(src);
+				if(res != ErrorCode.SUCCESS){
+					//TODO: ADD AN NOTIFICATION TO THE USER
 					Log.e(field,"Add Event Error: " + res);
 					return;
 				}

@@ -6,6 +6,9 @@ import android.view.View.OnClickListener;
 import android.widget.*;
 
 import com.cs446teameo.Main.R;
+import com.cs446teameo.Parameter.ErrorCode;
+import com.cs446teameo.Profile.Profile;
+import com.cs446teameo.Profile.ProfileManager;
 
 public class CreateProfileUI extends Frame{
 
@@ -75,7 +78,13 @@ public class CreateProfileUI extends Frame{
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO!!!
+				Profile profile = new Profile(name.getText().toString(),vibrate.isChecked(),volume.getProgress());
+				int res = ProfileManager.getInstance().createNewProfile(profile);
+				if(res != ErrorCode.SUCCESS){
+					//TODO: ADD AN NOTIFICATION TO THE USER
+					Log.e(field,"Add Event Error: " + res);
+					return;
+				}
 				Log.i(field,"trigger create button");
 				ProfileUI.contextSwitch();
 			}
