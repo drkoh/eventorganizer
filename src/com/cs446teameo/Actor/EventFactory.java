@@ -41,7 +41,8 @@ public class EventFactory {
 		// TODO Auto-generated method stub
 		//ManualAdder.refreshInstance();
 		Event event = new Event();
-		event.setDescription(new SimpleText((String)src.get(0)));
+		//event.setDescription(new SimpleText((String)src.get(0)));
+		event.setDescription((String)src.get(0));
 		event.setStatus(new StatusSetting(src.get(1).toString()));
 		event.setTime(new Segment((Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(7),
 				(Integer)src.get(8),(Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(9),

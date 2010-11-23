@@ -11,6 +11,7 @@ import com.cs446teameo.Backend.*;
 
 import android.content.*;
 import android.os.*;
+import android.util.Log;
 import android.database.*;
 import android.net.Uri;
 
@@ -77,22 +78,25 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_LOCATION, e.getLocation());
 		val.put(Database.EVENT_PROFILE_ID, "");
 		
-		if (ebase.insert(ebase.getEventTable(), val) > 0) {
+		ebase.insert(ebase.getEventTable(), val);
+		/*if (s > 0) {
 			//TODO: find out the new event's id and notify the BG with that id
 			notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
 			return ErrorCode.SUCCESS;
-		}
+		}*/
+
 		return 0;
 	}
 	
 	public int deleteEvent(int eId){
 		String cond = Database.EVENT_ID + "=" + eId;
 		
-		if (ebase.delete(ebase.getEventTable(), cond) > 0) {
+		ebase.delete(ebase.getEventTable(), cond);
+		/*if (ebase.delete(ebase.getEventTable(), cond) > 0) {
 			//TODO: notify the BG with that id
 			notifyBG("ACTION_DELETE_EVENT", ""+eId);
 			return ErrorCode.SUCCESS;
-		}
+		}*/
 		return 0;
 	}	
 	
@@ -105,11 +109,13 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
 		
-		if (ebase.update(ebase.getEventTable(), val, cond) > 0) {
+		ebase.update(ebase.getEventTable(), val, cond);
+		
+		/*if (ebase.update(ebase.getEventTable(), val, cond) > 0) {
 			//TODO: notify the BG with that id
 			notifyBG("ACTION_UPDATE_EVENT", ""+eId);
 			return ErrorCode.SUCCESS;
-		}
+		}*/
 		return 0;
 	}
 	

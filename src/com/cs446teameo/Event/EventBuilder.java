@@ -12,7 +12,8 @@ public class EventBuilder {
 	}
 	
 	public void setDescription(String desc){
-		event.setDescription(new SimpleText(desc));
+		//event.setDescription(new SimpleText(desc));
+		event.setDescription(desc);
 	}
 	
 	public void setStatus(boolean s){
@@ -20,7 +21,8 @@ public class EventBuilder {
 	}
 	
 	public void setLocation(String l){
-		event.setLocation(new Location(l));
+		//event.setLocation(new Location(l));
+		event.setDescription(l);
 	}
 	
 	public void setTime(int sYear, int sMonth, int sDay, int sHour, int sMin,
