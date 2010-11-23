@@ -78,7 +78,8 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_LOCATION, e.getLocation());
 		val.put(Database.EVENT_PROFILE_ID, "");
 		
-		ebase.insert(ebase.getEventTable(), val);
+		long s = ebase.insert(ebase.getEventTable(), val);
+
 		/*if (s > 0) {
 			//TODO: find out the new event's id and notify the BG with that id
 			notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
