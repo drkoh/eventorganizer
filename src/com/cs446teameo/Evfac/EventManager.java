@@ -18,7 +18,7 @@ import android.net.Uri;
 public class EventManager implements EventAccess{
 	private static EventManager _instance = null;
 	private static Activity owner = null;
-	private Database ebase = null;
+	private static Database ebase = null;
 	
 	//////////////////////////////////for Bind to BG/////////////////////////////////
 	static BG backService;
@@ -120,7 +120,7 @@ public class EventManager implements EventAccess{
 		return 0;
 	}
 	
-	public Cursor selectEvent(String cond){
+	public static Cursor selectEvent(String cond){
 		String sel = "select * from " + ebase.getEventTable();
 		
 		if (cond.length() > 0 || cond == null){
