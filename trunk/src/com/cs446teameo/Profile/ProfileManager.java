@@ -41,16 +41,20 @@ public class ProfileManager {
 		val.put(Database.PROFILE_VIB, p.getVibrate());
 		val.put(Database.PROFILE_VOL, p.getVolume());
 		
-		if (ebase.insert(ebase.getProfileTable(), val) > 0)
-			return ErrorCode.SUCCESS;
+		ebase.insert(ebase.getProfileTable(), val);
+		
+		/*if (ebase.insert(ebase.getProfileTable(), val) > 0)
+			return ErrorCode.SUCCESS;*/
 		return 0;
 	}
 	
 	public int deleteProfile(int pId){
 		String cond = Database.PROFILE_ID + "=" + pId;
 		
-		if (ebase.delete(ebase.getProfileTable(), cond) > 0)
-			return ErrorCode.SUCCESS;
+		ebase.delete(ebase.getProfileTable(), cond);
+		
+		/*if (ebase.delete(ebase.getProfileTable(), cond) > 0)
+			return ErrorCode.SUCCESS;*/
 		return 0;
 	}	
 	
@@ -62,8 +66,10 @@ public class ProfileManager {
 		val.put(Database.PROFILE_VIB, p.getVibrate());
 		val.put(Database.PROFILE_VOL, p.getVolume());
 		
-		if (ebase.update(ebase.getProfileTable(), val, cond) > 0)
-			return ErrorCode.SUCCESS;
+		ebase.update(ebase.getProfileTable(), val, cond);
+		
+		/*if (ebase.update(ebase.getProfileTable(), val, cond) > 0)
+			return ErrorCode.SUCCESS;*/
 		return 0;
 	}
 	

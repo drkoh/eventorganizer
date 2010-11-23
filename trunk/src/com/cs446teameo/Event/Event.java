@@ -13,17 +13,23 @@ public class Event implements Activicable,Serializable{
 	private static final long serialVersionUID = 8901889794218787753L;
 	
 	private int eId;
-	private TextField description;
+	//private TextField description;
+	private String description;
 	public Segment time;
-	private Location location;
+	//private Location location;
+	private String location;
 	public StatusSetting st_setting;
 	//private TimeToAttack time_to_attack;
 	//private RepeatMode rpmode;
 	
-	
-	
 	public Event(){
 		
+	}
+	
+	public Event(String d, Segment t, String l){
+		description = d;
+		time = t;
+		location = l;
 	}
 	public Event(int style){
 
@@ -33,12 +39,12 @@ public class Event implements Activicable,Serializable{
 		return eId;
 	}
 	
-	public void setDescription(SimpleText desc){
+	public void setDescription(String desc){
 		this.description = desc;
 	}
 	
 	public String getDescription(){
-		return description.toString();
+		return description;
 	}
 	
 	public void setStatus(StatusSetting s){
@@ -61,12 +67,12 @@ public class Event implements Activicable,Serializable{
 		return time.endTime();
 	}
 	
-	public void setLocation (Location l){
+	public void setLocation (String l){
 		this.location = l;
 	}
 	
 	public String getLocation(){
-		return location.location;
+		return location;
 	}
 	
 	@Override
