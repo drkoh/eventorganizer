@@ -43,7 +43,7 @@ public class WeeklyCalendarUI extends Frame{
 			"April", "May", "June", "July", "August", 
 			"September", "October", "November", "December"};
 	String[] dayNames = new String[] { "Sunday", "Monday", "Tuesday", 
-			"Wednesday", "Thusday", "Friday", "Saturday" };
+			"Wednesday", "Thursday", "Friday", "Saturday" };
 
 	private static WeeklyCalendarUI _instance = null;
 	

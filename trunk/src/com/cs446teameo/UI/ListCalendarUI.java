@@ -1,5 +1,7 @@
 package com.cs446teameo.UI;
 
+import java.util.Calendar;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -117,6 +119,16 @@ public class ListCalendarUI extends Frame{
 		this.createButton = (Button) owner.findViewById(R.listcalendar.createButton);
 		this.exitButton = (Button) owner.findViewById(R.listcalendar.exitButton);	
 		this.eventTable = (TableLayout) owner.findViewById(R.listcalendar.eventTable);	
+	}
+	
+	// Sets all the text-based UI components
+	public void setUI (Calendar c)
+	{
+	}
+
+	// Sets all the event-based UI components
+	public void setEventsUI(Calendar c)
+	{
 	}
 
 }
