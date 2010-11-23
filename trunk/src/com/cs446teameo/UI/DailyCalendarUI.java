@@ -2,12 +2,15 @@ package com.cs446teameo.UI;
 
 import java.util.Calendar;
 
+import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+import com.cs446teameo.Evfac.EventManager;
 import com.cs446teameo.Main.R;
+import com.cs446teameo.Storage.Database;
 
 public class DailyCalendarUI extends Frame{
 
@@ -180,6 +183,7 @@ public class DailyCalendarUI extends Frame{
 	// Sets all the event-based UI components
 	public void setEventsUI(Calendar c)
 	{
+        
 	}
 
 }

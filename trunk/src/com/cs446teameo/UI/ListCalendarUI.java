@@ -2,12 +2,15 @@ package com.cs446teameo.UI;
 
 import java.util.Calendar;
 
+import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+import com.cs446teameo.Evfac.EventManager;
 import com.cs446teameo.Main.R;
+import com.cs446teameo.Storage.Database;
 
 public class ListCalendarUI extends Frame{
 
@@ -124,11 +127,33 @@ public class ListCalendarUI extends Frame{
 	// Sets all the text-based UI components
 	public void setUI (Calendar c)
 	{
+		// To do!
+		setEventsUI(c);
 	}
 
 	// Sets all the event-based UI components
 	public void setEventsUI(Calendar c)
 	{
+		Cursor tempCursor = EventManager.selectEvent("");
+        int cursorSize = tempCursor.getCount();
+        Button eventButtons[] = new Button[cursorSize];
+        int count = 0;
+        if(cursorSize != 0)
+        {
+	        do {
+	            // Get the field values of each event
+	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
+	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
+	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
+	            String profile = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_PROFILE_ID));
+	            
+	            // Create a button, add event info onto it, and add it to the event-table layout
+	            eventButtons[count] = new Button(owner);
+	            eventButtons[count].setText("Name: " + name + "\nStart: " + startTime + "\nEnd:" + endTime + "\nProfile: " + profile);
+	    		eventTable.addView(eventButtons[count]);
+	            
+	        } while (tempCursor.moveToNext());
+        }
 	}
 
 }
