@@ -26,7 +26,8 @@ public class MonthlyCalendarUI extends Frame{
 	Button[][] monthlyButton = new Button[6][7];
 	String dateString;
 	int currentYear, currentMonth, currentDay;
-	Calendar calendar;
+	public static boolean calendarSet = false;
+	public static Calendar calendar;
 	String[] monthNames = {"January", "February", "March", 
 			"April", "May", "June", "July", "August", 
 			"September", "October", "November", "December"};
@@ -55,7 +56,7 @@ public class MonthlyCalendarUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				calendar.add(Calendar.MONTH, -1);
-				setUI(calendar);
+				setUI();
 			}
 		});
 		
@@ -65,7 +66,7 @@ public class MonthlyCalendarUI extends Frame{
 			public void onClick(View arg0) {
 
 				calendar.add(Calendar.MONTH, 1);
-				setUI(calendar);
+				setUI();
 			}
 		});
 		
@@ -149,29 +150,40 @@ public class MonthlyCalendarUI extends Frame{
 		this.rightButton = (Button) owner.findViewById(R.monthlycalendar.rightButton);	
 		this.createButton = (Button) owner.findViewById(R.monthlycalendar.createButton);
 		this.exitButton = (Button) owner.findViewById(R.monthlycalendar.exitButton);
-		calendar = Calendar.getInstance();
-		associateDayButtons(calendar);
-		setUI(calendar);
+		if(calendarSet == false)
+		{
+			calendar = Calendar.getInstance();
+			calendarSet = true;
+		}
+		else
+		{
+			calendarSet = false;
+		}
+		associateDayButtons();
+		setUI();
 	}
 	
 	// Sets all the text-based UI components
-	public void setUI (Calendar c)
+	public void setUI ()
 	{
+		// Disable all the buttons of each day cell and set text = " "
 		for(int i = 0; i < 6; i++)
 		{
 			for(int j = 0; j < 7; j++)
 			{
 				monthlyButton[i][j].setText("");
+				monthlyButton[i][j].setEnabled(false);
 			}
 		}
 		int x = 0, y = 0;
-        currentYear = c.get(Calendar.YEAR);
-        currentMonth = c.get(Calendar.MONTH);
-        dateString = monthNames[c.get(Calendar.MONTH)] + ", " + currentYear;
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = calendar.get(Calendar.MONTH);
+        dateString = monthNames[calendar.get(Calendar.MONTH)] + ", " + currentYear;
 		date.setText(dateString);	
-		int maxDays = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-		int offsetPlusMaxDays = (c.get(Calendar.DAY_OF_WEEK) - 1) + maxDays;
-		y = (c.get(Calendar.DAY_OF_WEEK) - 1);
+		int maxDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		Calendar tempCalendar = (Calendar)calendar.clone();
+		tempCalendar.set(Calendar.DAY_OF_MONTH, 1);
+		y = (tempCalendar.get(Calendar.DAY_OF_WEEK) - 1);
 		for(int i = 1; i <= maxDays; i++)
 		{
 			if(y == 7)
@@ -181,19 +193,35 @@ public class MonthlyCalendarUI extends Frame{
 			}
 			Log.i(field,"x:" + x + ", y:" + y);
 			monthlyButton[x][y].setText("" + i);
+			monthlyButton[x][y].setEnabled(true);
+			
+			final int xx = x;
+			final int yy = y;
+			
+			// Add functionality to the button
+			monthlyButton[x][y].setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View arg0) 
+				{
+					DailyCalendarUI.calendarSet = true;
+					DailyCalendarUI.calendar = (Calendar)calendar.clone();
+					DailyCalendarUI.calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt( (String) monthlyButton[xx][yy].getText()));
+					DailyCalendarUI.contextSwitch();
+				}
+			});
 			y++;
 		}
-        setEventsUI(c);
+        setEventsUI();
 	}
 
 	// Sets all the event-based UI components
-	public void setEventsUI(Calendar c)
+	public void setEventsUI()
 	{
 	}
 	
 	// Associate all the buttons of each day in the grid to their xml counterparts 
 	// (this method was actually generated using Java, lol).
-	public void associateDayButtons(Calendar c)
+	public void associateDayButtons()
 	{
 		monthlyButton[0][0] = (Button) owner.findViewById(R.monthlycalendar.monthlyButton0x0);
 		monthlyButton[0][1] = (Button) owner.findViewById(R.monthlycalendar.monthlyButton0x1);

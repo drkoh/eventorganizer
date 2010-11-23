@@ -24,12 +24,13 @@ public class DailyCalendarUI extends Frame{
 	TableLayout eventTable = null;
 	int currentYear, currentMonth, currentDay, currentDayOfTheWeek;
 	String dateString;
-	Calendar calendar;
+	public static boolean calendarSet = false;
+	public static Calendar calendar;
 	String[] monthNames = {"January", "February", "March", 
 			"April", "May", "June", "July", "August", 
 			"September", "October", "November", "December"};
 	String[] dayNames = new String[] { "Sunday", "Monday", "Tuesday", 
-			"Wednesday", "Thusday", "Friday", "Saturday" };
+			"Wednesday", "Thursday", "Friday", "Saturday" };
 
 	
 	private static DailyCalendarUI _instance = null;
@@ -147,7 +148,15 @@ public class DailyCalendarUI extends Frame{
 		this.dailyTab.setEnabled(false);
 		this.listTab = (Button) owner.findViewById(R.dailycalendar.listTab);
 		this.date = (TextView) owner.findViewById(R.dailycalendar.date);
-		calendar = Calendar.getInstance();
+		if(calendarSet == false)
+		{
+			calendar = Calendar.getInstance();
+			calendarSet = true;
+		}
+		else
+		{
+			calendarSet = false;
+		}
 		setUI(calendar);
 		this.leftButton = (Button) owner.findViewById(R.dailycalendar.leftButton);
 		this.rightButton = (Button) owner.findViewById(R.dailycalendar.rightButton);	

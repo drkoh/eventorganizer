@@ -61,7 +61,7 @@ public class YearlyCalendarUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				calendar.add(Calendar.YEAR, -1);
-				setUI(calendar);
+				setUI();
 			}
 		});
 		
@@ -71,7 +71,7 @@ public class YearlyCalendarUI extends Frame{
 			@Override
 			public void onClick(View arg0) {
 				calendar.add(Calendar.YEAR, 1);
-				setUI(calendar);
+				setUI();
 			}
 		});
 		
@@ -170,20 +170,143 @@ public class YearlyCalendarUI extends Frame{
 		this.exitButton = (Button) owner.findViewById(R.yearlycalendar.exitButton);	
 		this.eventTable = (TableLayout) owner.findViewById(R.yearlycalendar.eventTable);
 		calendar = Calendar.getInstance();
-		setUI(calendar);
+		setUI();
 	}
 	
 	// Sets all the text-based UI components
-	public void setUI (Calendar c)
+	public void setUI ()
 	{
-        currentYear = c.get(Calendar.YEAR);
-		this.date.setText("" + currentYear);
-        setEventsUI(c);
+        currentYear = calendar.get(Calendar.YEAR);
+		date.setText("" + currentYear);
+		
+		// Set the buttons to navigate to the month it's supposed to
+		januaryButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 0);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		februaryButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 1);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		marchButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 2);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		aprilButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 3);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		mayButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 4);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		juneButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 5);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		julyButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 6);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		augustButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 7);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		septemberButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 8);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		octoberButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 9);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		novemberButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 10);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+		decemberButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) 
+			{
+				MonthlyCalendarUI.calendarSet = true;
+				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 11);
+				MonthlyCalendarUI.contextSwitch();
+			}
+		});
+        setEventsUI();
 	}
 
 	// Sets all the event-based UI components
-	public void setEventsUI(Calendar c)
+	public void setEventsUI()
 	{
+		
 	}
 
 }
