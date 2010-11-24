@@ -136,27 +136,36 @@ public class ListCalendarUI extends Frame{
 	public void setEventsUI()
 	{
 
-		Log.i(field,"Inside UI method now!");
+		Log.i(field,"Start Set UI!");
 		Cursor tempCursor = EventManager.selectEvent("");
         int cursorSize = tempCursor.getCount();
         Button eventButtons[] = new Button[cursorSize];
+		Log.i(field,"Cursor size = " + cursorSize);
         int count = 0;
         if(cursorSize != 0)
         {
-	        do {
+    		Log.i(field,"Cursor size != 0");
+    		while (tempCursor.moveToNext())
+    		{
 	            // Get the field values of each event
 	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
 	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
 	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
-	            String profile = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_PROFILE_ID));
-	            
+	            //String profile = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_PROFILE_ID));
+
 	            // Create a button, add event info onto it, and add it to the event-table layout (should display events here!!!)
 	            eventButtons[count] = new Button(owner);
-	            eventButtons[count].setText("Name: " + name + "\nStart: " + startTime + "\nEnd:" + endTime + "\nProfile: " + profile);
+	            eventButtons[count].setText("Name: " + name + "\nStart: " + startTime + "\nEnd:" + endTime);
 	    		eventTable.addView(eventButtons[count]);
-	            
-	        } while (tempCursor.moveToNext());
+	    		count++;
+	        } 
         }
+        else
+        {
+    		Log.i(field,"Cursor size == 0");
+        }
+
+		Log.i(field,"End Set UI!");
 	}
 
 }

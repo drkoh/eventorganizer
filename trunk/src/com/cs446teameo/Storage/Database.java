@@ -35,7 +35,7 @@ public class Database {
     private static final String Event_TABLE_CREATE =
     	"create table events (_id integer primary key autoincrement, "
         + "name text not null, start_time integer not null, end_time integer not null, "
-        + "location text not null, profileID);";
+        + "location text, profileID integer, repeatOption integer, repeat);";
     private static final String Profile_TABLE_CREATE =
     	"create table profile (_id integer primary key autoincrement, "
     	+ "name text not null, volume integer not null, vibrate boolean not null);";
