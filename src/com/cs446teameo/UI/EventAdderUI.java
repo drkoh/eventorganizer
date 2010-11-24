@@ -27,7 +27,8 @@ public class EventAdderUI extends Frame{
 	Spinner profile = null;
 	Spinner repeatOption = null;
 	AutoCompleteTextView repeatEvery = null;
-	DatePicker date = null;
+	DatePicker startDate = null;
+	DatePicker endDate = null;
 	TimePicker sTimePicker = null;
 	TimePicker eTimePicker = null;
 	Button clearButton = null;
@@ -70,12 +71,24 @@ public class EventAdderUI extends Frame{
 				Log.i(field,"trigger create button");
 				ArrayList<Object> src = new ArrayList<Object>();
 				src.add(description.getText().toString());
-				src.add((profile.getSelectedItem()).toString());
+				if(profile.getSelectedItem() == null)
+				{
+					src.add("");
+				}
+				else
+				{
+					src.add((profile.getSelectedItem()).toString());
+				}
 				src.add((repeatOption.getSelectedItem()).toString());
 				src.add(repeatEvery.getText().toString());
-				src.add(date.getYear());
-				src.add(date.getMonth());
-				src.add(date.getDayOfMonth());
+				src.add(startDate.getYear());
+				src.add(startDate.getMonth());
+				src.add(startDate.getDayOfMonth());
+				//
+				src.add(endDate.getYear());
+				src.add(endDate.getMonth());
+				src.add(endDate.getDayOfMonth());
+				//
 				src.add(sTimePicker.getCurrentHour());
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
@@ -115,9 +128,10 @@ public class EventAdderUI extends Frame{
 	    repeatOption.setAdapter(repeatAdapter);
 		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
 		this.repeatEvery.setSingleLine();
-		this.date = (DatePicker) owner.findViewById(R.eventadder.date);
-		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.sTime);
-		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.eTime);
+		this.startDate = (DatePicker) owner.findViewById(R.eventadder.startDate);
+		this.endDate = (DatePicker) owner.findViewById(R.eventadder.endDate);
+		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.startTime);
+		this.eTimePicker = (TimePicker) owner.findViewById(R.eventadder.endTime);
 		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
 		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
 		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
