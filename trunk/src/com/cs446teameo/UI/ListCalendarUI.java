@@ -122,18 +122,21 @@ public class ListCalendarUI extends Frame{
 		this.createButton = (Button) owner.findViewById(R.listcalendar.createButton);
 		this.exitButton = (Button) owner.findViewById(R.listcalendar.exitButton);	
 		this.eventTable = (TableLayout) owner.findViewById(R.listcalendar.eventTable);	
+		setUI();
 	}
 	
 	// Sets all the text-based UI components
-	public void setUI (Calendar c)
+	public void setUI ()
 	{
 		// To do!
-		setEventsUI(c);
+		setEventsUI();
 	}
 
 	// Sets all the event-based UI components
-	public void setEventsUI(Calendar c)
+	public void setEventsUI()
 	{
+
+		Log.i(field,"Inside UI method now!");
 		Cursor tempCursor = EventManager.selectEvent("");
         int cursorSize = tempCursor.getCount();
         Button eventButtons[] = new Button[cursorSize];
@@ -147,7 +150,7 @@ public class ListCalendarUI extends Frame{
 	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
 	            String profile = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_PROFILE_ID));
 	            
-	            // Create a button, add event info onto it, and add it to the event-table layout
+	            // Create a button, add event info onto it, and add it to the event-table layout (should display events here!!!)
 	            eventButtons[count] = new Button(owner);
 	            eventButtons[count].setText("Name: " + name + "\nStart: " + startTime + "\nEnd:" + endTime + "\nProfile: " + profile);
 	    		eventTable.addView(eventButtons[count]);
