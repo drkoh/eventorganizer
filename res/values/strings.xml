@@ -18,6 +18,7 @@
         <item>Weekly</item>
         <item>Monthly</item>
         <item>Yearly</item>
+        <item>Test</item>
     </string-array>
 	<color name="white">#FFFFFF</color>
 	<color name="silver">#C0C0C0</color>
