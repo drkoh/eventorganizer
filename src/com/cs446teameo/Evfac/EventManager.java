@@ -1,6 +1,7 @@
 package com.cs446teameo.Evfac;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
 
@@ -152,8 +153,33 @@ public class EventManager implements EventAccess{
 	}
 	
 	
-	
 	public int initProfileDatabase(){
 		return 0;
 	}
+
+	/* CALVIN - FILL THESE METHODS - START */
+	// Returns all the events from the event table, first sorted by Start Date, then by Start time
+	public ArrayList<Event> allEvents()
+	{
+		return null;
+	}
+
+	// Returns all the events from the event table, that occur at the same time as calendar. Must be sorted by Start Time.
+	public ArrayList<Event> allEventsOfDay(Calendar calendar)
+	{
+		return null;
+	}
+
+	// Does any event occur on the specified day?
+	public boolean eventOccursOnDay(Calendar calendar)
+	{
+		return false;
+	}
+	
+	// Does any event occur on the specified year?
+	public boolean eventOccursOnYear(Calendar calendar)
+	{
+		return false;
+	}
+	/* CALVIN - FILL THESE METHODS - END */
 }
