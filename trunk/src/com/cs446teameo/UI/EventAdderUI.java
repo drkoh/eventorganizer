@@ -7,16 +7,24 @@ import com.cs446teameo.Main.Main;
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Parameter.ErrorCode;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -34,6 +42,12 @@ public class EventAdderUI extends Frame{
 	Button clearButton = null;
 	Button createButton = null;
 	Button exitButton = null;
+	static final int WeeklyEventAdderDialog = 0;
+	static final int MonthlyEventAdderDialog = 1;
+	static final int StartTimePickerDialog = 2;
+	static final int StartDatePickerDialog = 3;
+	static final int EndTimePickerDialog = 4;
+	static final int EndDatePickerDialog = 5;
 	
 	private static EventAdderUI _instance = null;
 	
@@ -52,6 +66,51 @@ public class EventAdderUI extends Frame{
 	
 	@Override
 	public void registeListener() {
+		
+		repeatOption.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) 
+		    {
+		    	// None
+		    	if(pos == 0)
+		    	{
+		    		// Do Nothing!
+		    	}
+		    	// Daily
+		    	else if(pos == 1)
+		    	{
+		    		// Just take days like you do normally
+		    	}
+		    	// Weekly
+		    	else if(pos == 2)
+		    	{
+		    		WeeklyEventAdder weeklyDialog = new WeeklyEventAdder(owner);
+		    		weeklyDialog.show();
+		    		if(weeklyDialog.daySet == true)
+		    		{
+		    			// Access weeklyDialog.days  here...
+		    		}
+		    	}
+		    	// Monthly
+		    	else if(pos == 3)
+		    	{
+		    		MonthlyEventAdder monthlyDialog = new MonthlyEventAdder(owner);
+		    		monthlyDialog.show();
+		    		if(MonthlyEventAdder.daySet == true)
+		    		{
+		    			// Access monthlyDialog.day  here...
+		    		}
+		    	}
+		    	// Yearly
+		    	else if(pos == 4)
+		    	{
+		    		// Just take days like you do normally
+		    	}
+		    }
+		    public void onNothingSelected(AdapterView<?> parent) 
+		    {
+		    }
+		});
+
 		// TODO Auto-generated method stub
 		clearButton.setOnClickListener(new OnClickListener(){
 			@Override
@@ -136,6 +195,5 @@ public class EventAdderUI extends Frame{
 		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
 		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
 	}
-
 
 }
