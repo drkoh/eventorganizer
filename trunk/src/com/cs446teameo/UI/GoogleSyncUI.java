@@ -71,7 +71,9 @@ public class GoogleSyncUI extends Frame{
 	@Override
 	public void registeComponent() {
 		this.username = (EditText) owner.findViewById(R.googlecalendar.username);
+		this.username.setSingleLine();
 		this.password = (EditText) owner.findViewById(R.googlecalendar.password);
+		this.password.setSingleLine();
 		this.clearButton = (Button) owner.findViewById(R.googlecalendar.clearButton);
 		this.createButton = (Button) owner.findViewById(R.googlecalendar.synchronizeButton);
 		this.exitButton = (Button) owner.findViewById(R.googlecalendar.exitButton);

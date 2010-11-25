@@ -39,15 +39,15 @@ public class EventFactory {
 
 	public int createEvent(ArrayList<Object> src) {
 		// TODO Auto-generated method stub
-		//ManualAdder.refreshInstance();
 		Event event = new Event();
-		//event.setDescription(new SimpleText((String)src.get(0)));
 		event.setDescription((String)src.get(0));
 		event.setStatus(new StatusSetting(src.get(1).toString()));
+		event.setRepeatOption(src.get(2).toString());
+		event.setRepeatText(src.get(3).toString());
 		event.setTime(new Segment((Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(10),
 				(Integer)src.get(11),(Integer)src.get(7),(Integer)src.get(8),(Integer)src.get(9),(Integer)src.get(12),
 				(Integer)src.get(13)));
-	//	return accessor.createNewEvent(event);
+		event.setLocation((String) src.get(14));
 		return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
 	}
 }

@@ -102,11 +102,13 @@ public class EventManager implements EventAccess{
 		return 0;
 	}	
 	
-	public int updateEvent(Event e, int eId){
+	public int updateEvent(Event e, int eId)
+	{
 		String cond = Database.EVENT_ID + "=" + eId;
 		ContentValues val = new ContentValues();
-		
 		val.put(Database.EVENT_NAME, e.getDescription());
+		val.put(Database.EVENT_REPEAT_OPTION, e.getRepeatOption());
+		val.put(Database.EVENT_REPEAT_TEXT, e.getRepeatText());
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
@@ -147,17 +149,18 @@ public class EventManager implements EventAccess{
 		}
 		return ErrorCode.SUCCESS;
 	}
+
+	/* CALVIN - FILL THESE METHODS - START */	
 	
-	public int listEvent(ArrayList<Event> dst){
-		return ErrorCode.SUCCESS;
-	}
-	
-	
+	// Initialize the Profile Database
 	public int initProfileDatabase(){
 		return 0;
 	}
 
-	/* CALVIN - FILL THESE METHODS - START */
+	public int listEvent(ArrayList<Event> dst){
+        return ErrorCode.SUCCESS;
+	}
+	
 	// Returns all the events from the event table, first sorted by Start Date, then by Start time
 	public ArrayList<Event> allEvents()
 	{

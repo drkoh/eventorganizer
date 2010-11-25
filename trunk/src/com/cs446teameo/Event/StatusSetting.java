@@ -16,18 +16,35 @@ public class StatusSetting extends EField{
 		return statusCode;
 	}
 	
-	private void setStatusCode(){
-		if (status.equals("vibarte")) {
+	private void setStatusCode()
+	{
+		if(status.equals("Default"))
+		{
+			statusCode = AudioManager.RINGER_MODE_NORMAL;
+		}
+		else if (status.equals("Vibrate")) 
+		{
 			statusCode = AudioManager.RINGER_MODE_VIBRATE;
-		} else if (status.equals("silent")) {
+		} 
+		else if (status.equals("Silent")) 
+		{
 			statusCode = AudioManager.RINGER_MODE_SILENT;
-		} else if (status.equals("low")) {
+		} 
+		else if (status.equals("Low")) 
+		{
 			statusCode = AudioManager.ADJUST_LOWER;
-		} else if (status.equals("high")) {
+		} 
+		else if (status.equals("Medium")) 
+		{
+			statusCode = AudioManager.RINGER_MODE_NORMAL;
+		} 
+		else if (status.equals("High")) 
+		{
 			statusCode = AudioManager.ADJUST_RAISE;
-		} else {
+		} 
+		else 
+		{
 			Log.e("Status", "Unspported status String");
 		}
-	}
-	
+	}	
 }

@@ -105,6 +105,7 @@ public class CreateProfileUI extends Frame{
 	@Override
 	public void registeComponent() {
 		this.name = (EditText) owner.findViewById(R.createprofile.name);
+		this.name.setSingleLine();
 		this.volume = (SeekBar) owner.findViewById(R.createprofile.volume);
 		this.volumeValue = (TextView) owner.findViewById(R.createprofile.volumevalue);
 		this.vibrate = (CheckBox) owner.findViewById(R.createprofile.vibrate);
