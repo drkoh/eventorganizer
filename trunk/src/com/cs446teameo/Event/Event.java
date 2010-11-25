@@ -13,14 +13,10 @@ public class Event implements Activicable,Serializable{
 	private static final long serialVersionUID = 8901889794218787753L;
 	
 	private int eId;
-	//private TextField description;
 	private String description;
 	public Segment time;
-	//private Location location;
 	private String location;
 	public StatusSetting st_setting;
-	//private TimeToAttack time_to_attack;
-	//private RepeatMode rpmode;
 	
 	public Event(){
 		
