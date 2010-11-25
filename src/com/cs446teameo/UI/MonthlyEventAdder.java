@@ -58,6 +58,7 @@ public class MonthlyEventAdder extends Dialog implements OnClickListener {
 			dismiss();
 			daySet = true;
 			day = daySeek.getProgress() + 1;
+    		EventAdderUI.repeatStatusText.setText("Repeated every month on: " + day);
 		}
 		if (v == cancelButton)
 		{

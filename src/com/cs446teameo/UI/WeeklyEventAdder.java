@@ -49,6 +49,21 @@ public class WeeklyEventAdder extends Dialog implements OnClickListener {
 			days[4] = thursdayCheckbox.isChecked();
 			days[5] = fridayCheckbox.isChecked();
 			days[6] = saturdayCheckbox.isChecked();
+			String[] dayNames = new String[] { "Sunday", "Monday", "Tuesday", 
+								"Wednesday", "Thursday", "Friday", "Saturday"};
+			String tempString = "";
+    		for(int i = 0; i < 7; i++)
+    		{
+    			if(days[i] == true)
+    			{
+    				if(tempString != "")
+    				{
+    					tempString += ", ";
+    				}
+    				tempString += dayNames[i];
+    			}
+    		}
+    		EventAdderUI.repeatStatusText.setText("Repeated every week on: " + tempString);
 		}
 		if (v == cancelButton)
 		{

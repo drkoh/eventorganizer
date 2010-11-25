@@ -24,19 +24,26 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class EventAdderUI extends Frame{
 
 	EditText description = null;	
+	EditText location = null;
 	Spinner profile = null;
 	Spinner repeatOption = null;
 	AutoCompleteTextView repeatEvery = null;
 	DatePicker startDate = null;
 	DatePicker endDate = null;
+	LinearLayout startDateLayout = null;
+	LinearLayout endDateLayout = null;
+	LinearLayout repeatStatusLayout = null;
+	public static TextView repeatStatusText = null;
 	TimePicker sTimePicker = null;
 	TimePicker eTimePicker = null;
 	Button clearButton = null;
@@ -73,42 +80,46 @@ public class EventAdderUI extends Frame{
 		    	// None
 		    	if(pos == 0)
 		    	{
-		    		// Do Nothing!
+		    		startDateLayout.setVisibility(View.VISIBLE);
+		    		endDateLayout.setVisibility(View.VISIBLE);
+		    		repeatStatusLayout.setVisibility(View.GONE);
 		    	}
 		    	// Daily
 		    	else if(pos == 1)
 		    	{
-		    		// Just take days like you do normally
+		    		startDateLayout.setVisibility(View.GONE);
+		    		endDateLayout.setVisibility(View.GONE);
+		    		repeatStatusLayout.setVisibility(View.GONE);
 		    	}
 		    	// Weekly
 		    	else if(pos == 2)
 		    	{
 		    		WeeklyEventAdder weeklyDialog = new WeeklyEventAdder(owner);
 		    		weeklyDialog.show();
-		    		if(weeklyDialog.daySet == true)
-		    		{
-		    			// Access weeklyDialog.days  here...
-		    		}
+		    		startDateLayout.setVisibility(View.GONE);
+		    		endDateLayout.setVisibility(View.GONE);
+		    		repeatStatusLayout.setVisibility(View.VISIBLE);
 		    	}
 		    	// Monthly
 		    	else if(pos == 3)
 		    	{
 		    		MonthlyEventAdder monthlyDialog = new MonthlyEventAdder(owner);
 		    		monthlyDialog.show();
-		    		if(MonthlyEventAdder.daySet == true)
-		    		{
-		    			// Access monthlyDialog.day  here...
-		    		}
+		    		startDateLayout.setVisibility(View.GONE);
+		    		endDateLayout.setVisibility(View.GONE);
+		    		repeatStatusLayout.setVisibility(View.VISIBLE);
 		    	}
 		    	// Yearly
 		    	else if(pos == 4)
 		    	{
 		    		// Just take days like you do normally
+		    		startDateLayout.setVisibility(View.VISIBLE);
+		    		endDateLayout.setVisibility(View.VISIBLE);
+		    		repeatStatusLayout.setVisibility(View.VISIBLE);
+		    		repeatStatusText.setText("Repeated every year.");
 		    	}
 		    }
-		    public void onNothingSelected(AdapterView<?> parent) 
-		    {
-		    }
+		    public void onNothingSelected(AdapterView<?> parent) { }
 		});
 
 		// TODO Auto-generated method stub
@@ -128,6 +139,17 @@ public class EventAdderUI extends Frame{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Log.i(field,"trigger create button");
+
+	    		if(WeeklyEventAdder.daySet == true)
+	    		{
+	    			WeeklyEventAdder.daySet = false;
+	    			// Access weeklyDialog.days(array of booleans) here...
+	    		}
+	    		if(MonthlyEventAdder.daySet == true)
+	    		{
+	    			MonthlyEventAdder.daySet = false;
+	    			// Access monthlyDialog.day(int) here...
+	    		}
 				ArrayList<Object> src = new ArrayList<Object>();
 				src.add(description.getText().toString());
 				if(profile.getSelectedItem() == null)
@@ -152,6 +174,7 @@ public class EventAdderUI extends Frame{
 				src.add(sTimePicker.getCurrentMinute());
 				src.add(eTimePicker.getCurrentHour());
 				src.add(eTimePicker.getCurrentMinute());
+				src.add(location.getText().toString());
 				int res = EventFactory.getInstance().createEvent(src);
 				if(res != ErrorCode.SUCCESS){
 					//TODO: ADD AN NOTIFICATION TO THE USER
@@ -177,6 +200,8 @@ public class EventAdderUI extends Frame{
 		// TODO Auto-generated method stub
 		this.description = (EditText) owner.findViewById(R.eventadder.description);
 		this.description.setSingleLine();
+		this.location = (EditText) owner.findViewById(R.eventadder.location);
+		this.location.setSingleLine();
 		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
 		ArrayAdapter<CharSequence> profileAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
 		profileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -194,6 +219,10 @@ public class EventAdderUI extends Frame{
 		this.clearButton = (Button) owner.findViewById(R.eventadder.clearButton);
 		this.createButton = (Button) owner.findViewById(R.eventadder.createButton);
 		this.exitButton = (Button) owner.findViewById(R.eventadder.exitButton);
+		this.startDateLayout = (LinearLayout) owner.findViewById(R.eventadder.startDateLayout);
+		this.endDateLayout = (LinearLayout) owner.findViewById(R.eventadder.endDateLayout);
+		this.repeatStatusLayout = (LinearLayout) owner.findViewById(R.eventadder.repeatStatusLayout);
+		this.repeatStatusText = (TextView) owner.findViewById(R.eventadder.repeatStatusText);
 	}
 
 }

@@ -17,6 +17,8 @@ public class Event implements Activicable,Serializable{
 	public Segment time;
 	private String location;
 	public StatusSetting st_setting;
+	public String repeat_option;
+	public String repeat_text;
 	
 	public Event(){
 		
@@ -69,6 +71,22 @@ public class Event implements Activicable,Serializable{
 	
 	public String getLocation(){
 		return location;
+	}
+	
+	public void setRepeatOption (String s){
+		this.repeat_option = s;
+	}
+	
+	public String getRepeatOption(){
+		return repeat_option;
+	}
+	
+	public void setRepeatText (String s){
+		this.repeat_text = s;
+	}
+	
+	public String getRepeatText(){
+		return repeat_text;
 	}
 	
 	@Override
