@@ -195,6 +195,14 @@ public class MonthlyCalendarUI extends Frame{
 			monthlyButton[x][y].setText("" + i);
 			monthlyButton[x][y].setEnabled(true);
 			
+			// Clear the button's style
+			CalendarSetting.clearStyle(monthlyButton[x][y]);
+			
+			// Set the button's style based on the event
+			int eventOccurs = CalendarSetting.NO_EVENT_OCCURS;
+			eventOccurs = CalendarSetting.eventOccursWhen(i, Calendar.DAY_OF_MONTH, calendar);
+			CalendarSetting.setEventsTime(eventOccurs, monthlyButton[x][y]);
+			
 			final int xx = x;
 			final int yy = y;
 			
@@ -211,12 +219,6 @@ public class MonthlyCalendarUI extends Frame{
 			});
 			y++;
 		}
-        setEventsUI();
-	}
-
-	// Sets all the event-based UI components
-	public void setEventsUI()
-	{
 	}
 	
 	// Associate all the buttons of each day in the grid to their xml counterparts 
