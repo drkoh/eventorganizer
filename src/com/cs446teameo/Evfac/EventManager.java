@@ -153,34 +153,34 @@ public class EventManager implements EventAccess{
 	/* CALVIN - FILL THESE METHODS - START */	
 	
 	// Initialize the Profile Database
-	public int initProfileDatabase(){
+	public static int initProfileDatabase(){
 		return 0;
 	}
 
-	public int listEvent(ArrayList<Event> dst){
+	public static int listEvent(ArrayList<Event> dst){
         return ErrorCode.SUCCESS;
 	}
 	
 	// Returns all the events from the event table, first sorted by Start Date, then by Start time
-	public ArrayList<Event> allEvents()
+	public static ArrayList<Event> allEvents()
 	{
 		return null;
 	}
 
 	// Returns all the events from the event table, that occur at the same time as calendar. Must be sorted by Start Time.
-	public ArrayList<Event> allEventsOfDay(Calendar calendar)
+	public static ArrayList<Event> allEventsOfDay(Calendar calendar)
 	{
 		return null;
 	}
 
 	// Does any event occur on the specified day?
-	public boolean eventOccursOnDay(Calendar calendar)
+	public static boolean eventOccursOnDay(Calendar calendar)
 	{
 		return false;
 	}
 	
 	// Does any event occur on the specified year?
-	public boolean eventOccursOnYear(Calendar calendar)
+	public static boolean eventOccursOnYear(Calendar calendar)
 	{
 		return false;
 	}

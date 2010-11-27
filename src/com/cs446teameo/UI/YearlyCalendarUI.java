@@ -2,11 +2,17 @@ package com.cs446teameo.UI;
 
 import java.util.Calendar;
 
+import android.graphics.Color;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+import com.cs446teameo.Evfac.EventManager;
 import com.cs446teameo.Main.R;
 
 public class YearlyCalendarUI extends Frame{
@@ -178,135 +184,148 @@ public class YearlyCalendarUI extends Frame{
 	{
         currentYear = calendar.get(Calendar.YEAR);
 		date.setText("" + currentYear);
+        
+        // Clear all the button's styles
+		CalendarSetting.clearStyle(januaryButton);
+		CalendarSetting.clearStyle(februaryButton);
+		CalendarSetting.clearStyle(marchButton);
+		CalendarSetting.clearStyle(aprilButton);
+		CalendarSetting.clearStyle(mayButton);
+		CalendarSetting.clearStyle(juneButton);
+		CalendarSetting.clearStyle(julyButton);
+		CalendarSetting.clearStyle(augustButton);
+		CalendarSetting.clearStyle(septemberButton);
+		CalendarSetting.clearStyle(octoberButton);
+		CalendarSetting.clearStyle(novemberButton);
+		CalendarSetting.clearStyle(decemberButton);
 		
 		// Set the buttons to navigate to the month it's supposed to
 		januaryButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 0);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(0);
 			}
 		});
 		februaryButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 1);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(1);
 			}
 		});
 		marchButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 2);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(2);
 			}
 		});
 		aprilButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 3);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(3);
 			}
 		});
 		mayButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 4);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(4);
 			}
 		});
 		juneButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 5);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(5);
 			}
 		});
 		julyButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 6);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(6);
 			}
 		});
 		augustButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 7);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(7);
 			}
 		});
 		septemberButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 8);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(8);
 			}
 		});
 		octoberButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 9);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(9);
 			}
 		});
 		novemberButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 10);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(10);
 			}
 		});
 		decemberButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) 
 			{
-				MonthlyCalendarUI.calendarSet = true;
-				MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
-				MonthlyCalendarUI.calendar.set(Calendar.MONTH, 11);
-				MonthlyCalendarUI.contextSwitch();
+				setButtonDirection(11);
 			}
 		});
+		
+		// Set the event-related Button colors
         setEventsUI();
+	}
+	
+	// Set where a button should direct to, once it is pressed
+	private void setButtonDirection(int i)
+	{
+		MonthlyCalendarUI.calendarSet = true;
+		MonthlyCalendarUI.calendar = (Calendar)calendar.clone();
+		MonthlyCalendarUI.calendar.set(Calendar.MONTH, i);
+		MonthlyCalendarUI.contextSwitch();
 	}
 
 	// Sets all the event-based UI components
-	public void setEventsUI()
+	private void setEventsUI()
 	{
-		
+		int eventOccurs = CalendarSetting.NO_EVENT_OCCURS;
+		eventOccurs = CalendarSetting.eventOccursWhen(0, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, januaryButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(1, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, februaryButton);	
+		eventOccurs = CalendarSetting.eventOccursWhen(2, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, marchButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(3, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, aprilButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(4, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, mayButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(5, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, juneButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(6, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, julyButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(7, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, augustButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(8, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, septemberButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(9, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, octoberButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(10, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, novemberButton);
+		eventOccurs = CalendarSetting.eventOccursWhen(11, Calendar.MONTH, calendar);
+		CalendarSetting.setEventsTime(eventOccurs, decemberButton);
 	}
-
+	
 }
