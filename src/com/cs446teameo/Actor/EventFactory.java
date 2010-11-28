@@ -41,6 +41,7 @@ public class EventFactory {
 		// TODO Auto-generated method stub
 		Event event = new Event();
 		event.setDescription((String)src.get(0));
+		Log.i("eventfac", "go here");
 		event.setStatus(new StatusSetting(src.get(1).toString()));
 		event.setRepeatOption(src.get(2).toString());
 		event.setRepeatText(src.get(3).toString());
@@ -48,6 +49,7 @@ public class EventFactory {
 				(Integer)src.get(11),(Integer)src.get(7),(Integer)src.get(8),(Integer)src.get(9),(Integer)src.get(12),
 				(Integer)src.get(13)));
 		event.setLocation((String) src.get(14));
+		Log.i("eventfac", "go here");
 		return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
 	}
 }

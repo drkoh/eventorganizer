@@ -6,6 +6,7 @@ import com.cs446teameo.Actor.EventFactory;
 import com.cs446teameo.Main.Main;
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Parameter.ErrorCode;
+import com.cs446teameo.Profile.Profile;
 import com.cs446teameo.Profile.ProfileManager;
 
 import android.app.AlertDialog;
@@ -70,6 +71,7 @@ public class EventAdderUI extends Frame{
 		}
 		owner.setContentView(R.layout.eventadder);
 		_instance.init();
+		_instance.refreshComponent();
 	}
 	
 	@Override
@@ -140,7 +142,6 @@ public class EventAdderUI extends Frame{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Log.i(field,"trigger create button");
-
 	    		if(WeeklyEventAdder.daySet == true)
 	    		{
 	    			WeeklyEventAdder.daySet = false;
@@ -182,6 +183,7 @@ public class EventAdderUI extends Frame{
 					Log.e(field,"Add Event Error: " + res);
 					return;
 				}
+				Log.d("!!","goes2 here");
 				MenuUI.contextSwitch();
 			}
 		});
@@ -222,6 +224,19 @@ public class EventAdderUI extends Frame{
 		this.endDateLayout = (LinearLayout) owner.findViewById(R.eventadder.endDateLayout);
 		this.repeatStatusLayout = (LinearLayout) owner.findViewById(R.eventadder.repeatStatusLayout);
 		this.repeatStatusText = (TextView) owner.findViewById(R.eventadder.repeatStatusText);
+	}
+	
+	private int refreshComponent(){
+		ArrayAdapter<Profile> profileAdapter = new ArrayAdapter<Profile>(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
+		ArrayList<Profile> list = new ArrayList<Profile>();
+		int res = ProfileManager.getInstance().listProfile(list);
+		if(res != ErrorCode.SUCCESS){
+			Log.e(field, "error occured in list profile");
+			return res << ErrorCode.DB_BITS;
+		}
+		profileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    profile.setAdapter(profileAdapter);
+	    return ErrorCode.SUCCESS;
 	}
 
 	private void loadProfile()

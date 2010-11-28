@@ -1,4 +1,4 @@
-package com.cs446teameo.RepeatDriver;
+package com.cs446teameo.repeater;
 
 import java.io.IOException;
 
