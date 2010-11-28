@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 import java.util.GregorianCalendar;
 import java.util.Vector;
@@ -23,11 +22,17 @@ public class Monthly extends RepeatSet{
 						now.get(GregorianCalendar.MINUTE) > time.startMinute)){
 			now.add(GregorianCalendar.DAY_OF_MONTH, 1);
 		}
+//		System.out.println("setting now:" + now.getTime().toLocaleString());
 		now.set(GregorianCalendar.HOUR_OF_DAY, time.startHour);
 		now.set(GregorianCalendar.MINUTE, time.startMinute);
-		if(now.get(GregorianCalendar.DAY_OF_MONTH) > start.get(GregorianCalendar.DAY_OF_MONTH))
+//		System.out.println("adjust hour:" + now.getTime().toLocaleString());
+		if(now.get(GregorianCalendar.DAY_OF_MONTH) > start.get(GregorianCalendar.DAY_OF_MONTH)){
+			now.set(GregorianCalendar.DAY_OF_MONTH, dayofmonth);
 			now.add(GregorianCalendar.MONTH, 1);
-		while(start.get(GregorianCalendar.DAY_OF_MONTH) < now.getActualMaximum(GregorianCalendar.DATE));
+		}
+//		System.out.println("try new month?:" + now.getTime().toLocaleString());
+//		System.out.println("target?:" + now.getActualMaximum(GregorianCalendar.DATE));
+		while(start.get(GregorianCalendar.DAY_OF_MONTH) > now.getActualMaximum(GregorianCalendar.DATE));
 		now.set(GregorianCalendar.DAY_OF_MONTH, start.get(GregorianCalendar.DAY_OF_MONTH));
 		return now;
 	}

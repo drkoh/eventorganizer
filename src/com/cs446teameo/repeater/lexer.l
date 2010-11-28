@@ -24,34 +24,34 @@ WHITESPACE			= ([ \t]+)
 
 {WHITESPACE}		{ /* Just ignore */    }
 {NEWLINE}			{ /* Just ignore */    }		
-"monthly"			{return keyword(Parser.MONTHLY);}
-"yearly"			{return keyword(Parser.YEARLY);}
-"weekly"			{return keyword(Parser.WEEKLY);}
+"monthly"			{output();return keyword(Parser.MONTHLY);}
+"yearly"			{output();return keyword(Parser.YEARLY);}
+"weekly"			{output();return keyword(Parser.WEEKLY);}
 
-"Jan"				{return keyword(Parser.JAN);}
-"Feb"				{return keyword(Parser.FEB);}
-"Mar"				{return keyword(Parser.MAR);}
-"Apr"				{return keyword(Parser.APR);}
-"May"				{return keyword(Parser.MAY);}
-"Jun"				{return keyword(Parser.JUN);}
-"Jul"				{return keyword(Parser.JUL);}
-"Aug"				{return keyword(Parser.AUG);}
-"Sep"				{return keyword(Parser.SEP);}
-"Oct"				{return keyword(Parser.OCT);}
-"Nov"				{return keyword(Parser.NOV);}
-"Dec"				{return keyword(Parser.DEC);}
+"Jan"				{output();return keyword(Parser.JAN);}
+"Feb"				{output();return keyword(Parser.FEB);}
+"Mar"				{output();return keyword(Parser.MAR);}
+"Apr"				{output();return keyword(Parser.APR);}
+"May"				{output();return keyword(Parser.MAY);}
+"Jun"				{output();return keyword(Parser.JUN);}
+"Jul"				{output();return keyword(Parser.JUL);}
+"Aug"				{output();return keyword(Parser.AUG);}
+"Sep"				{output();return keyword(Parser.SEP);}
+"Oct"				{output();return keyword(Parser.OCT);}
+"Nov"				{output();return keyword(Parser.NOV);}
+"Dec"				{output();return keyword(Parser.DEC);}
 
-"Mon"				{return keyword(Parser.MON);}
-"Tue"				{return keyword(Parser.TUE);}
-"Wed"				{return keyword(Parser.WED);}
-"Thu"				{return keyword(Parser.THU);}
-"Fri"				{return keyword(Parser.FRI);}
-"Sat"				{return keyword(Parser.SAT);}
-"Sun"				{return keyword(Parser.SUN);}
+"Mon"				{output();return keyword(Parser.MON);}
+"Tue"				{output();return keyword(Parser.TUE);}
+"Wed"				{output();return keyword(Parser.WED);}
+"Thu"				{output();return keyword(Parser.THU);}
+"Fri"				{output();return keyword(Parser.FRI);}
+"Sat"				{output();return keyword(Parser.SAT);}
+"Sun"				{output();return keyword(Parser.SUN);}
 
 
-"y"[1-2][0-9][0-9][0-9]  {return Date(Parser.YEAR,getContent(yytext(),1));}
-"dom"([1-9]|[1-3][0-9])		{return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
+"y"[1-2][0-9][0-9][0-9]  {output();return Date(Parser.YEAR,getContent(yytext(),1));}
+"dom"([1-9]|[1-3][0-9])		{output();return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
 "h"[1-2]?[0-9]				{output();return Date(Parser.HOUR,getContent(yytext(),1));}
 "min"[1-6]?[0-9]			{output();return Date(Parser.MINUTE,getContent(yytext(),3));}
 

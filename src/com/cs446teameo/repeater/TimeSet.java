@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -8,7 +7,7 @@ public abstract class TimeSet {
 	
 	protected TimeSet(){}
 	protected String toDay(int dow){
-		short d = (short) dow;
+		short d = (short) (dow + 1);
 		switch(d){
 		case GregorianCalendar.SUNDAY: return "Sun";
 		case GregorianCalendar.MONDAY: return "Mon";

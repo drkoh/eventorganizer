@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 import java.io.IOException;
 import java.util.*;
 //#line 8 "Parser.java"
@@ -443,6 +442,7 @@ boolean doaction;
 case 1:
 //#line 24 "parser.y"
 {
+						show("TimeSet");
 						RepeatSet st = null;
 						if(val_peek(0).ival == 0)
 							st	= new Anniversary();
@@ -452,18 +452,20 @@ case 1:
 							st = new Weekly();
 						st.setField(RepeatSet.TIME_OF_DAY,val_peek(2).cal);
 						st.setField(RepeatSet.DATE,val_peek(0).cal);
-						yyval.tset = st;
+						tset = st;
 					}
 break;
 case 2:
-//#line 37 "parser.y"
+//#line 38 "parser.y"
 {
-						yyval = val_peek(0);
+						show("TimeSet");
+						tset = val_peek(0).tset;
 					}
 break;
 case 3:
-//#line 44 "parser.y"
+//#line 46 "parser.y"
 {
+						show("SingleSet");
 						SingleSet st = new SingleSet();
 						GregorianCalendar start = new GregorianCalendar(val_peek(13).ival,val_peek(17).ival,val_peek(15).ival,val_peek(22).ival,val_peek(20).ival);
 						GregorianCalendar end = new GregorianCalendar(val_peek(1).ival,val_peek(5).ival,val_peek(3).ival,val_peek(10).ival,val_peek(8).ival);
@@ -473,8 +475,9 @@ case 3:
 					}
 break;
 case 4:
-//#line 56 "parser.y"
+//#line 59 "parser.y"
 {
+						show("Timeofday");
 						yyval.cal = new Vector<Integer>();
 						yyval.cal.add(val_peek(6).ival);
 						yyval.cal.add(val_peek(4).ival);
@@ -483,8 +486,9 @@ case 4:
 					}
 break;
 case 5:
-//#line 66 "parser.y"
+//#line 70 "parser.y"
 {
+						show("RepeatSet");
 						yyval.cal = new Vector<Integer>();
 						yyval.cal.add(val_peek(2).ival);
 						yyval.cal.add(val_peek(0).ival);
@@ -492,148 +496,152 @@ case 5:
 					}
 break;
 case 6:
-//#line 73 "parser.y"
+//#line 78 "parser.y"
 {
+						show("RepeatSet");
 						yyval.cal = new Vector<Integer>();
 						yyval.cal.add(val_peek(0).ival);
 						yyval.ival = 1;
 					}
 break;
 case 7:
-//#line 79 "parser.y"
+//#line 85 "parser.y"
 {
+						show("RepeatSet");
 						yyval.cal = val_peek(0).cal;
 						yyval.ival = 2;
 					}
 break;
 case 8:
-//#line 86 "parser.y"
+//#line 93 "parser.y"
 {
+						show("WEEKLIST");
 						yyval.cal.add(val_peek(0).ival);
 					}
 break;
 case 9:
-//#line 90 "parser.y"
+//#line 98 "parser.y"
 {
+						show("WEEKLIST");
 						yyval.cal = new Vector<Integer>();
 						yyval.cal.add(val_peek(0).ival);
 					}
 break;
 case 10:
-//#line 97 "parser.y"
+//#line 106 "parser.y"
 {
 						yyval.ival = 0;
 					}
 break;
 case 11:
-//#line 101 "parser.y"
+//#line 110 "parser.y"
 {
 						yyval.ival = 1;
 					}
 break;
 case 12:
-//#line 105 "parser.y"
+//#line 114 "parser.y"
 {
 						yyval.ival = 2;
 					}
 break;
 case 13:
-//#line 109 "parser.y"
+//#line 118 "parser.y"
 {
 						yyval.ival = 3;
 					}
 break;
 case 14:
-//#line 113 "parser.y"
+//#line 122 "parser.y"
 {
 						yyval.ival = 4;
 					}
 break;
 case 15:
-//#line 117 "parser.y"
+//#line 126 "parser.y"
 {
 						yyval.ival = 5;
 					}
 break;
 case 16:
-//#line 121 "parser.y"
+//#line 130 "parser.y"
 {
 						yyval.ival = 6;
 					}
 break;
 case 17:
-//#line 125 "parser.y"
+//#line 134 "parser.y"
 {
 						yyval.ival = 7;
 					}
 break;
 case 18:
-//#line 129 "parser.y"
+//#line 138 "parser.y"
 {
 						yyval.ival = 8;
 					}
 break;
 case 19:
-//#line 133 "parser.y"
+//#line 142 "parser.y"
 {
 						yyval.ival = 9;
 					}
 break;
 case 20:
-//#line 137 "parser.y"
+//#line 146 "parser.y"
 {
 						yyval.ival = 10;
 					}
 break;
 case 21:
-//#line 141 "parser.y"
+//#line 150 "parser.y"
 {
 						yyval.ival = 11;
 					}
 break;
 case 22:
-//#line 147 "parser.y"
+//#line 156 "parser.y"
 {
 						yyval.ival = GregorianCalendar.MONDAY;
 					}
 break;
 case 23:
-//#line 151 "parser.y"
+//#line 160 "parser.y"
 {
 						yyval.ival = GregorianCalendar.TUESDAY;
 					}
 break;
 case 24:
-//#line 155 "parser.y"
+//#line 164 "parser.y"
 {
 						yyval.ival = GregorianCalendar.WEDNESDAY;
 					}
 break;
 case 25:
-//#line 159 "parser.y"
+//#line 168 "parser.y"
 {
 						yyval.ival = GregorianCalendar.THURSDAY;
 					}
 break;
 case 26:
-//#line 163 "parser.y"
+//#line 172 "parser.y"
 {
 						yyval.ival = GregorianCalendar.FRIDAY;
 					}
 break;
 case 27:
-//#line 167 "parser.y"
+//#line 176 "parser.y"
 {
 						yyval.ival = GregorianCalendar.SATURDAY;
 					}
 break;
 case 28:
-//#line 171 "parser.y"
+//#line 180 "parser.y"
 {
 						yyval.ival = GregorianCalendar.SUNDAY;
 					}
 break;
-//#line 574 "Parser.java"
+//#line 583 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

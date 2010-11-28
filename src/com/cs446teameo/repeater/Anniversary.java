@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -19,10 +18,11 @@ public class Anniversary extends RepeatSet{
 						now.get(GregorianCalendar.MINUTE) > time.startMinute)){
 			now.add(GregorianCalendar.DAY_OF_MONTH, 1);
 		}
-		if(start.get(GregorianCalendar.MONDAY) == GregorianCalendar.FEBRUARY
-				&& start.get(GregorianCalendar.DAY_OF_MONTH) == 29){
+	//	System.out.println(start.get(GregorianCalendar.MONTH) +" "+ GregorianCalendar.FEBRUARY);
+		if(month == GregorianCalendar.FEBRUARY
+				&& dayofmonth == 29){
 			if(now.isLeapYear(now.get(GregorianCalendar.YEAR))){
-				if(now.get(GregorianCalendar.MONTH) <= GregorianCalendar.FEBRUARY){
+				if(now.get(GregorianCalendar.MONTH) <= GregorianCalendar.FEBRUARY + 1){
 					return new GregorianCalendar(now.get(GregorianCalendar.YEAR),GregorianCalendar.FEBRUARY,29,
 							time.startHour,time.startMinute);
 				}else{
@@ -34,17 +34,20 @@ public class Anniversary extends RepeatSet{
 					return tmp;
 				}
 			}else{
+			//	System.out.println("enter here");
 				GregorianCalendar tmp = new GregorianCalendar(now.get(GregorianCalendar.YEAR),GregorianCalendar.FEBRUARY,29,
 						time.startHour,time.startMinute);
 				do{
-					tmp.add(GregorianCalendar.YEAR, 4);
+					tmp.add(GregorianCalendar.YEAR, 1);
 				}while(!tmp.isLeapYear(tmp.get(GregorianCalendar.YEAR)));
+				tmp.set(GregorianCalendar.MONTH, GregorianCalendar.FEBRUARY);
+				tmp.set(GregorianCalendar.DAY_OF_MONTH, 29);
 				return tmp;
 			}
 		}else{
 			if(now.get(GregorianCalendar.MONTH) < start.get(GregorianCalendar.MONTH) ||(
-					now.get(GregorianCalendar.DAY_OF_MONTH) == start.get(GregorianCalendar.MONTH)
-					&& now.get(GregorianCalendar.DAY_OF_MONTH) <start.get(GregorianCalendar.DAY_OF_MONTH))){
+					now.get(GregorianCalendar.MONTH) == start.get(GregorianCalendar.MONTH)
+					&& now.get(GregorianCalendar.DAY_OF_MONTH) <=start.get(GregorianCalendar.DAY_OF_MONTH))){
 				return new GregorianCalendar(now.get(GregorianCalendar.YEAR),start.get(GregorianCalendar.MONTH),
 						start.get(GregorianCalendar.DAY_OF_MONTH),time.startHour,time.startMinute);
 			}else{
