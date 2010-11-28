@@ -7,6 +7,8 @@ import android.app.Activity;
 
 import com.cs446teameo.Event.*;
 import com.cs446teameo.Parameter.ErrorCode;
+import com.cs446teameo.Profile.Profile;
+import com.cs446teameo.Profile.ProfileManager;
 import com.cs446teameo.Storage.*;
 import com.cs446teameo.Backend.*;
 

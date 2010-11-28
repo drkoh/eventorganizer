@@ -6,6 +6,7 @@ import com.cs446teameo.Actor.EventFactory;
 import com.cs446teameo.Main.Main;
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Parameter.ErrorCode;
+import com.cs446teameo.Profile.ProfileManager;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -203,9 +204,7 @@ public class EventAdderUI extends Frame{
 		this.location = (EditText) owner.findViewById(R.eventadder.location);
 		this.location.setSingleLine();
 		this.profile = (Spinner)owner.findViewById(R.eventadder.profile);
-		ArrayAdapter<CharSequence> profileAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
-		profileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    profile.setAdapter(profileAdapter);
+		loadProfile();
 		this.repeatOption = (Spinner) owner.findViewById(R.eventadder.repeatOption);
 		ArrayAdapter<CharSequence> repeatAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.repeat_array, android.R.layout.simple_spinner_item);
 		repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -223,6 +222,13 @@ public class EventAdderUI extends Frame{
 		this.endDateLayout = (LinearLayout) owner.findViewById(R.eventadder.endDateLayout);
 		this.repeatStatusLayout = (LinearLayout) owner.findViewById(R.eventadder.repeatStatusLayout);
 		this.repeatStatusText = (TextView) owner.findViewById(R.eventadder.repeatStatusText);
+	}
+
+	private void loadProfile()
+	{
+		String[] profileNames = ProfileManager.getInstance().listProfileNames();
+		ArrayAdapter<CharSequence> profileadapter = new ArrayAdapter<CharSequence>(owner, android.R.layout.simple_spinner_item, profileNames);
+		profile.setAdapter(profileadapter);
 	}
 
 }

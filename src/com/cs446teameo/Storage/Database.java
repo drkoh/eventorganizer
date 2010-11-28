@@ -40,7 +40,7 @@ public class Database {
         + "location text, profileID integer, repeat_option text, repeat_text text);";
     private static final String Profile_TABLE_CREATE =
     	"create table profile (_id integer primary key autoincrement, "
-    	+ "name text not null, volume integer not null, vibrate boolean not null);";
+    	+ "name text not null, volume integer not null, vibrate integer not null);";
     
     /**
      * Constructor - takes the context to allow the database to be
@@ -61,7 +61,7 @@ public class Database {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(Event_TABLE_CREATE);
             db.execSQL(Profile_TABLE_CREATE);
-            Log.i("testdb", "here creat");
+            Log.i("testdb", "here create");
         }
 
         @Override

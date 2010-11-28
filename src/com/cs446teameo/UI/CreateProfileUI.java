@@ -78,7 +78,7 @@ public class CreateProfileUI extends Frame{
 			
 			@Override
 			public void onClick(View arg0) {
-				Profile profile = new Profile(name.getText().toString(),vibrate.isChecked(),volume.getProgress());
+				Profile profile = new Profile(name.getText().toString(), vibrate.isChecked(), volume.getProgress());
 				int res = ProfileManager.getInstance().createNewProfile(profile);
 				if(res != ErrorCode.SUCCESS){
 					//TODO: ADD AN NOTIFICATION TO THE USER
