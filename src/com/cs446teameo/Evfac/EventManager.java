@@ -17,6 +17,7 @@ import android.os.*;
 import android.util.Log;
 import android.database.*;
 import android.net.Uri;
+import android.util.Log;
 
 public class EventManager implements EventAccess{
 	private static EventManager _instance = null;
@@ -79,10 +80,11 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_ID, "");
+		val.put(Database.EVENT_PROFILE_ID, e.getStatus());
 		
 		long s = ebase.insert(ebase.getEventTable(), val);
-
+		notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
+		
 		/*if (s > 0) {
 			//TODO: find out the new event's id and notify the BG with that id
 			notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
@@ -96,6 +98,7 @@ public class EventManager implements EventAccess{
 		String cond = Database.EVENT_ID + "=" + eId;
 		
 		ebase.delete(ebase.getEventTable(), cond);
+		notifyBG("ACTION_DELETE_EVENT", ""+eId);
 		/*if (ebase.delete(ebase.getEventTable(), cond) > 0) {
 			//TODO: notify the BG with that id
 			notifyBG("ACTION_DELETE_EVENT", ""+eId);
@@ -114,8 +117,10 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
+		val.put(Database.EVENT_PROFILE_ID, e.getStatus());
 		
 		ebase.update(ebase.getEventTable(), val, cond);
+		notifyBG("ACTION_UPDATE_EVENT", ""+eId);
 		
 		/*if (ebase.update(ebase.getEventTable(), val, cond) > 0) {
 			//TODO: notify the BG with that id
@@ -128,7 +133,7 @@ public class EventManager implements EventAccess{
 	public static Cursor selectEvent(String cond){
 		String sel = "select * from " + ebase.getEventTable();
 		
-		if (cond.length() > 0 || cond == null){
+		if (cond != null && cond.length() > 0){
 			sel = sel + " where " + cond;
 		}
 		
@@ -139,7 +144,7 @@ public class EventManager implements EventAccess{
 		Cursor list = selectEvent(null);
 		if (!list.isFirst())
 			list.moveToFirst();
-		Event tmp = new Event(0);
+		Event tmp = new Event();
 		for (int i = 0; i < list.getCount(); i++) {
 			CharArrayBuffer buffer = new CharArrayBuffer(1);
 			list.copyStringToBuffer(list.getColumnIndex("start_time") , buffer);
@@ -154,13 +159,47 @@ public class EventManager implements EventAccess{
 
 	/* CALVIN - FILL THESE METHODS - START */	
 	
-	// Initialize the Profile Database
-	public static int initProfileDatabase(){
-		return 0;
+	public int listEvent(ArrayList<Event> dst){
+		Log.i("bg", "here");
+			Cursor list = null;
+		try {
+			list = selectEvent(null);
+		} catch (Exception e) {
+			Log.i("bg", e.toString());
+		}
+		if (!list.isFirst())
+			list.moveToFirst();
+		Log.i("bg", "here2");
+		for (int i = 0; i < list.getCount(); i++) {
+			CharArrayBuffer buffer = new CharArrayBuffer(10);
+			list.copyStringToBuffer(list.getColumnIndex("start_time") , buffer);
+			long starttime = Integer.parseInt(new String(buffer.data));
+			
+			list.copyStringToBuffer(list.getColumnIndex("end_time") , buffer);
+			long endtime = Integer.parseInt(new String(buffer.data).substring(0, buffer.sizeCopied));
+			
+			Segment tmptime = new Segment(starttime, endtime);
+			
+			list.copyStringToBuffer(list.getColumnIndex("name") , buffer);
+			String name = new String(buffer.data).substring(0, buffer.sizeCopied);
+			list.copyStringToBuffer(list.getColumnIndex("location") , buffer);
+			String location = new String(buffer.data).substring(0, buffer.sizeCopied);
+			
+			buffer = new CharArrayBuffer(10);
+			list.copyStringToBuffer(0 , buffer);
+			int id = Integer.parseInt(new String(buffer.data).substring(0, buffer.sizeCopied));
+			Log.i("bg", "got id from db: "+id + " and location : "+location);
+			Event tmp = new Event(id, name, tmptime, location);
+			//tmp.setStatus(s, volume)
+			dst.add(tmp);
+		}
+		list.close();
+		Log.i("bg", "here3");
+		return ErrorCode.SUCCESS;
 	}
-
-	public static int listEvent(ArrayList<Event> dst){
-        return ErrorCode.SUCCESS;
+	
+	public int initProfileDatabase(){
+		return 0;
 	}
 	
 	// Returns all the events from the event table, first sorted by Start Date, then by Start time

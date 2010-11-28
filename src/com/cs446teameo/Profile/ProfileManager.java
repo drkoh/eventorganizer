@@ -60,7 +60,7 @@ public class ProfileManager {
 		/*if (ebase.delete(ebase.getProfileTable(), cond) > 0)
 			return ErrorCode.SUCCESS;*/
 		return 0;
-	}	
+	}
 	
 	public int updateProfile(Profile p, int pId){
 		String cond = Database.PROFILE_ID + "=" + pId;
