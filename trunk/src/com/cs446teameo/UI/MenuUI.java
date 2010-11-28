@@ -1,6 +1,9 @@
 package com.cs446teameo.UI;
 
 import com.cs446teameo.Main.R;
+import com.cs446teameo.Profile.Profile;
+import com.cs446teameo.Profile.ProfileManager;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;

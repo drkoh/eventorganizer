@@ -2,6 +2,7 @@ package com.cs446teameo.UI;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import android.util.Log;
 import android.view.View;
@@ -39,7 +40,6 @@ public class EditProfileUI extends Frame{
 			_instance = new EditProfileUI();
 			owner.setContentView(R.layout.editprofile);
 			_instance.init();
-			_instance.loadProfile();
 		}else{
 			owner.setContentView(R.layout.editprofile);
 			_instance.init();
@@ -132,19 +132,15 @@ public class EditProfileUI extends Frame{
 		this.clearButton = (Button) owner.findViewById(R.editprofile.clearButton);
 		this.editButton = (Button) owner.findViewById(R.editprofile.editButton);
 		this.exitButton = (Button) owner.findViewById(R.editprofile.exitButton);
-		this.deleteButton = (Button) owner.findViewById(R.editprofile.deleteButton);	
+		this.deleteButton = (Button) owner.findViewById(R.editprofile.deleteButton);
+		loadProfile();
 	}
 	
-	private void loadProfile(){
-		ArrayList<Profile> list = new ArrayList<Profile>();
-		ProfileManager.getInstance().listProfile(list);
-		Iterator<Profile> it = list.iterator();
-		ArrayAdapter<Profile> adapter = new ArrayAdapter<Profile>(this.owner, name.getId());
-		while(it.hasNext()){
-			adapter.add(it.next());
-		}
-		adapter.setDropDownViewResource(name.getId());
-		name.setAdapter(adapter);
+	private void loadProfile()
+	{
+		String[] profileNames = ProfileManager.getInstance().listProfileNames();
+		ArrayAdapter<CharSequence> profileadapter = new ArrayAdapter<CharSequence>(owner, android.R.layout.simple_spinner_item, profileNames);
+		name.setAdapter(profileadapter);
 	}
 	
 	

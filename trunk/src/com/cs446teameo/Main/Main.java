@@ -12,6 +12,8 @@ import android.database.Cursor;
 import com.cs446teameo.Backend.*;
 import com.cs446teameo.Event.Event;
 import com.cs446teameo.Evfac.EventManager;
+import com.cs446teameo.Profile.Profile;
+import com.cs446teameo.Profile.ProfileManager;
 import com.cs446teameo.UI.EventAdderUI;
 import com.cs446teameo.UI.Frame;
 import com.cs446teameo.UI.MenuUI;
@@ -30,5 +32,20 @@ public class Main extends Activity{
         Frame.setActivity(this);
         MenuUI.contextSwitch();
         Log.e("www","2");
+        
+        /* This crashes and I don't know why? */
+        // Initialize a few profiles with initial values
+		/*
+		Profile profile1 = new Profile("Normal", false, 50);
+		ProfileManager.getInstance().createNewProfile(profile1);
+		Profile profile2 = new Profile("Silent", false, 0);
+		ProfileManager.getInstance().createNewProfile(profile2);
+		Profile profile3 = new Profile("Vibrate", true, 0);
+		ProfileManager.getInstance().createNewProfile(profile3);
+		Profile profile4 = new Profile("Low", false, 25);
+		ProfileManager.getInstance().createNewProfile(profile4);
+		Profile profile5 = new Profile("High", false, 75);
+		ProfileManager.getInstance().createNewProfile(profile5);
+		*/
     }
 }
