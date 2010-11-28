@@ -142,7 +142,5 @@ public class EditProfileUI extends Frame{
 		ArrayAdapter<CharSequence> profileadapter = new ArrayAdapter<CharSequence>(owner, android.R.layout.simple_spinner_item, profileNames);
 		name.setAdapter(profileadapter);
 	}
-	
-	
 }
 

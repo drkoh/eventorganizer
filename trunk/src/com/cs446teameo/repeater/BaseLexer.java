@@ -1,4 +1,4 @@
-package com.cs446teameo.RepeatDriver;
+package com.cs446teameo.repeater;
 
 public class BaseLexer{
 	Parser parser;
@@ -20,6 +20,11 @@ public class BaseLexer{
 
 	protected int operator(int code) {
 		setSemantic(SemValue.createOperator(code));
+		return code;
+	}
+	
+	protected int keyword(int code){
+		setSemantic(SemValue.createKeyword(code));
 		return code;
 	}
 	
