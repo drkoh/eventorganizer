@@ -133,8 +133,10 @@ public class EventManager implements EventAccess{
 	public static Cursor selectEvent(String cond){
 		String sel = "select * from " + ebase.getEventTable();
 		
-		if (cond != null && cond.length() > 0){
+		if (cond.length() > 0 || cond == null){
+
 			sel = sel + " where " + cond;
+			sel = sel + " " + cond;
 		}
 		
 		return ebase.select(sel);
@@ -206,6 +208,18 @@ public class EventManager implements EventAccess{
 	public static ArrayList<Event> allEvents()
 	{
 		return null;
+		String cond = "ordered by " + Database.EVENT_START + ", " + Database.EVENT_END;
+		Cursor c = selectEvent(cond);
+		
+		ArrayList<Event> l = new ArrayList<Event>();
+		
+		while (c.moveToNext()){
+			Event e = new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)),
+								c.getString(4), c.getInt(5), c.getString(6), c.getString(7));
+			l.add(e);
+		}
+		
+		return l;
 	}
 
 	// Returns all the events from the event table, that occur at the same time as calendar. Must be sorted by Start Time.

@@ -36,6 +36,8 @@ public class ListCalendarUI extends Frame{
 		}
 		owner.setContentView(R.layout.listcalendar);
 		_instance.init();
+		
+		setUI(c);
 	}
 
 	@Override
@@ -85,6 +87,16 @@ public class ListCalendarUI extends Frame{
 				// TODO!!!
 				Log.i(field,"trigger create button");
 				YearlyCalendarUI.contextSwitch();
+			}
+		});
+		
+		listTab.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO!!!
+				Log.i(field,"trigger create button");
+				ListCalendarUI.contextSwitch();
 			}
 		});
 		
@@ -139,6 +151,7 @@ public class ListCalendarUI extends Frame{
 		Log.i(field,"Start Set UI!");
 		Cursor tempCursor = EventManager.selectEvent("");
         int cursorSize = tempCursor.getCount();
+        Log.e("cal", "count=" + cursorSize);
         Button eventButtons[] = new Button[cursorSize];
 		Log.i(field,"Cursor size = " + cursorSize);
         int count = 0;
