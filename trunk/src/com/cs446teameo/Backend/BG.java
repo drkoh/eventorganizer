@@ -18,7 +18,7 @@ public class BG extends Service {
 	
 	Event currentEvent = null;
 	boolean currentStatus = false;
-	EventManager EM = EventManager.getInstance();
+	EventManager EM;
 	HashMap<Integer ,Event> emap = null;
 	Timer schEvent = new Timer();
 	
@@ -28,9 +28,14 @@ public class BG extends Service {
         }
     }
 	
-	private void gatherEvents() {
+	private void gatherEvents(Intent intent) {
 		ArrayList<Event> elist = new ArrayList();
-		EM.listEvent(elist);
+		if (intent == null) {
+			EM.listEvent(elist);
+			Log.i("bg", "gatherEvents intent is null");
+		} else {
+			//assuming there is only 1 id in intent
+		}
 		emap = new HashMap();
 		if (elist.size() != 0) {
 			Log.i("bg", "got data");
@@ -38,12 +43,14 @@ public class BG extends Service {
 			Log.i("bg", "no data");
 		}
 		for (int i=0; i < elist.size(); i++) {
+			Log.i("bg", "saving eid: "+elist.get(i).getEid());
 			emap.put(elist.get(i).getEid(), elist.get(i));
 		}
 	}
 	
-	private void setEvents() {
+	private void setEvents(Intent intent) {
 		Iterator<Integer> keys = emap.keySet().iterator();
+		
 		while(true) {
 			if (!keys.hasNext()) break;
 			int k = keys.next();
@@ -56,16 +63,18 @@ public class BG extends Service {
 		}
 	}
 	
-	public void notifyME() {
+	public void notifyME(Intent intent) {
 		Log.i("bg", "notify recived");
-		gatherEvents();
-		setEvents();
+		gatherEvents(intent);
+		setEvents(intent);
 	}
 	
 	@Override
 	public void onCreate() {
 		//pull the data from the database and store them into some global array
-		gatherEvents();
+		EM = EventManager.getInstance();
+		gatherEvents(null);
+		setEvents(null);
 		Log.i("bg", "end create");
 	}
 	
@@ -74,7 +83,6 @@ public class BG extends Service {
 		//schedule what ever is pulled out of the database
 		Log.i("bg", "start onStartCommand");
 		Log.i("bg", "NO. Events " + emap.size());
-		setEvents();
 		return START_STICKY;
 	}
 	
@@ -84,8 +92,15 @@ public class BG extends Service {
 	public IBinder onBind(Intent intent) {
 		//binding only used for notification
 		Log.i("bg", "binding done: "+intent.getDataString());
-		notifyME();
+		notifyME(intent);
 		return mBinder;
+	}
+	
+	@Override
+	public void onRebind(Intent intent) {
+		//binding only used for notification
+		Log.i("bg", "binding done: "+intent.getDataString());
+		notifyME(intent);
 	}
 	
 	public void onDestory() {
@@ -105,7 +120,12 @@ public class BG extends Service {
 			Event src = emap.get(eventid);
 			context = getApplicationContext();
 			manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-			manager.setRingerMode(src.getStatus());
+			try {
+				Log.i("bg", "status change run "+src.getStatus());
+			//manager.setRingerMode(src.getStatus());
+			} catch (Exception e) {
+				Log.i("bg", e.toString());
+			}
 		}
 	}
 	

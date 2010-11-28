@@ -24,28 +24,12 @@ public class Main extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent bgtimer = new Intent(this, BG.class);
-        EventManager.setActivity(this);
-        this.startService(bgtimer);
-        
         Log.e("www","10");
         Frame.setActivity(this);
         MenuUI.contextSwitch();
         Log.e("www","2");
-        
-        /* This crashes and I don't know why? */
-        // Initialize a few profiles with initial values
-		/*
-		Profile profile1 = new Profile("Normal", false, 50);
-		ProfileManager.getInstance().createNewProfile(profile1);
-		Profile profile2 = new Profile("Silent", false, 0);
-		ProfileManager.getInstance().createNewProfile(profile2);
-		Profile profile3 = new Profile("Vibrate", true, 0);
-		ProfileManager.getInstance().createNewProfile(profile3);
-		Profile profile4 = new Profile("Low", false, 25);
-		ProfileManager.getInstance().createNewProfile(profile4);
-		Profile profile5 = new Profile("High", false, 75);
-		ProfileManager.getInstance().createNewProfile(profile5);
-		*/
+        Intent bgtimer = new Intent(this, BG.class);
+        EventManager.setActivity(this);
+        this.startService(bgtimer);
     }
 }
