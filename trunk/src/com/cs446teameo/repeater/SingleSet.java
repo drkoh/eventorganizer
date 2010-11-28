@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -15,7 +14,7 @@ public class SingleSet extends TimeSet{
 	}
 	
 	public GregorianCalendar nextTrigger(){
-		Date now = new Date();
+		GregorianCalendar now = new GregorianCalendar();
 		if(start.after(now))
 			return start;
 		return null;

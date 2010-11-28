@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 
 public class Lexer extends BaseLexer{
@@ -404,79 +403,79 @@ void output(){
 					case -12:
 						break;
 					case 12:
-						{return keyword(Parser.JAN);}
+						{output();return keyword(Parser.JAN);}
 					case -13:
 						break;
 					case 13:
-						{return keyword(Parser.JUN);}
+						{output();return keyword(Parser.JUN);}
 					case -14:
 						break;
 					case 14:
-						{return keyword(Parser.JUL);}
+						{output();return keyword(Parser.JUL);}
 					case -15:
 						break;
 					case 15:
-						{return keyword(Parser.FEB);}
+						{output();return keyword(Parser.FEB);}
 					case -16:
 						break;
 					case 16:
-						{return keyword(Parser.FRI);}
+						{output();return keyword(Parser.FRI);}
 					case -17:
 						break;
 					case 17:
-						{return keyword(Parser.MON);}
+						{output();return keyword(Parser.MON);}
 					case -18:
 						break;
 					case 18:
-						{return keyword(Parser.MAY);}
+						{output();return keyword(Parser.MAY);}
 					case -19:
 						break;
 					case 19:
-						{return keyword(Parser.MAR);}
+						{output();return keyword(Parser.MAR);}
 					case -20:
 						break;
 					case 20:
-						{return keyword(Parser.APR);}
+						{output();return keyword(Parser.APR);}
 					case -21:
 						break;
 					case 21:
-						{return keyword(Parser.AUG);}
+						{output();return keyword(Parser.AUG);}
 					case -22:
 						break;
 					case 22:
-						{return keyword(Parser.SEP);}
+						{output();return keyword(Parser.SEP);}
 					case -23:
 						break;
 					case 23:
-						{return keyword(Parser.SAT);}
+						{output();return keyword(Parser.SAT);}
 					case -24:
 						break;
 					case 24:
-						{return keyword(Parser.SUN);}
+						{output();return keyword(Parser.SUN);}
 					case -25:
 						break;
 					case 25:
-						{return keyword(Parser.OCT);}
+						{output();return keyword(Parser.OCT);}
 					case -26:
 						break;
 					case 26:
-						{return keyword(Parser.NOV);}
+						{output();return keyword(Parser.NOV);}
 					case -27:
 						break;
 					case 27:
-						{return keyword(Parser.DEC);}
+						{output();return keyword(Parser.DEC);}
 					case -28:
 						break;
 					case 28:
-						{return keyword(Parser.THU);}
+						{output();return keyword(Parser.THU);}
 					case -29:
 						break;
 					case 29:
-						{return keyword(Parser.TUE);}
+						{output();return keyword(Parser.TUE);}
 					case -30:
 						break;
 					case 30:
-						{return keyword(Parser.WED);}
+						{output();return keyword(Parser.WED);}
 					case -31:
 						break;
 					case 31:
@@ -484,23 +483,23 @@ void output(){
 					case -32:
 						break;
 					case 32:
-						{return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
+						{output();return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
 					case -33:
 						break;
 					case 33:
-						{return Date(Parser.YEAR,getContent(yytext(),1));}
+						{output();return Date(Parser.YEAR,getContent(yytext(),1));}
 					case -34:
 						break;
 					case 34:
-						{return keyword(Parser.YEARLY);}
+						{output();return keyword(Parser.YEARLY);}
 					case -35:
 						break;
 					case 35:
-						{return keyword(Parser.WEEKLY);}
+						{output();return keyword(Parser.WEEKLY);}
 					case -36:
 						break;
 					case 36:
-						{return keyword(Parser.MONTHLY);}
+						{output();return keyword(Parser.MONTHLY);}
 					case -37:
 						break;
 					case 38:
@@ -520,7 +519,7 @@ void output(){
 					case -41:
 						break;
 					case 42:
-						{return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
+						{output();return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
 					case -42:
 						break;
 					case 44:

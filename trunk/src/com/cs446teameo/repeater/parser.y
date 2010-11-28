@@ -22,6 +22,7 @@ import java.util.*;
 %%
 TimeSet			:   Timeofday AT RepeatSet 
 					{
+						show("TimeSet");
 						RepeatSet st = null;
 						if($3.ival == 0)
 							st	= new Anniversary();
@@ -31,17 +32,19 @@ TimeSet			:   Timeofday AT RepeatSet
 							st = new Weekly();
 						st.setField(RepeatSet.TIME_OF_DAY,$1.cal);
 						st.setField(RepeatSet.DATE,$3.cal);
-						$$.tset = st;
+						tset = st;
 					}
 				|	SingleSet
 					{
-						$$ = $1;
+						show("TimeSet");
+						tset = $1.tset;
 					}
 					
 				;
 
 SingleSet		:	HOUR DIV MINUTE AT LEFTP MONTH COMMA DAYOFMONTH COMMA YEAR RIGHTP TO HOUR DIV MINUTE AT LEFTP MONTH COMMA DAYOFMONTH COMMA YEAR RIGHTP
 					{
+						show("SingleSet");
 						SingleSet st = new SingleSet();
 						GregorianCalendar start = new GregorianCalendar($10.ival,$6.ival,$8.ival,$1.ival,$3.ival);
 						GregorianCalendar end = new GregorianCalendar($22.ival,$18.ival,$20.ival,$13.ival,$15.ival);
@@ -54,6 +57,7 @@ SingleSet		:	HOUR DIV MINUTE AT LEFTP MONTH COMMA DAYOFMONTH COMMA YEAR RIGHTP T
 				
 Timeofday		:	HOUR DIV MINUTE TO HOUR DIV MINUTE
 					{
+						show("Timeofday");
 						$$.cal = new Vector<Integer>();
 						$$.cal.add($1.ival);
 						$$.cal.add($3.ival);
@@ -64,6 +68,7 @@ Timeofday		:	HOUR DIV MINUTE TO HOUR DIV MINUTE
 				
 RepeatSet		:	YEARLY DIV MONTH COMMA DAYOFMONTH
 					{
+						show("RepeatSet");
 						$$.cal = new Vector<Integer>();
 						$$.cal.add($3.ival);
 						$$.cal.add($5.ival);
@@ -71,12 +76,14 @@ RepeatSet		:	YEARLY DIV MONTH COMMA DAYOFMONTH
 					}
 				|	MONTHLY DIV DAYOFMONTH
 					{
+						show("RepeatSet");
 						$$.cal = new Vector<Integer>();
 						$$.cal.add($3.ival);
 						$$.ival = 1;
 					}
 				|	WEEKLY DIV WEEKLIST
 					{
+						show("RepeatSet");
 						$$.cal = $3.cal;
 						$$.ival = 2;
 					}
@@ -84,10 +91,12 @@ RepeatSet		:	YEARLY DIV MONTH COMMA DAYOFMONTH
 				
 WEEKLIST		:	WEEKLIST SDAY
 					{
+						show("WEEKLIST");
 						$$.cal.add($2.ival);
 					}
 				|	SDAY
 					{
+						show("WEEKLIST");
 						$$.cal = new Vector<Integer>();
 						$$.cal.add($1.ival);
 					}
@@ -172,5 +181,4 @@ SDAY			:	MON
 						$$.ival = GregorianCalendar.SUNDAY;
 					}
 				;
-
 %%

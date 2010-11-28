@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -25,9 +24,9 @@ public class Driver {
 		errorList = new Vector<String>();
 	//	br = new BufferedReader(new InputStreamReader(new FileInputStream("debug.txt")));
 	//	lexer = new Lexer(br);
-		parser = new Parser();
-		lexer.setParser(parser);
-		parser.setLexer(lexer);
+	//	parser = new Parser();
+	//	lexer.setParser(parser);
+	//	parser.setLexer(lexer);
 		is = null;
 	//	lexer = new Lexer(is);
 	}
@@ -42,6 +41,7 @@ public class Driver {
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	public void setString(String s){
 		is = new StringBufferInputStream(s);
 		lexer = new Lexer(is);
@@ -56,8 +56,10 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException{
 		Driver driver = Driver.getInstance();
-		TimeSet tset = driver.parser.parseFile();
+		driver.setString(" h10:min24 @(Nov,dom28,y2010) _ h13:min59 @(Nov,dom28,y2010)");
+		TimeSet tset = driver.parse();
 		System.out.println(tset.toString());
+		System.out.println(tset.nextTrigger().getTime().toLocaleString());	
 		return;
 	}
 	
