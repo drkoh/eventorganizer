@@ -23,4 +23,10 @@ public abstract class RepeatSet extends TimeSet{
 		}
 	}
 	abstract void setDate(Vector<Integer> target);
+	abstract String toDate();
+	public String toString(){
+		StringBuffer buf = new StringBuffer(time.toString());
+		buf.append(toDate());
+		return buf.toString();
+	}
 }

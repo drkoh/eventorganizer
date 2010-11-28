@@ -55,7 +55,7 @@ public class Anniversary extends RepeatSet{
 	}
 
 	@Override
-	public String toString() {
+	public String toDate() {
 		// TODO Auto-generated method stub
 		StringBuffer buf = new StringBuffer();
 		buf.append("yearly :");
