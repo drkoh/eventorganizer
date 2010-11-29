@@ -21,7 +21,7 @@ public class ListCalendarUI extends Frame{
 	Button listTab = null;
 	Button exitButton = null;
 	Button createButton = null;
-	TableLayout eventTable = null;
+	static TableLayout eventTable = null;
 	
 	private static ListCalendarUI _instance = null;
 	
@@ -37,7 +37,7 @@ public class ListCalendarUI extends Frame{
 		owner.setContentView(R.layout.listcalendar);
 		_instance.init();
 		
-		setUI(c);
+		setUI();
 	}
 
 	@Override
@@ -138,29 +138,29 @@ public class ListCalendarUI extends Frame{
 	}
 	
 	// Sets all the text-based UI components
-	public void setUI ()
+	public static void setUI ()
 	{
 		// To do!
 		setEventsUI();
 	}
 
 	// Sets all the event-based UI components
-	public void setEventsUI()
+	public static void setEventsUI()
 	{
 
-		Log.i(field,"Start Set UI!");
+		Log.i("ListCalendar","Start Set UI!");
 		Cursor tempCursor = EventManager.selectEvent("");
         int cursorSize = tempCursor.getCount();
         Log.e("cal", "count=" + cursorSize);
         Button eventButtons[] = new Button[cursorSize];
-		Log.i(field,"Cursor size = " + cursorSize);
+		Log.i("ListCalendar","Cursor size = " + cursorSize);
         int count = 0;
         if(cursorSize != 0)
         {
-    		Log.i(field,"Cursor size != 0");
+    		Log.i("ListCalendar","Cursor size != 0");
     		while (tempCursor.moveToNext())
     		{
-	            // Get the field values of each event
+	            // Get the "ListCalendar" values of each event
 	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
 	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
 	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
@@ -175,10 +175,10 @@ public class ListCalendarUI extends Frame{
         }
         else
         {
-    		Log.i(field,"Cursor size == 0");
+    		Log.i("ListCalendar","Cursor size == 0");
         }
 
-		Log.i(field,"End Set UI!");
+		Log.i("ListCalendar","End Set UI!");
 	}
 
 }

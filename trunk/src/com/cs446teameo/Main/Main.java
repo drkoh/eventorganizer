@@ -24,11 +24,11 @@ public class Main extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Event e = new Event("testCal8", new Segment(2010,11,23,10,15,2010,11,24,10,15),"test");
+       // Event e = new Event("testCal8", new Segment(2010,11,23,10,15,2010,11,24,10,15),"test");
         
-        EventManager em = EventManager.getInstance();
+        //EventManager em = EventManager.getInstance();
         
-        em.createNewEvent(e);
+       // em.createNewEvent(e);
         
         
         
