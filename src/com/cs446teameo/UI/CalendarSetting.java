@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.cs446teameo.Evfac.EventManager;
+import com.cs446teameo.Profile.ProfileManager;
 
 public class CalendarSetting {
 
@@ -101,7 +102,7 @@ public class CalendarSetting {
 		// If any event occurs on the temporary calendar's year
 		if(calendarType == Calendar.MONTH)
 		{
-			if(EventManager.eventOccursOnYear(tempCalendar))
+			if(EventManager.getInstance().eventOccursOnYear(tempCalendar))
 			{
 				// If this month occurs before today
 				if(tempCalendar.before(today))
@@ -124,7 +125,7 @@ public class CalendarSetting {
 		}
 		else if(calendarType == Calendar.DAY_OF_MONTH)
 		{
-			if(EventManager.eventOccursOnDay(tempCalendar))
+			if(EventManager.getInstance().eventOccursOnDay(tempCalendar))
 			{
 				// If this day occurs before today
 				if(tempCalendar.before(today))
