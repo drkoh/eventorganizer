@@ -41,4 +41,5 @@ public abstract class TimeSet {
 	}
 	public abstract String toString();
 	public abstract GregorianCalendar nextTrigger();
+	//public abstract GregorianCalendar nextEndtime();
 }

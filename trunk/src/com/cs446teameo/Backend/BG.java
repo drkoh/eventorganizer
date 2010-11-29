@@ -70,6 +70,7 @@ public class BG extends Service {
 				Timer schEvent = new Timer();
 				timerMap.put(k, schEvent);
 				schEvent.schedule(start, tmp.nextTrigger().getTime());
+				//schEvent.schedule(start, tmp.nextEndtime().getTime());
 			} catch (Exception e) {
 				Log.i("bg", "repeater error: "+e.toString());
 			}
@@ -185,7 +186,7 @@ public class BG extends Service {
 		}
 		
 		public void run() {
-			Profile prof = PM.getProfie(emap.get(eventid).getProfileName());
+			Profile prof = PM.getProfile(emap.get(eventid).getPid());
 			setProfile(prof.getVolume(), prof.getVibrate());
 		}
 	}

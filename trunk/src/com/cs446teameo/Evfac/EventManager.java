@@ -11,6 +11,7 @@ import com.cs446teameo.Backend.*;
 
 import android.content.*;
 import android.os.*;
+import android.util.Log;
 import android.database.*;
 import android.net.Uri;
 
@@ -71,11 +72,11 @@ public class EventManager implements EventAccess{
 	public int createNewEvent(Event e){
 		ContentValues val = new ContentValues();
 		
-		val.put(Database.EVENT_NAME, e.getDescription());
+		val.put(Database.EVENT_NAME, e.getName());
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_NAME, e.getProfileName());
+		val.put(Database.EVENT_PROFILE_NAME, e.getPid());
 		
 		ebase.insert(ebase.getEventTable(), val);
 		notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
@@ -106,13 +107,12 @@ public class EventManager implements EventAccess{
 	{
 		String cond = Database.EVENT_ID + "=" + eId;
 		ContentValues val = new ContentValues();
-		val.put(Database.EVENT_NAME, e.getDescription());
-		val.put(Database.EVENT_REPEAT_OPTION, e.getRepeatOption());
+		val.put(Database.EVENT_NAME, e.getName());
 		val.put(Database.EVENT_REPEAT_TEXT, e.getRepeatText());
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_NAME, e.getProfileName());
+		val.put(Database.EVENT_PROFILE_NAME, e.getPid());
 		
 		ebase.update(ebase.getEventTable(), val, cond);
 		notifyBG("ACTION_UPDATE_EVENT", ""+eId);
@@ -128,9 +128,9 @@ public class EventManager implements EventAccess{
 	public static Cursor selectEvent(String cond){
 		String sel = "select * from " + ebase.getEventTable();
 		
-		if (cond.length() > 0 || cond == null){
+		if (cond == null || cond.length() > 0){
 
-			sel = sel + " where " + cond;
+			sel = sel + " " + cond;
 			//sel = sel + " " + cond;
 		}
 		
@@ -139,11 +139,11 @@ public class EventManager implements EventAccess{
 	
 	//get a single event with the given id
 	public Event getEvent(int id){
-		Cursor c = selectEvent("_id="+id);
+		Cursor c = selectEvent("where _id="+id);
 		c.moveToFirst();
 		if (c.getCount() > 0) {
-			return new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)), 
-					c.getString(4), c.getString(5), c.getString(6), c.getString(7));
+			return new Event(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 
+					c.getString(4), c.getInt(5), c.getString(6));
 		}
 		else {
 			return null;
@@ -181,17 +181,18 @@ public class EventManager implements EventAccess{
 	// Returns all the events from the event table, first sorted by Start Date, then by Start time
 	public ArrayList<Event> allEvents()
 	{
+		Log.i("bg", "here");
 		String cond = "ordered by " + Database.EVENT_START + ", " + Database.EVENT_END;
-		Cursor c = selectEvent(cond);
+		Cursor c = selectEvent("");
 		
 		ArrayList<Event> l = new ArrayList<Event>();
-		
+		Log.i("bg", "here2");
 		while (c.moveToNext()){
-			Event e = new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)),
-								c.getString(4), c.getString(5), c.getString(6), c.getString(7));
+			Event e = new Event(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), c.getString(4), c.getInt(5), c.getString(6));
 			l.add(e);
 		}
-		
+		Log.i("bg", "here3");
+		c.close();
 		return l;
 	}
 

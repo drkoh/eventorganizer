@@ -37,10 +37,10 @@ public class Database {
     private static final String Event_TABLE_CREATE =
     	"create table events (_id integer primary key autoincrement, "
         + "name text not null, start_time integer not null, end_time integer not null, "
-        + "location text, profileName text, repeat_option text, repeat_text text);";
+        + "location text, profileId integer, repeat_text text);";
     private static final String Profile_TABLE_CREATE =
     	"create table profile (_id integer primary key autoincrement, "
-    	+ "name text not null, volume integer not null, vibrate integer not null);";
+    	+ "name primary key text not null, volume integer not null, vibrate integer not null);";
     
     /**
      * Constructor - takes the context to allow the database to be
