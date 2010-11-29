@@ -1,5 +1,7 @@
 package com.cs446teameo.UI;
 
+import java.util.ArrayList;
+
 import com.cs446teameo.Main.R;
 import android.app.Dialog;
 import android.content.Context;
@@ -15,7 +17,8 @@ public class WeeklyEventAdder extends Dialog implements OnClickListener {
 	CheckBox mondayCheckbox, sundayCheckbox, tuesdayCheckbox, wednesdayCheckbox, 
 							thursdayCheckbox, fridayCheckbox, saturdayCheckbox;
 	public static boolean daySet = false;
-	public static boolean [] days = days = new boolean[7];
+	boolean [] days = days = new boolean[7];
+	public static ArrayList <Integer> daysArray = new ArrayList <Integer>();
 
 	public WeeklyEventAdder(Context context) 
 	{
@@ -58,6 +61,7 @@ public class WeeklyEventAdder extends Dialog implements OnClickListener {
     			{
     				if(tempString != "")
     				{
+    					daysArray.add((i + 1));
     					tempString += ", ";
     				}
     				tempString += dayNames[i];
