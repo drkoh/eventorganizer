@@ -192,14 +192,14 @@ public class BG extends Service {
 	}
 	
 	class changeDefault extends TimerTask {
-		String pname;
+		int pid;
 		
-		changeDefault(String profileName){
-			this.pname = profileName;
+		changeDefault(int pid){
+			this.pid = pid;
 		}
 		
 		public void run() {
-			Profile prof = PM.getProfie(pname);
+			Profile prof = PM.getProfile(pid);
 			setProfile(prof.getVolume(), prof.getVibrate());
 		}
 	}

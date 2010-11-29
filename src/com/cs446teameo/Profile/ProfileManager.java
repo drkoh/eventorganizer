@@ -62,13 +62,14 @@ public class ProfileManager {
 		return 0;
 	}
 	
-	public Profile getProfie(String pname) {
+	public Profile getProfile(int pid) {
 		Cursor tempCursor = selectProfile("");
 		if (tempCursor.getCount() > 0) {
+			int id = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_ID));
 			String name = tempCursor.getString(tempCursor.getColumnIndex(Database.PROFILE_NAME));
 			int volume = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VOL));
 			boolean vibrate = intToBoolean(tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VIB)));
-			return new Profile(name, vibrate, volume);
+			return new Profile(id, name, vibrate, volume);
 		} else {
 			return null;
 		}

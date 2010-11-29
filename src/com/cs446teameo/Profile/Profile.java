@@ -17,6 +17,14 @@ public class Profile{
 			this.volume = vol;
         }
        
+        public Profile(int id, String desc, boolean vib, int vol)
+        {
+        	this.pId = id;
+			this.description = desc;
+			this.vibrate = vib;
+			this.volume = vol;
+        }
+        
         public int getId(){
                 return pId;
         }

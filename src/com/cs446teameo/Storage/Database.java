@@ -18,7 +18,7 @@ public class Database {
 	public static final String EVENT_LOCATION = "location";
 	public static final String EVENT_REPEAT_OPTION = "repeat_option";
 	public static final String EVENT_REPEAT_TEXT = "repeat_text";
-	public static final String EVENT_PROFILE_NAME = "profileName";
+	public static final String EVENT_PROFILE_ID = "profileId";
 	public static final String PROFILE_ID = "_id";
 	public static final String PROFILE_NAME = "name";
 	public static final String PROFILE_VOL = "volume";
