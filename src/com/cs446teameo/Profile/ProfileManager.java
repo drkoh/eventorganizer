@@ -92,7 +92,7 @@ public class ProfileManager {
 		String sel = "select * from " + ebase.getProfileTable();
 		
 		if (cond.length() > 0 || cond == null){
-			sel = sel + " where " + cond;
+			sel = sel + " " + cond;
 		}
 		
 		return ebase.select(sel);
