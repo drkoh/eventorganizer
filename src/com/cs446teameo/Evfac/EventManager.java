@@ -181,7 +181,7 @@ public class EventManager implements EventAccess{
 	public ArrayList<Event> allEvents()
 	{
 		Log.i("bg", "here");
-		String cond = "order by " + Database.EVENT_START + ", " + Database.EVENT_END;
+		String cond = "order by " + Database.EVENT_START;
 		Cursor c = selectEvent(cond);
 		
 		ArrayList<Event> l = new ArrayList<Event>();
@@ -198,19 +198,81 @@ public class EventManager implements EventAccess{
 	// Returns all the events from the event table, that occur at the same time as calendar. Must be sorted by Start Time.
 	public ArrayList<Event> allEventsOfDay(Calendar calendar)
 	{
-		return null;
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH), 0, 0);
+		long st = calendar.getTimeInMillis();
+		
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH), 23, 59);
+		
+		long ed = calendar.getTimeInMillis();
+		
+		String cond = "where " + Database.EVENT_START + ">=" + st + " and " + 
+						Database.EVENT_START + "<=" + ed + " order by " + Database.EVENT_START;
+		
+		Cursor c = selectEvent(cond);
+		
+		if (c.getCount() > 0){
+			ArrayList<Event> l = new ArrayList<Event>();
+			Log.i("bg", "here2");
+			while (c.moveToNext()){
+				Event e = new Event(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), c.getString(4), c.getInt(5), c.getString(6));
+				l.add(e);
+			}
+			Log.i("bg", "here3");
+			c.close();
+			return l;
+		}
+		else
+			return null;
+		
 	}
 
 	// Does any event occur on the specified day?
 	public boolean eventOccursOnDay(Calendar calendar)
 	{
-		return false;
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH), 0, 0);
+		long st = calendar.getTimeInMillis();
+		
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH), 23, 59);
+		
+		long ed = calendar.getTimeInMillis();
+		
+		String cond = "where " + Database.EVENT_START + ">=" + st + " and " + 
+						Database.EVENT_START + "<=" + ed + " order by " + Database.EVENT_START;
+		
+		Cursor c = selectEvent(cond);
+		
+		if (c.getCount() > 0){
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	// Does any event occur on the specified year?
 	public boolean eventOccursOnYear(Calendar calendar)
 	{
-		return false;
+		calendar.set(calendar.get(Calendar.YEAR), 1 ,1, 0, 0);
+		long st = calendar.getTimeInMillis();
+		
+		calendar.set(calendar.get(Calendar.YEAR)+1, 1, 1, 0, 0);
+		
+		long ed = calendar.getTimeInMillis();
+		
+		String cond = "where " + Database.EVENT_START + ">=" + st + " and " + 
+						Database.EVENT_START + "<" + ed + " order by " + Database.EVENT_START;
+		
+		Cursor c = selectEvent(cond);
+		
+		if (c.getCount() > 0){
+			return true;
+		}
+		else
+			return false;
+		
 	}
 	/* CALVIN - FILL THESE METHODS - END */
 }
