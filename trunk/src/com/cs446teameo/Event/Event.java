@@ -33,12 +33,18 @@ public class Event implements Activicable,Serializable{
 		location = l;
 	}
 	
-	public Event(int i, String d, Segment t, String l, int p, String ro, String rt){
+	public Event(int i, String d, Segment t, String l){
 		eId = i;
 		description = d;
 		time = t;
 		location = l;
-		pId = p;
+	}
+	
+	public Event(int i, String d, Segment t, String l, String ro, String rt){
+		eId = i;
+		description = d;
+		time = t;
+		location = l;
 		repeat_option = ro;
 		repeat_text = rt;
 	}

@@ -207,7 +207,6 @@ public class EventManager implements EventAccess{
 	// Returns all the events from the event table, first sorted by Start Date, then by Start time
 	public static ArrayList<Event> allEvents()
 	{
-		return null;
 		String cond = "ordered by " + Database.EVENT_START + ", " + Database.EVENT_END;
 		Cursor c = selectEvent(cond);
 		
@@ -215,7 +214,7 @@ public class EventManager implements EventAccess{
 		
 		while (c.moveToNext()){
 			Event e = new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)),
-								c.getString(4), c.getInt(5), c.getString(6), c.getString(7));
+								c.getString(4), c.getString(6), c.getString(7));
 			l.add(e);
 		}
 		
