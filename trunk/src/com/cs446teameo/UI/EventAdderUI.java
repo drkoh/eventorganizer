@@ -51,12 +51,11 @@ public class EventAdderUI extends Frame{
 	Button clearButton = null;
 	Button createButton = null;
 	Button exitButton = null;
-	static final int WeeklyEventAdderDialog = 0;
-	static final int MonthlyEventAdderDialog = 1;
-	static final int StartTimePickerDialog = 2;
-	static final int StartDatePickerDialog = 3;
-	static final int EndTimePickerDialog = 4;
-	static final int EndDatePickerDialog = 5;
+	public static final int NONE = 0;
+	public static final int DAILY = 1;
+	public static final int WEEKLY = 2;
+	public static final int MONTHLY = 3;
+	public static final int YEARLY = 4;
 	ArrayList<Profile> list = null;
 	
 	private static EventAdderUI _instance = null;
@@ -145,41 +144,105 @@ public class EventAdderUI extends Frame{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Log.i(field,"trigger create button");
-	    		if(WeeklyEventAdder.daySet == true)
-	    		{
-	    			WeeklyEventAdder.daySet = false;
-	    			// Access weeklyDialog.days(array of booleans) here...
-	    		}
-	    		if(MonthlyEventAdder.daySet == true)
-	    		{
-	    			MonthlyEventAdder.daySet = false;
-	    			// Access monthlyDialog.day(int) here...
-	    		}
+				
 				ArrayList<Object> src = new ArrayList<Object>();
-				src.add(description.getText().toString());
-				if(profile.getSelectedItem() == null)
+				
+				if((repeatOption.getSelectedItem()).toString().equals("None"))
 				{
-					src.add(-1);
+					src.add(NONE); 													// Add the repeat option
+					src.add(description.getText().toString()); 						// Add the event name
+					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					src.add(location.getText().toString()); 						// Add the event location
+					
+					// Add the start time
+					src.add(sTimePicker.getCurrentHour());
+					src.add(sTimePicker.getCurrentMinute());
+					
+					// Add the start date
+					src.add(startDate.getYear());
+					src.add(startDate.getMonth());
+					src.add(startDate.getDayOfMonth());
+
+					// Add the end time
+					src.add(eTimePicker.getCurrentHour());
+					src.add(eTimePicker.getCurrentMinute());
+					
+					// Add the end date
+					src.add(endDate.getYear());
+					src.add(endDate.getMonth());
+					src.add(endDate.getDayOfMonth());
 				}
-				else
+				else if((repeatOption.getSelectedItem()).toString().equals("Daily"))
 				{
-					src.add(getProfileID((profile.getSelectedItem()).toString()));
+					src.add(DAILY);													// Add the repeat option
+					src.add(description.getText().toString()); 						// Add the event name
+					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					src.add(location.getText().toString()); 						// Add the event location
+					
+					// Add the start time
+					src.add(sTimePicker.getCurrentHour());
+					src.add(sTimePicker.getCurrentMinute());
+
+					// Add the end time
+					src.add(eTimePicker.getCurrentHour());
+					src.add(eTimePicker.getCurrentMinute());
 				}
-				src.add((repeatOption.getSelectedItem()).toString());
-				src.add(repeatEvery.getText().toString());
-				src.add(startDate.getYear());
-				src.add(startDate.getMonth());
-				src.add(startDate.getDayOfMonth());
-				//
-				src.add(endDate.getYear());
-				src.add(endDate.getMonth());
-				src.add(endDate.getDayOfMonth());
-				//
-				src.add(sTimePicker.getCurrentHour());
-				src.add(sTimePicker.getCurrentMinute());
-				src.add(eTimePicker.getCurrentHour());
-				src.add(eTimePicker.getCurrentMinute());
-				src.add(location.getText().toString());
+				else if((repeatOption.getSelectedItem()).toString().equals("Weekly"))
+				{
+					src.add(WEEKLY);												// Add the repeat option
+					src.add(description.getText().toString()); 						// Add the event name
+					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					src.add(location.getText().toString()); 						// Add the event location
+					src.add((ArrayList <Integer>)WeeklyEventAdder.daysArray);		// Add an array of days (as ints)
+					
+					// Add the start time
+					src.add(sTimePicker.getCurrentHour());
+					src.add(sTimePicker.getCurrentMinute());
+
+					// Add the end time
+					src.add(eTimePicker.getCurrentHour());
+					src.add(eTimePicker.getCurrentMinute());
+				}
+				else if((repeatOption.getSelectedItem()).toString().equals("Monthly"))
+				{
+					src.add(MONTHLY);												// Add the repeat option
+					src.add(description.getText().toString()); 						// Add the event name
+					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					src.add(location.getText().toString()); 						// Add the event location
+					src.add((int)MonthlyEventAdder.day);							// Add the day of the month
+					
+					// Add the start time
+					src.add(sTimePicker.getCurrentHour());
+					src.add(sTimePicker.getCurrentMinute());
+
+					// Add the end time
+					src.add(eTimePicker.getCurrentHour());
+					src.add(eTimePicker.getCurrentMinute());
+				}
+				else if((repeatOption.getSelectedItem()).toString().equals("Yearly"))
+				{
+					src.add(YEARLY); 												// Add the repeat option
+					src.add(description.getText().toString()); 						// Add the event name
+					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					src.add(location.getText().toString()); 						// Add the event location
+					
+					// Add the start time
+					src.add(sTimePicker.getCurrentHour());
+					src.add(sTimePicker.getCurrentMinute());
+					
+					// Add the start date
+					src.add(startDate.getMonth());
+					src.add(startDate.getDayOfMonth());
+
+					// Add the end time
+					src.add(eTimePicker.getCurrentHour());
+					src.add(eTimePicker.getCurrentMinute());
+					
+					// Add the end date
+					src.add(endDate.getMonth());
+					src.add(endDate.getDayOfMonth());
+				}
+				
 				int res = EventFactory.getInstance().createEvent(src);
 				if(res != ErrorCode.SUCCESS){
 					//TODO: ADD AN NOTIFICATION TO THE USER
@@ -268,7 +331,7 @@ public class EventAdderUI extends Frame{
 				return (list.get(i)).getId();
 			}
 		}
-		return (list.get(0)).getId();
+		return -1;
 	}
 
 }

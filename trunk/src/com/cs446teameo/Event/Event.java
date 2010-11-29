@@ -1,12 +1,16 @@
 package com.cs446teameo.Event;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
+
+import android.R;
 
 import com.cs446teameo.Actor.BgProcesser;
 import com.cs446teameo.Parameter.ErrorCode;
+import com.cs446teameo.Main.Main;
 
-public class Event implements Activicable,Serializable{
+public class Event{
 	/**
 	 * 
 	 */
@@ -18,6 +22,8 @@ public class Event implements Activicable,Serializable{
 	private long end_time;
 	private int pId;
 	private String time_text;
+	
+	
 	
 	public Event() {
 	
@@ -86,31 +92,13 @@ public class Event implements Activicable,Serializable{
 		return location;
 	}
 	
-	public void setRepeatText (String s){
-		this.time_text = s;
-	}
-	
 	public String getRepeatText(){
 		return time_text;
 	}
 	
-	@Override
 	public int trigger(BgProcesser bgprocesser) {
 		// TODO Auto-generated method stub
 		return bgprocesser.trigger(this);
 	}
 	
-	//and the Integer returned is just the error code
-	public int setAttribute(EField something){
-		return ErrorCode.SUCCESS;
-	}
-	
-	/*public String sqlizeEvent(){
-		String e = "_id " + eid + ", location " +location.location + ", start_time" + time.startTime() +
-		", end_time " + time.endTime();
-		return e;
-	}*/
-	
-	//Note:
-	//should we implement Serializable in this class???
 }
