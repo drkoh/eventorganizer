@@ -6,18 +6,13 @@ import java.util.Calendar;
 import android.app.Activity;
 
 import com.cs446teameo.Event.*;
-import com.cs446teameo.Parameter.ErrorCode;
-import com.cs446teameo.Profile.Profile;
-import com.cs446teameo.Profile.ProfileManager;
 import com.cs446teameo.Storage.*;
 import com.cs446teameo.Backend.*;
 
 import android.content.*;
 import android.os.*;
-import android.util.Log;
 import android.database.*;
 import android.net.Uri;
-import android.util.Log;
 
 public class EventManager implements EventAccess{
 	private static EventManager _instance = null;
@@ -80,9 +75,9 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_ID, e.getStatus());
+		val.put(Database.EVENT_PROFILE_NAME, e.getProfileName());
 		
-		long s = ebase.insert(ebase.getEventTable(), val);
+		ebase.insert(ebase.getEventTable(), val);
 		notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
 		
 		/*if (s > 0) {
@@ -117,7 +112,7 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_ID, e.getStatus());
+		val.put(Database.EVENT_PROFILE_NAME, e.getProfileName());
 		
 		ebase.update(ebase.getEventTable(), val, cond);
 		notifyBG("ACTION_UPDATE_EVENT", ""+eId);
@@ -136,31 +131,27 @@ public class EventManager implements EventAccess{
 		if (cond.length() > 0 || cond == null){
 
 			sel = sel + " where " + cond;
-			sel = sel + " " + cond;
+			//sel = sel + " " + cond;
 		}
 		
 		return ebase.select(sel);
 	}
-
-	public int filterEvent(String query, ArrayList<Event> dst){
-		Cursor list = selectEvent(null);
-		if (!list.isFirst())
-			list.moveToFirst();
-		Event tmp = new Event();
-		for (int i = 0; i < list.getCount(); i++) {
-			CharArrayBuffer buffer = new CharArrayBuffer(1);
-			list.copyStringToBuffer(list.getColumnIndex("start_time") , buffer);
-			long starttime = Integer.parseInt(buffer.toString());
-			list.copyStringToBuffer(list.getColumnIndex("end_time") , buffer);
-			long endtime = Integer.parseInt(buffer.toString());
-			tmp.setTime(new Segment(starttime, endtime));
-			dst.add(tmp);
+	
+	//get a single event with the given id
+	public Event getEvent(int id){
+		Cursor c = selectEvent("_id="+id);
+		c.moveToFirst();
+		if (c.getCount() > 0) {
+			return new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)), 
+					c.getString(4), c.getString(5), c.getString(6), c.getString(7));
 		}
-		return ErrorCode.SUCCESS;
+		else {
+			return null;
+		}
 	}
 
 	/* CALVIN - FILL THESE METHODS - START */	
-	
+	/*
 	public int listEvent(ArrayList<Event> dst){
 		Log.i("bg", "here");
 			Cursor list = null;
@@ -173,39 +164,22 @@ public class EventManager implements EventAccess{
 			list.moveToFirst();
 		Log.i("bg", "here2");
 		for (int i = 0; i < list.getCount(); i++) {
-			CharArrayBuffer buffer = new CharArrayBuffer(10);
-			list.copyStringToBuffer(list.getColumnIndex("start_time") , buffer);
-			long starttime = Integer.parseInt(new String(buffer.data));
+			Event e = new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)),
+					c.getString(4), c.getString(5), c.getString(6), c.getString(7));
 			
-			list.copyStringToBuffer(list.getColumnIndex("end_time") , buffer);
-			long endtime = Integer.parseInt(new String(buffer.data).substring(0, buffer.sizeCopied));
-			
-			Segment tmptime = new Segment(starttime, endtime);
-			
-			list.copyStringToBuffer(list.getColumnIndex("name") , buffer);
-			String name = new String(buffer.data).substring(0, buffer.sizeCopied);
-			list.copyStringToBuffer(list.getColumnIndex("location") , buffer);
-			String location = new String(buffer.data).substring(0, buffer.sizeCopied);
-			
-			buffer = new CharArrayBuffer(10);
-			list.copyStringToBuffer(0 , buffer);
-			int id = Integer.parseInt(new String(buffer.data).substring(0, buffer.sizeCopied));
-			Log.i("bg", "got id from db: "+id + " and location : "+location);
-			Event tmp = new Event(id, name, tmptime, location);
-			//tmp.setStatus(s, volume)
-			dst.add(tmp);
+			dst.add(new Event(id, name, tmptime, location, pn, ro, rt));
 		}
 		list.close();
 		Log.i("bg", "here3");
 		return ErrorCode.SUCCESS;
-	}
+	}*/
 	
 	public int initProfileDatabase(){
 		return 0;
 	}
 	
 	// Returns all the events from the event table, first sorted by Start Date, then by Start time
-	public static ArrayList<Event> allEvents()
+	public ArrayList<Event> allEvents()
 	{
 		String cond = "ordered by " + Database.EVENT_START + ", " + Database.EVENT_END;
 		Cursor c = selectEvent(cond);
@@ -214,7 +188,7 @@ public class EventManager implements EventAccess{
 		
 		while (c.moveToNext()){
 			Event e = new Event(c.getInt(0), c.getString(1), new Segment(c.getInt(2), c.getInt(3)),
-								c.getString(4), c.getString(6), c.getString(7));
+								c.getString(4), c.getString(5), c.getString(6), c.getString(7));
 			l.add(e);
 		}
 		
@@ -222,19 +196,19 @@ public class EventManager implements EventAccess{
 	}
 
 	// Returns all the events from the event table, that occur at the same time as calendar. Must be sorted by Start Time.
-	public static ArrayList<Event> allEventsOfDay(Calendar calendar)
+	public ArrayList<Event> allEventsOfDay(Calendar calendar)
 	{
 		return null;
 	}
 
 	// Does any event occur on the specified day?
-	public static boolean eventOccursOnDay(Calendar calendar)
+	public boolean eventOccursOnDay(Calendar calendar)
 	{
 		return false;
 	}
 	
 	// Does any event occur on the specified year?
-	public static boolean eventOccursOnYear(Calendar calendar)
+	public boolean eventOccursOnYear(Calendar calendar)
 	{
 		return false;
 	}

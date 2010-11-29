@@ -41,7 +41,7 @@ public class EventFactory {
 		// TODO Auto-generated method stub
 		Event event = new Event();
 		event.setDescription((String)src.get(0));
-		event.setStatus(src.get(1).toString()); //The second parameter of this should be the volume to pass, which is either -1 or a positive number
+		event.setProfileName(src.get(1).toString()); //The second parameter of this should be the volume to pass, which is either -1 or a positive number
 		event.setRepeatOption(src.get(2).toString());
 		event.setRepeatText(src.get(3).toString());
 		event.setTime(new Segment((Integer)src.get(4),(Integer)src.get(5),(Integer)src.get(6),(Integer)src.get(10),
