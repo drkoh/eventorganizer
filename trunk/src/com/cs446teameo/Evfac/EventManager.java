@@ -131,7 +131,6 @@ public class EventManager implements EventAccess{
 		if (cond == null || cond.length() > 0){
 
 			sel = sel + " " + cond;
-			//sel = sel + " " + cond;
 		}
 		
 		return ebase.select(sel);
