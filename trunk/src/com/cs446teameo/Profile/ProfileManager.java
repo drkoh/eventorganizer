@@ -118,19 +118,7 @@ public class ProfileManager {
         }
 		return -1;
 	}
-	
-	// Simply list all the profile names into a string list
-	public String[] listProfileNames()
-	{
-		ArrayList<Profile> list = new ArrayList<Profile>();
-		listProfile(list);
-		String profileNames[] = new String[list.size()];
-		for(int i = 0; i < list.size(); i++)
-		{
-			profileNames[i] = (list.get(i)).getDescription();
-		}
-		return profileNames;
-	}
+
 	
 	// Integer to boolean converter (SQLLite doesn't have BOOLEAN!)
 	public static boolean intToBoolean(int value)

@@ -90,16 +90,6 @@ public class ListCalendarUI extends Frame{
 			}
 		});
 		
-		listTab.setOnClickListener(new OnClickListener(){
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO!!!
-				Log.i(field,"trigger create button");
-				ListCalendarUI.contextSwitch();
-			}
-		});
-		
 		// Create Button
 		createButton.setOnClickListener(new OnClickListener(){
 			
@@ -141,13 +131,12 @@ public class ListCalendarUI extends Frame{
 	public static void setUI ()
 	{
 		// To do!
-		setEventsUI();
+		//setEventsUI();
 	}
 
 	// Sets all the event-based UI components
 	public static void setEventsUI()
 	{
-
 		Log.i("ListCalendar","Start Set UI!");
 		Cursor tempCursor = EventManager.selectEvent("");
         int cursorSize = tempCursor.getCount();
