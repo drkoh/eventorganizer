@@ -138,7 +138,13 @@ public class EditProfileUI extends Frame{
 	
 	private void loadProfile()
 	{
-		String[] profileNames = ProfileManager.getInstance().listProfileNames();
+		ArrayList<Profile>list = new ArrayList<Profile>();
+		ProfileManager.getInstance().listProfile(list);
+		String profileNames[] = new String[list.size()];
+		for(int i = 0; i < list.size(); i++)
+		{
+			profileNames[i] = (list.get(i)).getDescription();
+		}
 		ArrayAdapter<CharSequence> profileadapter = new ArrayAdapter<CharSequence>(owner, android.R.layout.simple_spinner_item, profileNames);
 		name.setAdapter(profileadapter);
 	}

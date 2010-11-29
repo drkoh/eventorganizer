@@ -57,8 +57,11 @@ public class EventAdderUI extends Frame{
 	static final int StartDatePickerDialog = 3;
 	static final int EndTimePickerDialog = 4;
 	static final int EndDatePickerDialog = 5;
+	ArrayList<Profile> list = null;
 	
 	private static EventAdderUI _instance = null;
+	
+	
 	
 	private EventAdderUI() {
 		super("EventAdder");
@@ -71,7 +74,7 @@ public class EventAdderUI extends Frame{
 		}
 		owner.setContentView(R.layout.eventadder);
 		_instance.init();
-		_instance.refreshComponent();
+		//_instance.refreshComponent();
 	}
 	
 	@Override
@@ -156,11 +159,11 @@ public class EventAdderUI extends Frame{
 				src.add(description.getText().toString());
 				if(profile.getSelectedItem() == null)
 				{
-					src.add("");
+					src.add(-1);
 				}
 				else
 				{
-					src.add((profile.getSelectedItem()).toString());
+					src.add(getProfileID((profile.getSelectedItem()).toString()));
 				}
 				src.add((repeatOption.getSelectedItem()).toString());
 				src.add(repeatEvery.getText().toString());
@@ -226,6 +229,7 @@ public class EventAdderUI extends Frame{
 		this.repeatStatusText = (TextView) owner.findViewById(R.eventadder.repeatStatusText);
 	}
 	
+	/*
 	private int refreshComponent(){
 		ArrayAdapter<Profile> profileAdapter = new ArrayAdapter<Profile>(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
 		ArrayList<Profile> list = new ArrayList<Profile>();
@@ -238,12 +242,33 @@ public class EventAdderUI extends Frame{
 	    profile.setAdapter(profileAdapter);
 	    return ErrorCode.SUCCESS;
 	}
+	*/
+	
+	// Simply list all the profile names into a string list
 
 	private void loadProfile()
 	{
-		String[] profileNames = ProfileManager.getInstance().listProfileNames();
+		list = new ArrayList<Profile>();
+		ProfileManager.getInstance().listProfile(list);
+		String profileNames[] = new String[list.size()];
+		for(int i = 0; i < list.size(); i++)
+		{
+			profileNames[i] = (list.get(i)).getDescription();
+		}
 		ArrayAdapter<CharSequence> profileadapter = new ArrayAdapter<CharSequence>(owner, android.R.layout.simple_spinner_item, profileNames);
 		profile.setAdapter(profileadapter);
+	}
+	
+	private int getProfileID (String profileName)
+	{
+		for(int i = 0; i < list.size(); i++)
+		{
+			if((list.get(i)).getDescription().equals(profileName))
+			{
+				return (list.get(i)).getId();
+			}
+		}
+		return (list.get(0)).getId();
 	}
 
 }
