@@ -10,70 +10,72 @@ public class Event implements Activicable,Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8901889794218787753L;
 	
 	private int eId;
-	private String description;
-	public Segment time;
+	private String name;
 	private String location;
-	private String profileName;
-	private String repeat_option;
-	private String repeat_text;
+	private long start_time;
+	private long end_time;
+	private int pId;
+	private String time_text;
 	
-	public Event(){
-		
+	public Event() {
+	
 	}
 	
-	public Event(String d, Segment t, String l){
-		description = d;
-		time = t;
+	public Event(String n, long st, long et, String l, int p, String rt){
+		name = n;
 		location = l;
+		this.start_time = st;
+		this.end_time = et;
+		pId = p;
+		time_text = rt;
 	}
 	
-	public Event(int i, String d, Segment t, String l, String p, String ro, String rt){
+	public Event(int i, String n, long st, long et, String l, int p, String rt){
 		eId = i;
-		description = d;
-		time = t;
+		name = n;
 		location = l;
-		profileName = p;
-		repeat_option = ro;
-		repeat_text = rt;
+		this.start_time = st;
+		this.end_time = et;
+		pId = p;
+		time_text = rt;
 	}
 	
-	public Event(int style){
+	public void setStartTime(long st) {
+		this.start_time = st;
+	}
+	
+	public long getStartTime() {
+		return this.start_time;
+	}
+	
+	public void setEndTime(long st) {
+		this.end_time = st;
+	}
+	
+	public long getEndTime() {
+		return this.end_time;
+	}
+	
+	public int getPid(){
+		return pId;
+	}
+
+	public void setPid(int pid) {
+		this.pId = pid;
 	}
 	
 	public int getEid(){
 		return eId;
 	}
 	
-	public void setDescription(String desc){
-		this.description = desc;
+	public void setName(String desc){
+		this.name = desc;
 	}
 	
-	public String getDescription(){
-		return description;
-	}
-	
-	//if String s=volume, int volume will be a positive int, else negative
-	public void setProfileName(String s){
-		this.profileName = s;
-	}
-	
-	public String getProfileName(){
-		return profileName;
-	}
-	
-	public void setTime(Segment t){
-		this.time = t;
-	}
-	
-	public long getStartTime(){
-		return time.startTime();
-	}
-	
-	public long getEndTime(){
-		return time.endTime();
+	public String getName(){
+		return name;
 	}
 	
 	public void setLocation (String l){
@@ -84,20 +86,12 @@ public class Event implements Activicable,Serializable{
 		return location;
 	}
 	
-	public void setRepeatOption (String s){
-		this.repeat_option = s;
-	}
-	
-	public String getRepeatOption(){
-		return repeat_option;
-	}
-	
 	public void setRepeatText (String s){
-		this.repeat_text = s;
+		this.time_text = s;
 	}
 	
 	public String getRepeatText(){
-		return repeat_text;
+		return time_text;
 	}
 	
 	@Override
