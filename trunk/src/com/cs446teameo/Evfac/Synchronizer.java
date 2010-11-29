@@ -1,6 +1,6 @@
 //reference:
 //http://svn.jimblackler.net/jimblackler/trunk/workspace/AndroidReadCalendarExample/src/net/jimblackler/readcalendar/Example.java
-
+/*
 package com.cs446teameo.Evfac;
 
 import java.util.Date;
@@ -89,3 +89,4 @@ public class Synchronizer extends EventCreator{
 		return null;
 	}
 }
+*/

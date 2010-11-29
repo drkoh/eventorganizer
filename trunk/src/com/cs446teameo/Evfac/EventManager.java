@@ -76,7 +76,7 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_NAME, e.getPid());
+		val.put(Database.EVENT_PROFILE_ID, e.getPid());
 		
 		ebase.insert(ebase.getEventTable(), val);
 		notifyBG("ACTION_NEW_EVENT", ""+ebase.getNewestID());
@@ -112,7 +112,7 @@ public class EventManager implements EventAccess{
 		val.put(Database.EVENT_START, e.getStartTime());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
-		val.put(Database.EVENT_PROFILE_NAME, e.getPid());
+		val.put(Database.EVENT_PROFILE_ID, e.getPid());
 		
 		ebase.update(ebase.getEventTable(), val, cond);
 		notifyBG("ACTION_UPDATE_EVENT", ""+eId);
@@ -182,8 +182,8 @@ public class EventManager implements EventAccess{
 	public ArrayList<Event> allEvents()
 	{
 		Log.i("bg", "here");
-		String cond = "ordered by " + Database.EVENT_START + ", " + Database.EVENT_END;
-		Cursor c = selectEvent("");
+		String cond = "order by " + Database.EVENT_START + ", " + Database.EVENT_END;
+		Cursor c = selectEvent(cond);
 		
 		ArrayList<Event> l = new ArrayList<Event>();
 		Log.i("bg", "here2");
