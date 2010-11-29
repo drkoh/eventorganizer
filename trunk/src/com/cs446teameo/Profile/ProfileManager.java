@@ -62,6 +62,18 @@ public class ProfileManager {
 		return 0;
 	}
 	
+	public Profile getProfie(String pname) {
+		Cursor tempCursor = selectProfile("");
+		if (tempCursor.getCount() > 0) {
+			String name = tempCursor.getString(tempCursor.getColumnIndex(Database.PROFILE_NAME));
+			int volume = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VOL));
+			boolean vibrate = intToBoolean(tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VIB)));
+			return new Profile(name, vibrate, volume);
+		} else {
+			return null;
+		}
+	}
+	
 	public int updateProfile(Profile p, int pId){
 		String cond = Database.PROFILE_ID + "=" + pId;
 		ContentValues val = new ContentValues();
@@ -108,7 +120,7 @@ public class ProfileManager {
 	}
 	
 	// Simply list all the profile names into a string list
-	public  String[] listProfileNames()
+	public String[] listProfileNames()
 	{
 		ArrayList<Profile> list = new ArrayList<Profile>();
 		listProfile(list);

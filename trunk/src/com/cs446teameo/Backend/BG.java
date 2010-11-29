@@ -5,22 +5,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.*;
-import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 
 import java.util.*;
 
 import com.cs446teameo.Event.*;
-import com.cs446teameo.UI.*;
 import com.cs446teameo.Evfac.*;
+import com.cs446teameo.Profile.*;
+import com.cs446teameo.repeater.*;
 
 public class BG extends Service {
 	
 	Event currentEvent = null;
 	boolean currentStatus = false;
 	EventManager EM;
-	HashMap<Integer ,Event> emap = null;
-	Timer schEvent = new Timer();
+	ProfileManager PM;
+	HashMap<Integer, Event> emap = null;
+	HashMap<Integer, Timer> timerMap = null;
+	ArrayList<Event> tmpelist = null;
+	Driver RD = null;
+	AudioManager audioManager;
+	Context context;
 	
 	public class LocalBinder extends Binder {
         public BG getService() {
@@ -29,58 +34,103 @@ public class BG extends Service {
     }
 	
 	private void gatherEvents(Intent intent) {
-		ArrayList<Event> elist = new ArrayList();
 		if (intent == null) {
-			EM.listEvent(elist);
+			tmpelist = EM.allEvents();
 			Log.i("bg", "gatherEvents intent is null");
 		} else {
 			//assuming there is only 1 id in intent
+			tmpelist = new ArrayList<Event>();
+			tmpelist.add(EM.getEvent(Integer.parseInt(intent.getDataString())));
 		}
-		emap = new HashMap();
-		if (elist.size() != 0) {
+		
+		if (tmpelist.size() != 0) {
 			Log.i("bg", "got data");
 		} else {
 			Log.i("bg", "no data");
 		}
-		for (int i=0; i < elist.size(); i++) {
-			Log.i("bg", "saving eid: "+elist.get(i).getEid());
-			emap.put(elist.get(i).getEid(), elist.get(i));
-		}
 	}
 	
 	private void setEvents(Intent intent) {
-		Iterator<Integer> keys = emap.keySet().iterator();
+		if (tmpelist == null) return;
 		
-		while(true) {
-			if (!keys.hasNext()) break;
-			int k = keys.next();
-			Log.i("bg", "work "+k);
+		for (int i=0; i < tmpelist.size(); i++) {
 			
-			TimerTask start = new StatusChange(k);
-			schEvent.schedule(start, new Date(emap.get(k).getStartTime()));
+			int k = tmpelist.get(i).getEid();
+			
+			Log.i("bg", "saving eid: "+ tmpelist.get(i).getEid());
+			emap.put(tmpelist.get(i).getEid(), tmpelist.get(i));
+			
+			Log.i("bg", "working on "+k);
+			RD.setString(tmpelist.get(i).getRepeatText());
+			
+			TimeSet tmp = null;
+			try {
+				tmp = RD.parse();
+				TimerTask start = new StatusChange(k);
+				Timer schEvent = new Timer();
+				timerMap.put(k, schEvent);
+				schEvent.schedule(start, tmp.nextTrigger().getTime());
+			} catch (Exception e) {
+				Log.i("bg", "repeater error: "+e.toString());
+			}
+			
+			//Set the default time
+			
 			//TimerTask end = new StatusChange(k);
 			//schEvent.schedule(end, new Date(emap.get(k).getStartTime()));
 		}
 	}
 	
-	public void notifyME(Intent intent) {
-		Log.i("bg", "notify recived");
+	private void removeEvent(Intent intent) {
+		int id = Integer.parseInt(intent.getDataString());
+		Timer t = timerMap.get(id);
+		if (t != null) {
+			t.cancel();
+			timerMap.remove(id);
+			emap.remove(id);
+		}
+	}
+	
+	private void modifyEvent(Intent intent) {
+		removeEvent(intent);
 		gatherEvents(intent);
 		setEvents(intent);
 	}
 	
+	public void notifyME(Intent intent) {
+		Log.i("bg", "notify recived");
+		if (intent.getAction().equals("ACTION_NEW_EVENT")) {
+			gatherEvents(intent);
+			setEvents(intent);
+		} else if (intent.getAction().equals("ACTION_DELETE_EVENT")) {
+			removeEvent(intent);
+		} else if (intent.getAction().equals("ACTION_UPDATE_EVENT")) {
+			modifyEvent(intent);
+		}
+	}
+	
 	@Override
 	public void onCreate() {
+		emap = new HashMap<Integer, Event>();
+		timerMap = new HashMap<Integer, Timer>();
 		//pull the data from the database and store them into some global array
 		EM = EventManager.getInstance();
-		gatherEvents(null);
-		setEvents(null);
+		PM = ProfileManager.getInstance();
+		try {
+			RD = Driver.getInstance();
+		} catch (Exception e) {
+			Log.i("bg", "Error repeater: "+e.toString());
+		}
+		context = getApplicationContext();
+		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		Log.i("bg", "end create");
 	}
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		//schedule what ever is pulled out of the database
+		gatherEvents(null);
+		setEvents(null);
 		Log.i("bg", "start onStartCommand");
 		Log.i("bg", "NO. Events " + emap.size());
 		return START_STICKY;
@@ -107,9 +157,27 @@ public class BG extends Service {
 		Log.i("bg", "BG killed");
 	}
 	
+	private int volscale(int vol, int stype) {
+		return (vol/100) * audioManager.getStreamMaxVolume(stype);
+	}
+	
+	private void setProfile(int volume, boolean vibrate)
+	{
+		// Set all of their volumes to be same (notify them with a vibration)
+		audioManager.setStreamVolume (AudioManager.STREAM_VOICE_CALL, volscale(volume, AudioManager.STREAM_VOICE_CALL), AudioManager.FLAG_VIBRATE);
+		audioManager.setStreamVolume (AudioManager.STREAM_SYSTEM, volscale(volume, AudioManager.STREAM_SYSTEM), AudioManager.FLAG_VIBRATE);
+		audioManager.setStreamVolume (AudioManager.STREAM_RING, volscale(volume, AudioManager.STREAM_RING), AudioManager.FLAG_VIBRATE);
+		audioManager.setStreamVolume (AudioManager.STREAM_ALARM, volscale(volume, AudioManager.STREAM_ALARM), AudioManager.FLAG_VIBRATE);
+
+		// Set all things to be vibrate
+		if(vibrate == true)
+		{
+			audioManager.setVibrateSetting (AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_ON);
+			audioManager.setVibrateSetting (AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
+		}
+	}
+	
 	class StatusChange extends TimerTask {
-		private AudioManager manager;
-		private Context context;
 		private int eventid;
 
 		StatusChange(int id){
@@ -117,16 +185,21 @@ public class BG extends Service {
 		}
 		
 		public void run() {
-			Event src = emap.get(eventid);
-			context = getApplicationContext();
-			manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-			try {
-				Log.i("bg", "status change run "+src.getStatus());
-			//manager.setRingerMode(src.getStatus());
-			} catch (Exception e) {
-				Log.i("bg", e.toString());
-			}
+			Profile prof = PM.getProfie(emap.get(eventid).getProfileName());
+			setProfile(prof.getVolume(), prof.getVibrate());
 		}
 	}
 	
+	class changeDefault extends TimerTask {
+		String pname;
+		
+		changeDefault(String profileName){
+			this.pname = profileName;
+		}
+		
+		public void run() {
+			Profile prof = PM.getProfie(pname);
+			setProfile(prof.getVolume(), prof.getVibrate());
+		}
+	}
 }

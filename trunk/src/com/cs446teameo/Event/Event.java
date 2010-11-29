@@ -16,12 +16,9 @@ public class Event implements Activicable,Serializable{
 	private String description;
 	public Segment time;
 	private String location;
-	//for status
-	private String status;
-	private int volume;
-	//*******************
-	public String repeat_option;
-	public String repeat_text;
+	private String profileName;
+	private String repeat_option;
+	private String repeat_text;
 	
 	public Event(){
 		
@@ -33,18 +30,12 @@ public class Event implements Activicable,Serializable{
 		location = l;
 	}
 	
-	public Event(int i, String d, Segment t, String l){
+	public Event(int i, String d, Segment t, String l, String p, String ro, String rt){
 		eId = i;
 		description = d;
 		time = t;
 		location = l;
-	}
-	
-	public Event(int i, String d, Segment t, String l, String ro, String rt){
-		eId = i;
-		description = d;
-		time = t;
-		location = l;
+		profileName = p;
 		repeat_option = ro;
 		repeat_text = rt;
 	}
@@ -64,22 +55,13 @@ public class Event implements Activicable,Serializable{
 		return description;
 	}
 	
-	public void setStatus(String s){
-		this.status = s;
-	}
-	
 	//if String s=volume, int volume will be a positive int, else negative
-	public void setStatus(String s, int volume){
-		this.status = s;
-		this.volume = volume;
+	public void setProfileName(String s){
+		this.profileName = s;
 	}
 	
-	public String getStatus(){
-		return status;
-	}
-	
-	public int getVolume(){
-		return volume;
+	public String getProfileName(){
+		return profileName;
 	}
 	
 	public void setTime(Segment t){
