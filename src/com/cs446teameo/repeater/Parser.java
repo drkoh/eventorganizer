@@ -456,7 +456,7 @@ case 1:
 						else if(val_peek(0).ival == 2)
 							st = new Weekly();
 						else
-							st = new Daily();
+							//st = new Daily();
 						st.setField(RepeatSet.TIME_OF_DAY,val_peek(2).cal);
 						if(val_peek(0).ival < 3)
 							st.setField(RepeatSet.DATE,val_peek(0).cal);
