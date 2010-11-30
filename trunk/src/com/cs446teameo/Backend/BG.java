@@ -194,8 +194,8 @@ public class BG extends Service {
 	class changeDefault extends TimerTask {
 		int pid;
 		
-		changeDefault(int pid){
-			this.pid = pid;
+		changeDefault(int defaultpid){
+			this.pid = defaultpid;
 		}
 		
 		public void run() {
