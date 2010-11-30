@@ -13,7 +13,6 @@ import com.cs446teameo.Actor.BgProcesser;
 import com.cs446teameo.Parameter.ErrorCode;
 import com.cs446teameo.UI.EventAdderUI;
 import com.cs446teameo.repeater.Anniversary;
-import com.cs446teameo.repeater.Daily;
 import com.cs446teameo.repeater.Driver;
 import com.cs446teameo.repeater.Monthly;
 import com.cs446teameo.repeater.RepeatSet;
@@ -130,7 +129,7 @@ public class Event{
 		}else{
 			RepeatSet set = null;
 			switch(integer){
-				case EventAdderUI.DAILY: set = new Daily();break;
+				//case EventAdderUI.DAILY: set = new Daily();break;
 				case EventAdderUI.WEEKLY: set = new Weekly();break;
 				case EventAdderUI.MONTHLY: set = new Monthly();break;
 				case EventAdderUI.YEARLY: set = new Anniversary();break;
