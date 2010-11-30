@@ -120,7 +120,7 @@ public class Database {
     }
     
     public int getNewestID(){
-    	Cursor c = mDb.rawQuery("select max(" + PROFILE_ID + ") from " + Event_TABLE_NAME+";", null);
+    	Cursor c = mDb.rawQuery("select max(" + EVENT_ID + ") from " + Event_TABLE_NAME+";", null);
     	if (c.moveToFirst()) {
     		//Since there could be only a single row
     		return c.getInt(1);
