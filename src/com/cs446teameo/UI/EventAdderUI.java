@@ -94,7 +94,8 @@ public class EventAdderUI extends Frame{
 		    	{
 		    		startDateLayout.setVisibility(View.GONE);
 		    		endDateLayout.setVisibility(View.GONE);
-		    		repeatStatusLayout.setVisibility(View.GONE);
+		    		repeatStatusLayout.setVisibility(View.VISIBLE);
+		    		repeatStatusText.setText("Repeated every day.");
 		    	}
 		    	// Weekly
 		    	else if(pos == 2)
@@ -119,7 +120,7 @@ public class EventAdderUI extends Frame{
 		    	{
 		    		// Just take days like you do normally
 		    		startDateLayout.setVisibility(View.VISIBLE);
-		    		endDateLayout.setVisibility(View.VISIBLE);
+		    		endDateLayout.setVisibility(View.GONE);
 		    		repeatStatusLayout.setVisibility(View.VISIBLE);
 		    		repeatStatusText.setText("Repeated every year.");
 		    	}
@@ -293,23 +294,7 @@ public class EventAdderUI extends Frame{
 		this.repeatStatusText = (TextView) owner.findViewById(R.eventadder.repeatStatusText);
 	}
 	
-	/*
-	private int refreshComponent(){
-		ArrayAdapter<Profile> profileAdapter = new ArrayAdapter<Profile>(Frame.owner, R.array.profile_array, android.R.layout.simple_spinner_item);
-		ArrayList<Profile> list = new ArrayList<Profile>();
-		int res = ProfileManager.getInstance().listProfile(list);
-		if(res != ErrorCode.SUCCESS){
-			Log.e(field, "error occured in list profile");
-			return res << ErrorCode.DB_BITS;
-		}
-		profileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    profile.setAdapter(profileAdapter);
-	    return ErrorCode.SUCCESS;
-	}
-	*/
-	
-	// Simply list all the profile names into a string list
-
+	// Load all the profile names onto the profile spinner
 	private void loadProfile()
 	{
 		list = new ArrayList<Profile>();
