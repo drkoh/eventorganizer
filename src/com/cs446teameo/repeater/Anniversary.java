@@ -1,5 +1,6 @@
 package com.cs446teameo.repeater;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Vector;
@@ -71,7 +72,7 @@ public class Anniversary extends RepeatSet{
 	}
 
 	@Override
-	void setDate(Vector<Integer> target) {
+	void setDate(ArrayList<Integer> target) {
 		// TODO Auto-generated method stub
 		month = target.get(0);
 		dayofmonth = target.get(1);

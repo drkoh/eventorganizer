@@ -1,5 +1,6 @@
 package com.cs446teameo.repeater;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -8,7 +9,7 @@ public class Weekly extends RepeatSet{
 	WeekView list;
 	
 	@Override
-	void setDate(Vector<Integer> target) {
+	void setDate(ArrayList<Integer> target) {
 		// TODO Auto-generated method stub
 		list = new WeekView();
 		for(int i = 0;i<target.size();i++)

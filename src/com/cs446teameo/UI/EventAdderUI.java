@@ -51,11 +51,11 @@ public class EventAdderUI extends Frame{
 	Button clearButton = null;
 	Button createButton = null;
 	Button exitButton = null;
-	public static final int NONE = 0;
-	public static final int DAILY = 1;
-	public static final int WEEKLY = 2;
-	public static final int MONTHLY = 3;
-	public static final int YEARLY = 4;
+	public static final short NONE = 0;
+	public static final short DAILY = 1;
+	public static final short WEEKLY = 2;
+	public static final short MONTHLY = 3;
+	public static final short YEARLY = 4;
 	ArrayList<Profile> list = null;
 	
 	private static EventAdderUI _instance = null;
@@ -155,22 +155,22 @@ public class EventAdderUI extends Frame{
 					src.add(location.getText().toString()); 						// Add the event location
 					
 					// Add the start time
-					src.add(sTimePicker.getCurrentHour());
-					src.add(sTimePicker.getCurrentMinute());
+					src.add(sTimePicker.getCurrentHour());	//0
+					src.add(sTimePicker.getCurrentMinute());	//1
 					
 					// Add the start date
-					src.add(startDate.getYear());
-					src.add(startDate.getMonth());
-					src.add(startDate.getDayOfMonth());
+					src.add(startDate.getYear());	//2
+					src.add(startDate.getMonth());	//3
+					src.add(startDate.getDayOfMonth());//4
 
 					// Add the end time
-					src.add(eTimePicker.getCurrentHour());
-					src.add(eTimePicker.getCurrentMinute());
+					src.add(eTimePicker.getCurrentHour()); //5
+					src.add(eTimePicker.getCurrentMinute()); //6
 					
 					// Add the end date
-					src.add(endDate.getYear());
-					src.add(endDate.getMonth());
-					src.add(endDate.getDayOfMonth());
+					src.add(endDate.getYear());//7
+					src.add(endDate.getMonth());//8
+					src.add(endDate.getDayOfMonth());//9
 				}
 				else if((repeatOption.getSelectedItem()).toString().equals("Daily"))
 				{
@@ -180,12 +180,12 @@ public class EventAdderUI extends Frame{
 					src.add(location.getText().toString()); 						// Add the event location
 					
 					// Add the start time
-					src.add(sTimePicker.getCurrentHour());
-					src.add(sTimePicker.getCurrentMinute());
+					src.add(sTimePicker.getCurrentHour());	//0
+					src.add(sTimePicker.getCurrentMinute());	//1
 
 					// Add the end time
-					src.add(eTimePicker.getCurrentHour());
-					src.add(eTimePicker.getCurrentMinute());
+					src.add(eTimePicker.getCurrentHour());	//2
+					src.add(eTimePicker.getCurrentMinute());	//3
 				}
 				else if((repeatOption.getSelectedItem()).toString().equals("Weekly"))
 				{
@@ -193,15 +193,15 @@ public class EventAdderUI extends Frame{
 					src.add(description.getText().toString()); 						// Add the event name
 					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
 					src.add(location.getText().toString()); 						// Add the event location
-					src.add((ArrayList <Integer>)WeeklyEventAdder.daysArray);		// Add an array of days (as ints)
 					
 					// Add the start time
-					src.add(sTimePicker.getCurrentHour());
-					src.add(sTimePicker.getCurrentMinute());
+					src.add(sTimePicker.getCurrentHour());	//0
+					src.add(sTimePicker.getCurrentMinute());	//1
 
 					// Add the end time
-					src.add(eTimePicker.getCurrentHour());
-					src.add(eTimePicker.getCurrentMinute());
+					src.add(eTimePicker.getCurrentHour());	//2
+					src.add(eTimePicker.getCurrentMinute());	//3
+					src.add((ArrayList <Integer>)WeeklyEventAdder.daysArray);	//4		// Add an array of days (as ints)
 				}
 				else if((repeatOption.getSelectedItem()).toString().equals("Monthly"))
 				{
@@ -209,7 +209,6 @@ public class EventAdderUI extends Frame{
 					src.add(description.getText().toString()); 						// Add the event name
 					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
 					src.add(location.getText().toString()); 						// Add the event location
-					src.add((int)MonthlyEventAdder.day);							// Add the day of the month
 					
 					// Add the start time
 					src.add(sTimePicker.getCurrentHour());
@@ -218,6 +217,8 @@ public class EventAdderUI extends Frame{
 					// Add the end time
 					src.add(eTimePicker.getCurrentHour());
 					src.add(eTimePicker.getCurrentMinute());
+					
+					src.add((int)MonthlyEventAdder.day);							// Add the day of the month
 				}
 				else if((repeatOption.getSelectedItem()).toString().equals("Yearly"))
 				{

@@ -1,5 +1,7 @@
 package com.cs446teameo.repeater;
 
+
+
 public class Lexer extends BaseLexer{
 	private final int YY_BUFFER_SIZE = 512;
 	private final int YY_F = -1;
@@ -234,39 +236,39 @@ void output(){
 		/* 34 */ YY_NO_ANCHOR,
 		/* 35 */ YY_NO_ANCHOR,
 		/* 36 */ YY_NO_ANCHOR,
-		/* 37 */ YY_NOT_ACCEPT,
-		/* 38 */ YY_NO_ANCHOR,
+		/* 37 */ YY_NO_ANCHOR,
+		/* 38 */ YY_NOT_ACCEPT,
 		/* 39 */ YY_NO_ANCHOR,
 		/* 40 */ YY_NO_ANCHOR,
 		/* 41 */ YY_NO_ANCHOR,
 		/* 42 */ YY_NO_ANCHOR,
-		/* 43 */ YY_NOT_ACCEPT,
-		/* 44 */ YY_NO_ANCHOR,
-		/* 45 */ YY_NOT_ACCEPT,
-		/* 46 */ YY_NO_ANCHOR,
-		/* 47 */ YY_NOT_ACCEPT,
-		/* 48 */ YY_NO_ANCHOR,
-		/* 49 */ YY_NOT_ACCEPT,
-		/* 50 */ YY_NO_ANCHOR,
-		/* 51 */ YY_NOT_ACCEPT,
-		/* 52 */ YY_NO_ANCHOR,
-		/* 53 */ YY_NOT_ACCEPT,
-		/* 54 */ YY_NO_ANCHOR,
-		/* 55 */ YY_NOT_ACCEPT,
-		/* 56 */ YY_NO_ANCHOR,
-		/* 57 */ YY_NOT_ACCEPT,
-		/* 58 */ YY_NO_ANCHOR,
-		/* 59 */ YY_NOT_ACCEPT,
-		/* 60 */ YY_NO_ANCHOR,
-		/* 61 */ YY_NOT_ACCEPT,
-		/* 62 */ YY_NO_ANCHOR,
-		/* 63 */ YY_NOT_ACCEPT,
-		/* 64 */ YY_NO_ANCHOR,
-		/* 65 */ YY_NOT_ACCEPT,
-		/* 66 */ YY_NO_ANCHOR,
-		/* 67 */ YY_NOT_ACCEPT,
+		/* 43 */ YY_NO_ANCHOR,
+		/* 44 */ YY_NOT_ACCEPT,
+		/* 45 */ YY_NO_ANCHOR,
+		/* 46 */ YY_NOT_ACCEPT,
+		/* 47 */ YY_NO_ANCHOR,
+		/* 48 */ YY_NOT_ACCEPT,
+		/* 49 */ YY_NO_ANCHOR,
+		/* 50 */ YY_NOT_ACCEPT,
+		/* 51 */ YY_NO_ANCHOR,
+		/* 52 */ YY_NOT_ACCEPT,
+		/* 53 */ YY_NO_ANCHOR,
+		/* 54 */ YY_NOT_ACCEPT,
+		/* 55 */ YY_NO_ANCHOR,
+		/* 56 */ YY_NOT_ACCEPT,
+		/* 57 */ YY_NO_ANCHOR,
+		/* 58 */ YY_NOT_ACCEPT,
+		/* 59 */ YY_NO_ANCHOR,
+		/* 60 */ YY_NOT_ACCEPT,
+		/* 61 */ YY_NO_ANCHOR,
+		/* 62 */ YY_NOT_ACCEPT,
+		/* 63 */ YY_NO_ANCHOR,
+		/* 64 */ YY_NOT_ACCEPT,
+		/* 65 */ YY_NO_ANCHOR,
+		/* 66 */ YY_NOT_ACCEPT,
+		/* 67 */ YY_NO_ANCHOR,
 		/* 68 */ YY_NOT_ACCEPT,
-		/* 69 */ YY_NOT_ACCEPT,
+		/* 69 */ YY_NO_ANCHOR,
 		/* 70 */ YY_NOT_ACCEPT,
 		/* 71 */ YY_NOT_ACCEPT,
 		/* 72 */ YY_NOT_ACCEPT,
@@ -286,33 +288,38 @@ void output(){
 		/* 86 */ YY_NOT_ACCEPT,
 		/* 87 */ YY_NOT_ACCEPT,
 		/* 88 */ YY_NOT_ACCEPT,
-		/* 89 */ YY_NO_ANCHOR,
-		/* 90 */ YY_NO_ANCHOR,
+		/* 89 */ YY_NOT_ACCEPT,
+		/* 90 */ YY_NOT_ACCEPT,
 		/* 91 */ YY_NOT_ACCEPT,
-		/* 92 */ YY_NOT_ACCEPT
+		/* 92 */ YY_NOT_ACCEPT,
+		/* 93 */ YY_NOT_ACCEPT,
+		/* 94 */ YY_NO_ANCHOR,
+		/* 95 */ YY_NOT_ACCEPT,
+		/* 96 */ YY_NOT_ACCEPT
 	};
 	private int yy_cmap[] = unpackFromString(1,65538,
 "45:9,1,3,45:2,2,45:18,1,45:7,39,40,45:2,44,45:3,35,34:2,37,38:3,36:3,43,45:" +
-"5,41,20,45:2,29,45,17,45:3,16,45:2,19,27,25,45:3,24,30,45:2,31,45:7,42,45,1" +
-"2,18,26,32,11,45,23,8,33,45,15,9,4,6,5,21,45,13,45,7,22,28,14,45,10,45:6541" +
+"5,41,22,45:2,31,45,19,45:3,18,45:2,21,29,27,45:3,26,32,45:2,33,45:7,42,45,1" +
+"2,20,28,16,11,45,25,8,17,45,15,9,4,6,5,23,45,13,45,7,24,30,14,45,10,45:6541" +
 "4,0:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,93,
-"0,1,2,3,4,1:6,5,1:19,6,7,1:4,8,1:5,9,10,11,12,13,14,15,16,17,18,19,20,21,22" +
+	private int yy_rmap[] = unpackFromString(1,97,
+"0,1,2,3,4,1:6,5,1:19,6,7,1:5,8,1:5,9,10,11,12,13,14,15,16,17,18,19,20,21,22" +
 ",23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47" +
-",48,49,50,51,52,53,54,55,56,57,58")[0];
+",48,49,50,51,52,53,54,55,56,57,58,59,60,61")[0];
 
-	private int yy_nxt[][] = unpackFromString(59,46,
-"1,2,3,38,4,39:3,44,39,46,39:3,48,39,50,52,39,54,56,39:3,58,60,39,62,39,64,6" +
-"6,90,89,39:6,5,6,7,8,9,10,39,-1:47,2,-1:47,38,-1:47,37,-1:27,87,-1:46,40:5," +
-"-1:41,41:5,-1:41,42:5,-1:13,76,-1:51,78,-1:67,11,40:4,-1:41,88:5,-1:18,43,-" +
-"1:22,45,-1:22,79,-1:45,47,-1:40,12,-1:51,49,-1:9,51,-1:29,13,-1:2,14,-1:47," +
-"53,-1,55,-1:50,15,-1:32,57,-1:6,59,-1:66,16,-1:33,61,63,-1:29,17,-1:50,65,6" +
-"7,-1:9,68,-1:33,18,-1:2,19,-1:58,69,-1:32,20,-1:37,70,-1:63,21,-1:33,71,-1:" +
-"55,22,-1:32,72,-1:13,73,-1:30,23,-1:44,24,-1:46,25,-1:66,26,-1:43,27,-1:41," +
-"28,-1:34,29,-1:66,30,-1:17,80,-1:48,81,-1:72,31,41:2,31:2,-1:20,82,-1:47,91" +
-",-1:64,32,-1,42,32,42,-1:15,92,-1:46,84,-1:70,33:5,-1:17,34,-1:45,35,-1:45," +
-"36,-1:41,77,-1:73,83:5,-1:12,75,-1:51,74,-1:43,85,-1:45,86,-1:36");
+	private int yy_nxt[][] = unpackFromString(62,46,
+"1,2,3,39,4,40:3,45,40,47,40:3,49,40,51,40,53,55,40,57,59,40:3,61,63,40,65,4" +
+"0,67,69,94,40:5,5,6,7,8,9,10,40,-1:47,2,-1:47,39,-1:47,38,-1:11,92,-1:62,41" +
+":5,-1:41,42:5,-1:41,43:5,-1:13,79,-1:51,81,-1:67,11,41:4,-1:41,93:5,-1:18,4" +
+"4,-1:22,46,-1:22,82,-1:45,48,-1:38,83,-1:46,50,-1:6,52,-1:50,84,-1:40,54,-1" +
+":11,56,-1:27,12,-1:50,58,-1,60,-1:38,13,-1:2,14,-1:41,62,-1:6,64,-1:53,15,-" +
+"1:48,66,68,-1:38,16,-1:39,70,71,-1:11,72,-1:27,17,-1:67,73,-1:27,18,-1:2,19" +
+",-1:37,74,-1:53,20,-1:43,75,-1:59,21,-1:28,76,-1:15,77,-1:44,22,-1:29,23,-1" +
+":44,24,-1:46,25,-1:68,26,-1:43,27,-1:41,28,-1:32,29,-1:50,30,-1:36,85,-1:72" +
+",31,42:2,31:2,-1:20,95,-1:47,96,-1:64,32,-1,43,32,43,-1:16,87,-1:44,88,-1:7" +
+"1,33:5,-1:17,34,-1:44,91,-1:46,35,-1:45,36,-1:45,37,-1:41,80,-1:73,86:5,-1:" +
+"18,78,-1:43,89,-1:45,90,-1:36");
 
 	public java.lang.Integer yylex ()
 		throws java.io.IOException {
@@ -491,92 +498,96 @@ void output(){
 					case -34:
 						break;
 					case 34:
-						{output();return keyword(Parser.YEARLY);}
+						{output();return keyword(Parser.DAILY);}
 					case -35:
 						break;
 					case 35:
-						{output();return keyword(Parser.WEEKLY);}
+						{output();return keyword(Parser.YEARLY);}
 					case -36:
 						break;
 					case 36:
-						{output();return keyword(Parser.MONTHLY);}
+						{output();return keyword(Parser.WEEKLY);}
 					case -37:
 						break;
-					case 38:
-						{ /* Just ignore */    }
+					case 37:
+						{output();return keyword(Parser.MONTHLY);}
 					case -38:
 						break;
 					case 39:
-						{ System.out.println(" lexer error: " +yytext() ); }
+						{ /* Just ignore */    }
 					case -39:
 						break;
 					case 40:
-						{output();return Date(Parser.HOUR,getContent(yytext(),1));}
+						{ System.out.println(" lexer error: " +yytext() ); }
 					case -40:
 						break;
 					case 41:
-						{output();return Date(Parser.MINUTE,getContent(yytext(),3));}
+						{output();return Date(Parser.HOUR,getContent(yytext(),1));}
 					case -41:
 						break;
 					case 42:
-						{output();return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
+						{output();return Date(Parser.MINUTE,getContent(yytext(),3));}
 					case -42:
 						break;
-					case 44:
-						{ System.out.println(" lexer error: " +yytext() ); }
+					case 43:
+						{output();return Date(Parser.DAYOFMONTH,getContent(yytext(),3));}
 					case -43:
 						break;
-					case 46:
+					case 45:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -44:
 						break;
-					case 48:
+					case 47:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -45:
 						break;
-					case 50:
+					case 49:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -46:
 						break;
-					case 52:
+					case 51:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -47:
 						break;
-					case 54:
+					case 53:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -48:
 						break;
-					case 56:
+					case 55:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -49:
 						break;
-					case 58:
+					case 57:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -50:
 						break;
-					case 60:
+					case 59:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -51:
 						break;
-					case 62:
+					case 61:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -52:
 						break;
-					case 64:
+					case 63:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -53:
 						break;
-					case 66:
+					case 65:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -54:
 						break;
-					case 89:
+					case 67:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -55:
 						break;
-					case 90:
+					case 69:
 						{ System.out.println(" lexer error: " +yytext() ); }
 					case -56:
+						break;
+					case 94:
+						{ System.out.println(" lexer error: " +yytext() ); }
+					case -57:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);

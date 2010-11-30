@@ -1,5 +1,6 @@
 package com.cs446teameo.repeater;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -10,7 +11,7 @@ public abstract class RepeatSet extends TimeSet{
 	final public static int TIME_OF_DAY = 0;
 	final public static int DATE = 1;
 
-	void setField(int field,Vector<Integer> target){
+	public void setField(int field,ArrayList<Integer> target){
 		if(field == TIME_OF_DAY){
 			if(time == null)
 				time = new Time();
@@ -22,11 +23,14 @@ public abstract class RepeatSet extends TimeSet{
 			//TODO:
 		}
 	}
-	abstract void setDate(Vector<Integer> target);
+	abstract void setDate(ArrayList<Integer> target);
 	abstract String toDate();
 	public String toString(){
 		StringBuffer buf = new StringBuffer(time.toString());
 		buf.append(toDate());
 		return buf.toString();
+	}
+	public long period(){
+		return (time.endHour - time.startHour)* 3600000 + (time.endMinute - time.startMinute)*60000;
 	}
 }

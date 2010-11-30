@@ -253,7 +253,7 @@ public class EventManager implements EventAccess{
 	}
 	
 	// Does any event occur on the specified year?
-	public boolean eventOccursOnYear(Calendar calendar)
+	public static boolean eventOccursOnYear(Calendar calendar)
 	{
 		calendar.set(calendar.get(Calendar.YEAR), 1 ,1, 0, 0);
 		long st = calendar.getTimeInMillis();
