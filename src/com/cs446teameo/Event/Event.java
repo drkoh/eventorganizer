@@ -124,7 +124,7 @@ public class Event {
 		}else{
 			RepeatSet set = null;
 			switch(integer){
-				//case EventAdderUI.DAILY: set = new Daily();break;
+				case EventAdderUI.DAILY: set = new Daily();break;
 				case EventAdderUI.WEEKLY: set = new Weekly();break;
 				case EventAdderUI.MONTHLY: set = new Monthly();break;
 				case EventAdderUI.YEARLY: set = new Anniversary();break;
