@@ -40,7 +40,7 @@ public class Database {
         + "location text, profileId integer, repeat_text text);";
     private static final String Profile_TABLE_CREATE =
     	"create table profile (_id integer primary key autoincrement, "
-    	+ "name primary key text not null, volume integer not null, vibrate integer not null);";
+    	+ "name text unique on conflict fail not null, volume integer not null, vibrate integer not null);";
     
     /**
      * Constructor - takes the context to allow the database to be
