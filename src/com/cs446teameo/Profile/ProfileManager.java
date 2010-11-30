@@ -3,6 +3,7 @@ package com.cs446teameo.Profile;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cs446teameo.Event.Event;
 import com.cs446teameo.Evfac.EventManager;
 import com.cs446teameo.Parameter.ErrorCode;
 import com.cs446teameo.Storage.Database;
@@ -17,12 +18,6 @@ public class ProfileManager {
 	private static ProfileManager _instance = null;
 	private static Activity owner = null;
 	private Database ebase = null;
-
-	
-	
-	//TODO: Culvin, I set the id to be -1 now, coz I cannot get the id to be allocated.
-	//I think It is done inside the database, YOu can check for the available id.
-	
 	
 	public static void setActivity(Activity ownergiven) {
 		owner = ownergiven;
@@ -40,15 +35,10 @@ public class ProfileManager {
 	
 	public int createNewProfile(Profile p){
 		ContentValues val = new ContentValues();
-		
 		val.put(Database.PROFILE_NAME, p.getDescription());
 		val.put(Database.PROFILE_VIB, booleanToInt(p.getVibrate()));
 		val.put(Database.PROFILE_VOL, p.getVolume());
-		
 		ebase.insert(ebase.getProfileTable(), val);
-		
-		/*if (ebase.insert(ebase.getProfileTable(), val) > 0)
-			return ErrorCode.SUCCESS;*/
 		return 0;
 	}
 	
@@ -76,13 +66,15 @@ public class ProfileManager {
 	}
 	
 	public int updateProfile(Profile p, int pId){
+		Log.d("UpdateProfile", "ID: " + p.getId());
+		Log.d("UpdateProfile", "Name: " + p.getDescription());
+		Log.d("UpdateProfile", "Vibrate: " +  booleanToInt(p.getVibrate()));
+		Log.d("UpdateProfile", "Volume: " + p.getVolume());
 		String cond = Database.PROFILE_ID + "=" + pId;
-		ContentValues val = new ContentValues();
-		
+		ContentValues val = new ContentValues();	
 		val.put(Database.PROFILE_NAME, p.getDescription());
 		val.put(Database.PROFILE_VIB, booleanToInt(p.getVibrate()));
-		val.put(Database.PROFILE_VOL, p.getVolume());
-		
+		val.put(Database.PROFILE_VOL, p.getVolume());		
 		ebase.update(ebase.getProfileTable(), val, cond);
 		
 		return 0;
@@ -109,10 +101,11 @@ public class ProfileManager {
     		while (tempCursor.moveToNext())
     		{
 	            // Get the field values of each profile
+	            int pid = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_ID));
 	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.PROFILE_NAME));
 	            int volume = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VOL));
 	            boolean vibrate = intToBoolean(tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VIB)));
-	            Profile tempProfile = new Profile(name, vibrate, volume);
+	            Profile tempProfile = new Profile(pid, name, vibrate, volume);
 	            profileList.add(tempProfile);
 	        } 
     		return 0;
