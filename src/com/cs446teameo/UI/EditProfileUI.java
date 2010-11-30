@@ -75,7 +75,7 @@ public class EditProfileUI extends Frame{
 					return;
 				}
 				Log.i(field,"trigger create button");
-				ProfileUI.contextSwitch();
+				EditProfileUI.contextSwitch();
 			}
 		});
 		

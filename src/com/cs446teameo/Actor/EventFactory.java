@@ -30,7 +30,9 @@ public class EventFactory {
 		event.setName((String)src.get(1));
 		event.setPid((Integer)src.get(2)); //The second parameter of this should be the volume to pass, which is either -1 or a positive number
 		event.setLocation((String) src.get(3));
-		event.setTime((Integer)src.get(0),src.subList(4, src.size()));
+		
+		event.setTime((Short)src.get(0),src.subList(4, src.size()));
+		Log.d("tsmax","get here");
 		EventManager.getInstance().createNewEvent(event);
 		Log.i("eventfac", "go here");
 		return accessor.createNewEvent(event) << ErrorCode.DB_BITS;

@@ -102,7 +102,7 @@ public class Event {
 		return time_text;
 	}
 
-	public void setTime(Integer integer, List<Object> list) {
+	public void setTime(short integer, List<Object> list) {
 		// TODO Auto-generated method stub
 		if(integer == EventAdderUI.NONE){
 			GregorianCalendar start = new GregorianCalendar((Integer)list.get(2),(Integer)list.get(3),
