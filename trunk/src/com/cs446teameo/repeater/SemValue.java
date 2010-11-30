@@ -1,5 +1,6 @@
 package com.cs446teameo.repeater;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -11,7 +12,7 @@ public class SemValue {
 	
 	public TimeSet tset = null;
 	
-	public Vector<Integer> cal = null;
+	public ArrayList<Integer> cal = null;
 	
 	public Time tm = null;
 	

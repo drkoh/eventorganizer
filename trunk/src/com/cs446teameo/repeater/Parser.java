@@ -135,106 +135,107 @@ final SemValue dup_yyval(SemValue val)
 public final static short YEARLY=257;
 public final static short MONTHLY=258;
 public final static short WEEKLY=259;
-public final static short DAYOFMONTH=260;
-public final static short YEAR=261;
-public final static short HOUR=262;
-public final static short MINUTE=263;
-public final static short JAN=264;
-public final static short FEB=265;
-public final static short MAR=266;
-public final static short APR=267;
-public final static short MAY=268;
-public final static short JUN=269;
-public final static short JUL=270;
-public final static short AUG=271;
-public final static short SEP=272;
-public final static short OCT=273;
-public final static short NOV=274;
-public final static short DEC=275;
-public final static short MON=276;
-public final static short TUE=277;
-public final static short WED=278;
-public final static short THU=279;
-public final static short FRI=280;
-public final static short SAT=281;
-public final static short SUN=282;
-public final static short LEFTP=283;
-public final static short RIGHTP=284;
-public final static short AT=285;
-public final static short TO=286;
-public final static short DIV=287;
-public final static short COMMA=288;
+public final static short DAILY=260;
+public final static short DAYOFMONTH=261;
+public final static short YEAR=262;
+public final static short HOUR=263;
+public final static short MINUTE=264;
+public final static short JAN=265;
+public final static short FEB=266;
+public final static short MAR=267;
+public final static short APR=268;
+public final static short MAY=269;
+public final static short JUN=270;
+public final static short JUL=271;
+public final static short AUG=272;
+public final static short SEP=273;
+public final static short OCT=274;
+public final static short NOV=275;
+public final static short DEC=276;
+public final static short MON=277;
+public final static short TUE=278;
+public final static short WED=279;
+public final static short THU=280;
+public final static short FRI=281;
+public final static short SAT=282;
+public final static short SUN=283;
+public final static short LEFTP=284;
+public final static short RIGHTP=285;
+public final static short AT=286;
+public final static short TO=287;
+public final static short DIV=288;
+public final static short COMMA=289;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
-    0,    0,    3,    1,    2,    2,    2,    5,    5,    4,
+    0,    0,    3,    1,    2,    2,    2,    2,    5,    5,
     4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
-    4,    6,    6,    6,    6,    6,    6,    6,
+    4,    4,    6,    6,    6,    6,    6,    6,    6,
 };
 final static short yylen[] = {                            2,
-    3,    1,   23,    7,    5,    3,    3,    2,    1,    1,
+    3,    1,   23,    7,    5,    3,    3,    1,    2,    1,
     1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-    1,    1,    1,    1,    1,    1,    1,    1,
+    1,    1,    1,    1,    1,    1,    1,    1,    1,
 };
 final static short yydefred[] = {                         0,
     0,    0,    0,    2,    0,    0,    0,    0,    0,    0,
-    1,    0,    0,    0,    0,    0,    0,    0,   10,   11,
+    8,    1,    0,    0,    0,    0,    0,    0,    0,   11,
    12,   13,   14,   15,   16,   17,   18,   19,   20,   21,
-    0,    6,   22,   23,   24,   25,   26,   27,   28,    0,
-    9,    0,    0,    0,    8,    0,    4,    5,    0,    0,
+   22,    0,    6,   23,   24,   25,   26,   27,   28,   29,
+    0,   10,    0,    0,    0,    9,    0,    4,    5,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    3,
+    0,    0,    0,    0,    3,
 };
 final static short yydgoto[] = {                          2,
-    3,   11,    4,   31,   40,   41,
+    3,   12,    4,   32,   41,   42,
 };
-final static short yysindex[] = {                      -249,
+final static short yysindex[] = {                      -250,
  -260,    0, -259,    0, -235, -236, -261, -258, -257, -256,
-    0, -251, -229, -263, -226, -262, -263, -252,    0,    0,
+    0,    0, -251, -229, -264, -226, -263, -264, -252,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
- -250,    0,    0,    0,    0,    0,    0,    0,    0, -262,
-    0, -248, -227, -223,    0, -221,    0,    0, -246, -218,
- -240, -241, -216, -239, -214, -238, -233, -263, -237, -208,
- -234, -206, -231,    0,
+    0, -249,    0,    0,    0,    0,    0,    0,    0,    0,
+ -263,    0, -247, -227, -223,    0, -222,    0,    0, -246,
+ -218, -240, -241, -216, -239, -214, -238, -233, -264, -237,
+ -208, -234, -206, -231,    0,
 };
 final static short yyrindex[] = {                         0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,   56,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+   57,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,
+    0,    0,    0,    0,    0,
 };
 final static short yygindex[] = {                         0,
-    0,    0,    0,  -17,    0,   17,
+    0,    0,    0,  -18,    0,   17,
 };
-final static int YYTABLESIZE=57;
+final static int YYTABLESIZE=58;
 static short yytable[];
 static { yytable();}
 static void yytable(){
-yytable = new short[]{                         42,
-   19,   20,   21,   22,   23,   24,   25,   26,   27,   28,
-   29,   30,    1,   33,   34,   35,   36,   37,   38,   39,
-    8,    9,   10,   12,   13,    6,    5,    7,   14,   15,
-   16,   17,   18,   32,   43,   47,   48,   44,   49,   46,
-   59,   50,   51,   52,   53,   54,   57,   55,   56,   58,
-   60,   61,   64,   62,   63,    7,   45,
+yytable = new short[]{                         43,
+   20,   21,   22,   23,   24,   25,   26,   27,   28,   29,
+   30,   31,    1,   34,   35,   36,   37,   38,   39,   40,
+    8,    9,   10,   11,   13,   14,    6,    5,    7,   15,
+   16,   17,   18,   19,   33,   44,   48,   49,   50,   45,
+   60,   47,   51,   52,   53,   54,   55,   58,   56,   57,
+   59,   61,   62,   65,   63,   64,    7,   46,
 };
 }
 static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
-yycheck = new short[] {                         17,
-  264,  265,  266,  267,  268,  269,  270,  271,  272,  273,
-  274,  275,  262,  276,  277,  278,  279,  280,  281,  282,
-  257,  258,  259,  285,  286,  285,  287,  263,  287,  287,
-  287,  283,  262,  260,  287,  263,  260,  288,  260,  288,
-   58,  288,  261,  284,  286,  262,  285,  287,  263,  283,
-  288,  260,  284,  288,  261,    0,   40,
+yycheck = new short[] {                         18,
+  265,  266,  267,  268,  269,  270,  271,  272,  273,  274,
+  275,  276,  263,  277,  278,  279,  280,  281,  282,  283,
+  257,  258,  259,  260,  286,  287,  286,  288,  264,  288,
+  288,  288,  284,  263,  261,  288,  264,  261,  261,  289,
+   59,  289,  289,  262,  285,  287,  263,  286,  288,  264,
+  284,  289,  261,  285,  289,  262,    0,   41,
 };
 }
 final static short YYFINAL=2;
-final static short YYMAXTOKEN=288;
+final static short YYMAXTOKEN=289;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
@@ -252,9 +253,10 @@ null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,"YEARLY","MONTHLY","WEEKLY","DAYOFMONTH","YEAR","HOUR","MINUTE",
-"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC","MON",
-"TUE","WED","THU","FRI","SAT","SUN","LEFTP","RIGHTP","AT","TO","DIV","COMMA",
+null,null,null,"YEARLY","MONTHLY","WEEKLY","DAILY","DAYOFMONTH","YEAR","HOUR",
+"MINUTE","JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV",
+"DEC","MON","TUE","WED","THU","FRI","SAT","SUN","LEFTP","RIGHTP","AT","TO",
+"DIV","COMMA",
 };
 final static String yyrule[] = {
 "$accept : TimeSet",
@@ -265,6 +267,7 @@ final static String yyrule[] = {
 "RepeatSet : YEARLY DIV MONTH COMMA DAYOFMONTH",
 "RepeatSet : MONTHLY DIV DAYOFMONTH",
 "RepeatSet : WEEKLY DIV WEEKLIST",
+"RepeatSet : DAILY",
 "WEEKLIST : WEEKLIST SDAY",
 "WEEKLIST : SDAY",
 "MONTH : JAN",
@@ -450,22 +453,25 @@ case 1:
 							st	= new Anniversary();
 						else if(val_peek(0).ival == 1)
 							st = new Monthly();
-						else
+						else if(val_peek(0).ival == 2)
 							st = new Weekly();
+						else
+							st = new Daily();
 						st.setField(RepeatSet.TIME_OF_DAY,val_peek(2).cal);
-						st.setField(RepeatSet.DATE,val_peek(0).cal);
+						if(val_peek(0).ival < 3)
+							st.setField(RepeatSet.DATE,val_peek(0).cal);
 						tset = st;
 					}
 break;
 case 2:
-//#line 38 "parser.y"
+//#line 41 "parser.y"
 {
 						show("TimeSet");
 						tset = val_peek(0).tset;
 					}
 break;
 case 3:
-//#line 46 "parser.y"
+//#line 49 "parser.y"
 {
 						show("SingleSet");
 						SingleSet st = new SingleSet();
@@ -477,10 +483,10 @@ case 3:
 					}
 break;
 case 4:
-//#line 59 "parser.y"
+//#line 62 "parser.y"
 {
 						show("Timeofday");
-						yyval.cal = new Vector<Integer>();
+						yyval.cal = new ArrayList<Integer>();
 						yyval.cal.add(val_peek(6).ival);
 						yyval.cal.add(val_peek(4).ival);
 						yyval.cal.add(val_peek(2).ival);
@@ -488,26 +494,26 @@ case 4:
 					}
 break;
 case 5:
-//#line 70 "parser.y"
+//#line 73 "parser.y"
 {
 						show("RepeatSet");
-						yyval.cal = new Vector<Integer>();
+						yyval.cal = new ArrayList<Integer>();
 						yyval.cal.add(val_peek(2).ival);
 						yyval.cal.add(val_peek(0).ival);
 						yyval.ival = 0;
 					}
 break;
 case 6:
-//#line 78 "parser.y"
+//#line 81 "parser.y"
 {
 						show("RepeatSet");
-						yyval.cal = new Vector<Integer>();
+						yyval.cal = new ArrayList<Integer>();
 						yyval.cal.add(val_peek(0).ival);
 						yyval.ival = 1;
 					}
 break;
 case 7:
-//#line 85 "parser.y"
+//#line 88 "parser.y"
 {
 						show("RepeatSet");
 						yyval.cal = val_peek(0).cal;
@@ -515,135 +521,142 @@ case 7:
 					}
 break;
 case 8:
-//#line 93 "parser.y"
+//#line 94 "parser.y"
 {
-						show("WEEKLIST");
-						yyval.cal.add(val_peek(0).ival);
+						show("RepeatSet");
+						yyval.ival = 3;
 					}
 break;
 case 9:
-//#line 98 "parser.y"
+//#line 101 "parser.y"
 {
 						show("WEEKLIST");
-						yyval.cal = new Vector<Integer>();
 						yyval.cal.add(val_peek(0).ival);
 					}
 break;
 case 10:
 //#line 106 "parser.y"
 {
-						yyval.ival = 0;
+						show("WEEKLIST");
+						yyval.cal = new ArrayList<Integer>();
+						yyval.cal.add(val_peek(0).ival);
 					}
 break;
 case 11:
-//#line 110 "parser.y"
+//#line 114 "parser.y"
+{
+						yyval.ival = 0;
+					}
+break;
+case 12:
+//#line 118 "parser.y"
 {
 						yyval.ival = 1;
 					}
 break;
-case 12:
-//#line 114 "parser.y"
+case 13:
+//#line 122 "parser.y"
 {
 						yyval.ival = 2;
 					}
 break;
-case 13:
-//#line 118 "parser.y"
+case 14:
+//#line 126 "parser.y"
 {
 						yyval.ival = 3;
 					}
 break;
-case 14:
-//#line 122 "parser.y"
+case 15:
+//#line 130 "parser.y"
 {
 						yyval.ival = 4;
 					}
 break;
-case 15:
-//#line 126 "parser.y"
+case 16:
+//#line 134 "parser.y"
 {
 						yyval.ival = 5;
 					}
 break;
-case 16:
-//#line 130 "parser.y"
+case 17:
+//#line 138 "parser.y"
 {
 						yyval.ival = 6;
 					}
 break;
-case 17:
-//#line 134 "parser.y"
+case 18:
+//#line 142 "parser.y"
 {
 						yyval.ival = 7;
 					}
 break;
-case 18:
-//#line 138 "parser.y"
+case 19:
+//#line 146 "parser.y"
 {
 						yyval.ival = 8;
 					}
 break;
-case 19:
-//#line 142 "parser.y"
+case 20:
+//#line 150 "parser.y"
 {
 						yyval.ival = 9;
 					}
 break;
-case 20:
-//#line 146 "parser.y"
+case 21:
+//#line 154 "parser.y"
 {
 						yyval.ival = 10;
 					}
 break;
-case 21:
-//#line 150 "parser.y"
+case 22:
+//#line 158 "parser.y"
 {
 						yyval.ival = 11;
 					}
 break;
-case 22:
-//#line 156 "parser.y"
+case 23:
+//#line 164 "parser.y"
 {
 						yyval.ival = GregorianCalendar.MONDAY;
 					}
 break;
-case 23:
-//#line 160 "parser.y"
+case 24:
+//#line 168 "parser.y"
 {
 						yyval.ival = GregorianCalendar.TUESDAY;
 					}
 break;
-case 24:
-//#line 164 "parser.y"
+case 25:
+//#line 172 "parser.y"
 {
 						yyval.ival = GregorianCalendar.WEDNESDAY;
 					}
 break;
-case 25:
-//#line 168 "parser.y"
+case 26:
+//#line 176 "parser.y"
 {
 						yyval.ival = GregorianCalendar.THURSDAY;
 					}
 break;
-case 26:
-//#line 172 "parser.y"
+case 27:
+//#line 180 "parser.y"
 {
 						yyval.ival = GregorianCalendar.FRIDAY;
 					}
 break;
-case 27:
-//#line 176 "parser.y"
+case 28:
+//#line 184 "parser.y"
 {
 						yyval.ival = GregorianCalendar.SATURDAY;
 					}
 break;
-case 28:
-//#line 180 "parser.y"
+case 29:
+//#line 188 "parser.y"
 {
 						yyval.ival = GregorianCalendar.SUNDAY;
 					}
 break;
-//#line 583 "Parser.java"
+//#line 596 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

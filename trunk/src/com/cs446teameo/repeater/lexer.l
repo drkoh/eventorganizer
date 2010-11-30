@@ -27,7 +27,7 @@ WHITESPACE			= ([ \t]+)
 "monthly"			{output();return keyword(Parser.MONTHLY);}
 "yearly"			{output();return keyword(Parser.YEARLY);}
 "weekly"			{output();return keyword(Parser.WEEKLY);}
-
+"daily"				{output();return keyword(Parser.DAILY);}
 "Jan"				{output();return keyword(Parser.JAN);}
 "Feb"				{output();return keyword(Parser.FEB);}
 "Mar"				{output();return keyword(Parser.MAR);}

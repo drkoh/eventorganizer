@@ -9,7 +9,7 @@ import java.util.*;
 %Jnodebug
 %Jnoconstruct
 
-%token YEARLY  MONTHLY WEEKLY DAYOFMONTH YEAR
+%token YEARLY  MONTHLY WEEKLY DAILY DAYOFMONTH YEAR
 %token HOUR MINUTE
 %token JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC
 %token MON TUE WED THU FRI SAT SUN
@@ -28,10 +28,13 @@ TimeSet			:   Timeofday AT RepeatSet
 							st	= new Anniversary();
 						else if($3.ival == 1)
 							st = new Monthly();
-						else
+						else if($3.ival == 2)
 							st = new Weekly();
+						else
+							st = new Daily();
 						st.setField(RepeatSet.TIME_OF_DAY,$1.cal);
-						st.setField(RepeatSet.DATE,$3.cal);
+						if($3.ival < 3)
+							st.setField(RepeatSet.DATE,$3.cal);
 						tset = st;
 					}
 				|	SingleSet
@@ -58,7 +61,7 @@ SingleSet		:	HOUR DIV MINUTE AT LEFTP MONTH COMMA DAYOFMONTH COMMA YEAR RIGHTP T
 Timeofday		:	HOUR DIV MINUTE TO HOUR DIV MINUTE
 					{
 						show("Timeofday");
-						$$.cal = new Vector<Integer>();
+						$$.cal = new ArrayList<Integer>();
 						$$.cal.add($1.ival);
 						$$.cal.add($3.ival);
 						$$.cal.add($5.ival);
@@ -69,7 +72,7 @@ Timeofday		:	HOUR DIV MINUTE TO HOUR DIV MINUTE
 RepeatSet		:	YEARLY DIV MONTH COMMA DAYOFMONTH
 					{
 						show("RepeatSet");
-						$$.cal = new Vector<Integer>();
+						$$.cal = new ArrayList<Integer>();
 						$$.cal.add($3.ival);
 						$$.cal.add($5.ival);
 						$$.ival = 0;
@@ -77,7 +80,7 @@ RepeatSet		:	YEARLY DIV MONTH COMMA DAYOFMONTH
 				|	MONTHLY DIV DAYOFMONTH
 					{
 						show("RepeatSet");
-						$$.cal = new Vector<Integer>();
+						$$.cal = new ArrayList<Integer>();
 						$$.cal.add($3.ival);
 						$$.ival = 1;
 					}
@@ -86,6 +89,11 @@ RepeatSet		:	YEARLY DIV MONTH COMMA DAYOFMONTH
 						show("RepeatSet");
 						$$.cal = $3.cal;
 						$$.ival = 2;
+					}
+				|	DAILY
+					{
+						show("RepeatSet");
+						$$.ival = 3;
 					}
 				;
 				
@@ -97,7 +105,7 @@ WEEKLIST		:	WEEKLIST SDAY
 				|	SDAY
 					{
 						show("WEEKLIST");
-						$$.cal = new Vector<Integer>();
+						$$.cal = new ArrayList<Integer>();
 						$$.cal.add($1.ival);
 					}
 				;
