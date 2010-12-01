@@ -67,14 +67,15 @@ public class BG extends Service {
 			TimeSet tmp = null;
 			try {
 				tmp = RD.parse();
-				TimerTask start = new StatusChange(k);
-				Timer schEvent = new Timer();
-				timerMap.put(k, schEvent);
-				schEvent.schedule(start, tmp.nextTrigger().getTime());
-				//schEvent.schedule(start, tmp.nextEndtime().getTime());
 			} catch (Exception e) {
 				Log.i("bg", "repeater error: "+e.toString());
 			}
+			Log.i("bg", "tmp.nexttrigger's pointer"+tmp.nextTrigger());
+			//TimerTask start = new StatusChange(k);
+			//Timer schEvent = new Timer();
+			//timerMap.put(k, schEvent);
+			//schEvent.schedule(start, tmp.nextTrigger().getTime());
+			//schEvent.schedule(start, tmp.nextEndtime().getTime());
 			
 			//Set the default time
 			
