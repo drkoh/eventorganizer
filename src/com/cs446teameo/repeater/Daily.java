@@ -32,6 +32,7 @@ public class Daily extends RepeatSet{
 		now.set(GregorianCalendar.HOUR_OF_DAY, time.startHour);
 	//	Log.i("trig", "enter 1");
 		now.set(GregorianCalendar.MINUTE, time.startMinute);
+		now.set(GregorianCalendar.SECOND, 0);
 		return now;
 	}
 	
