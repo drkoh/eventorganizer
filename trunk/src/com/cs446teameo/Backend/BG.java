@@ -55,12 +55,13 @@ public class BG extends Service {
 		
 		for (int i=0; i < tmpelist.size(); i++) {
 			
-			int k = tmpelist.get(i).getEid();
+			Event currEvt = tmpelist.get(i);
+			int eid = currEvt.getEid();
 			
 			Log.i("bg", "saving eid: "+ tmpelist.get(i).getEid());
 			emap.put(tmpelist.get(i).getEid(), tmpelist.get(i));
 			
-			Log.i("bg", "working on "+k);
+			Log.i("bg", "working on "+eid);
 			Log.i("bg", "repeat text of "+tmpelist.get(i).getRepeatText());
 			RD.setString(tmpelist.get(i).getRepeatText());
 			Log.i("trig", tmpelist.get(i).getRepeatText());
@@ -72,17 +73,19 @@ public class BG extends Service {
 			} catch (Exception e) {
 				Log.i("bg", "repeater error: "+e.toString());
 			}
-			Log.i("bg", "tmp.nexttrigger's pointer"+tmp.nextTrigger());
-			//TimerTask start = new StatusChange(k);
-			//Timer schEvent = new Timer();
-			//timerMap.put(k, schEvent);
-			//schEvent.schedule(start, tmp.nextTrigger().getTime());
-			//schEvent.schedule(start, tmp.nextEndtime().getTime());
 			
-			//Set the default time
+			if (tmp == null) return; //return since the event does not exist anymore
 			
-			//TimerTask end = new StatusChange(k);
-			//schEvent.schedule(end, new Date(emap.get(k).getStartTime()));
+			TimerTask start = new StatusChange(eid);
+			Timer schEvent = new Timer();
+			timerMap.put(eid, schEvent);
+			
+			//set the start event
+			schEvent.schedule(start, currEvt.getStartTime());
+			
+			//Set the end time event
+			TimerTask end = new changeDefault(1, eid, currEvt, tmp);
+			schEvent.schedule(end, currEvt.getEndTime());
 		}
 	}
 	
@@ -197,14 +200,22 @@ public class BG extends Service {
 	
 	class changeDefault extends TimerTask {
 		int pid;
+		int eid;
+		Event event;
+		TimeSet time;
 		
-		changeDefault(int defaultpid){
+		changeDefault(int defaultpid, int id, Event e, TimeSet time){
 			this.pid = defaultpid;
+			this.eid = id;
+			this.event = e;
+			this.time = time;
 		}
 		
 		public void run() {
 			Profile prof = PM.getProfile(pid);
 			setProfile(prof.getVolume(), prof.getVibrate());
+			//EM.updateEventTime(eid, time.nextTrigger(), time.nextEndTime);
+			//EM.updateEvent(event, eid);
 		}
 	}
 }
