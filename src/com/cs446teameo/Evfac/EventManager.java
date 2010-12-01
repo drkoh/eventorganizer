@@ -261,13 +261,17 @@ public class EventManager implements EventAccess{
 	}
 	
 	// Does any event occur on the specified year?
-	public static boolean eventOccursOnYear(Calendar calendar)
+	public static boolean eventOccursOnMonth(Calendar calendar)
 	{
-		calendar.set(calendar.get(Calendar.YEAR), 1 ,1, 0, 0);
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) ,1, 0, 0);
 		long st = calendar.getTimeInMillis();
 		
-		calendar.set(calendar.get(Calendar.YEAR)+1, 1, 1, 0, 0);
-		
+		if (calendar.get(Calendar.MONTH) == 12){
+			calendar.set(calendar.get(Calendar.YEAR)+1, 1, 1, 0, 0);	
+		}
+		else{
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, 1, 0, 0);
+		}
 		long ed = calendar.getTimeInMillis();
 		
 		String cond = "where " + Database.EVENT_START + ">=" + st + " and " + 
