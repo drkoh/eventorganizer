@@ -32,6 +32,7 @@ public abstract class RepeatSet extends TimeSet{
 	abstract String toDate();
 	public String toString(){
 		StringBuffer buf = new StringBuffer(time.toString());
+		buf.append("@");
 		buf.append(toDate());
 		return buf.toString();
 	}
