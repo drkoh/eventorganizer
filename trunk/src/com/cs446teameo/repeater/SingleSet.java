@@ -1,3 +1,5 @@
+package com.cs446teameo.repeater;
+
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -68,6 +70,12 @@ public class SingleSet extends TimeSet{
 	public boolean checkSetting(GregorianCalendar date) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public GregorianCalendar nextEndtime() {
+		// TODO Auto-generated method stub
+		return end;
 	}
 
 	

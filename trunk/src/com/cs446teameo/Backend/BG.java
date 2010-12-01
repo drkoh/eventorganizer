@@ -69,10 +69,10 @@ public class BG extends Service {
 			TimeSet tmp = null;
 			try {
 				tmp = RD.parse();
-				Log.i("trig", ""+tmp);
-				Log.i("trig", ((Boolean)(tmp == null)).toString());
-				Log.i("trig", "instance:" + ((Boolean)(tmp instanceof RepeatSet)).toString());
-				Log.i("trig","time:" + (((Boolean)(((RepeatSet)(tmp)).time == null)).toString()));
+				//Log.i("trig", ""+tmp);
+				//Log.i("trig", ((Boolean)(tmp == null)).toString());
+				//Log.i("trig", "instance:" + ((Boolean)(tmp instanceof RepeatSet)).toString());
+				//Log.i("trig","time:" + (((Boolean)(((RepeatSet)(tmp)).time == null)).toString()));
 			} catch (Exception e) {
 				Log.i("bg", "repeater error: "+e.toString());
 			}
@@ -81,11 +81,16 @@ public class BG extends Service {
 				Log.i("bg", "tmp is null will quite function");
 				return; //return since the event does not exist anymore
 			}
+			Profile prof = PM.getProfile(1);
 			
 			Timer schEvent = new Timer();
 			timerMap.put(eid, schEvent);
 			
 			Log.i("bg", "setting the events******************");
+			
+			GregorianCalendar cal = tmp.nextTrigger();
+			if (cal == null) return;
+			
 			//set the start event
 			TimerTask start = new StatusChange(eid);
 			schEvent.schedule(start, tmp.nextTrigger().getTime());
@@ -173,7 +178,7 @@ public class BG extends Service {
 	}
 	
 	private int volscale(int vol, int stype) {
-		return (vol/100) * audioManager.getStreamMaxVolume(stype);
+		return (vol * audioManager.getStreamMaxVolume(stype))/100;
 	}
 	
 	private void setProfile(int volume, boolean vibrate)
@@ -181,7 +186,7 @@ public class BG extends Service {
 		Log.i("bg", "setProfile: volume is:"+volume+"; vibrate is:"+vibrate);
 		// Set all of their volumes to be same (notify them with a vibration)
 		audioManager.setStreamVolume (AudioManager.STREAM_VOICE_CALL, volscale(volume, AudioManager.STREAM_VOICE_CALL), AudioManager.FLAG_VIBRATE);
-		audioManager.setStreamVolume (AudioManager.STREAM_SYSTEM, volscale(volume, AudioManager.STREAM_SYSTEM), AudioManager.FLAG_VIBRATE);
+		audioManager.setStreamVolume (AudioManager.STREAM_SYSTEM, volscale(volume, AudioManager.STREAM_SYSTEM), AudioManager.FLAG_SHOW_UI);
 		audioManager.setStreamVolume (AudioManager.STREAM_RING, volscale(volume, AudioManager.STREAM_RING), AudioManager.FLAG_VIBRATE);
 		audioManager.setStreamVolume (AudioManager.STREAM_ALARM, volscale(volume, AudioManager.STREAM_ALARM), AudioManager.FLAG_VIBRATE);
 
@@ -222,7 +227,10 @@ public class BG extends Service {
 		public void run() {
 			Profile prof = PM.getProfile(pid);
 			setProfile(prof.getVolume(), prof.getVibrate());
-			EM.updateEventTime(eid, time.nextTrigger().getTimeInMillis(), time.nextEndtime().getTimeInMillis());
+			GregorianCalendar tmp = time.nextTrigger();
+			if (tmp != null) {
+				EM.updateEventTime(eid, time.nextTrigger().getTimeInMillis(), time.nextEndtime().getTimeInMillis());
+			}
 		}
 	}
 }

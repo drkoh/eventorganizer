@@ -1,3 +1,4 @@
+package com.cs446teameo.repeater;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -5,7 +6,7 @@ import java.util.Vector;
 
 
 public abstract class RepeatSet extends TimeSet{
-	Time time = null;
+	public Time time = null;
 	
 	final public static int TIME_OF_DAY = 0;
 	final public static int DATE = 1;
@@ -35,5 +36,14 @@ public abstract class RepeatSet extends TimeSet{
 	}
 	public long period(){
 		return (time.endHour - time.startHour)* 3600000 + (time.endMinute - time.startMinute)*60000;
+	}
+	@Override
+	public GregorianCalendar nextEndtime() {
+		// TODO Auto-generated method stub
+		GregorianCalendar ret = this.nextTrigger();
+		if(ret == null)
+			return null;
+		ret.add(GregorianCalendar.MILLISECOND, (int) (period()*1000));
+		return ret;
 	}
 }

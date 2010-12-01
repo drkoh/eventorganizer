@@ -102,7 +102,7 @@ public class CalendarSetting {
 		// If any event occurs on the temporary calendar's year
 		if(calendarType == Calendar.MONTH)
 		{
-			if(EventManager.getInstance().eventOccursOnYear(tempCalendar))
+			if(EventManager.getInstance().eventOccursOnMonth(tempCalendar))
 			{
 				// If this month occurs before today
 				if(tempCalendar.before(today))
