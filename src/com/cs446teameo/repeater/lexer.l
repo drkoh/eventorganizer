@@ -59,7 +59,7 @@ WHITESPACE			= ([ \t]+)
 "("				{output();return operator(Parser.LEFTP);}
 ")"				{output();return operator(Parser.RIGHTP);}
 "@"				{output();return operator(Parser.AT);}
-"_"				{output();return operator(Parser.TO);}
+"$"				{output();return operator(Parser.TO);}
 ":"				{output();return operator(Parser.DIV);}
 ","				{return operator(Parser.COMMA);}
 
