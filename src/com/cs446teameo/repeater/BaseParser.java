@@ -2,6 +2,8 @@ package com.cs446teameo.repeater;
 
 import java.io.IOException;
 
+import android.util.Log;
+
 
 public abstract class BaseParser {
 	private Lexer lexer;

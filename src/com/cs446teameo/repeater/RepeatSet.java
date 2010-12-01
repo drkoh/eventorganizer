@@ -8,7 +8,7 @@ import android.util.Log;
 
 
 public abstract class RepeatSet extends TimeSet{
-	Time time = null;
+	public Time time = null;
 	
 	final public static int TIME_OF_DAY = 0;
 	final public static int DATE = 1;
@@ -26,6 +26,7 @@ public abstract class RepeatSet extends TimeSet{
 		}
 		else{
 			//TODO:
+			Log.d("ev","enter nowhere");
 		}
 	}
 	abstract void setDate(ArrayList<Integer> target);
@@ -38,5 +39,11 @@ public abstract class RepeatSet extends TimeSet{
 	}
 	public long period(){
 		return (time.endHour - time.startHour)* 3600000 + (time.endMinute - time.startMinute)*60000;
+	}
+	
+	public GregorianCalendar nextEndtime(){
+		GregorianCalendar end = this.nextTrigger();
+		end.add(GregorianCalendar.MILLISECOND, (int) (period()*1000));
+		return end;
 	}
 }

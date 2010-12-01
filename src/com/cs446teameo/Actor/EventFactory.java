@@ -33,8 +33,6 @@ public class EventFactory {
 		event.setLocation((String) src.get(3));
 		
 		event.setTime((Short)src.get(0),src.subList(4, src.size()));
-		Log.d("tsmax","get here");
-		EventManager.getInstance().createNewEvent(event);
 		Log.i("eventfac", "go here");
 		return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
 	}

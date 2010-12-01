@@ -69,7 +69,10 @@ public class BG extends Service {
 			TimeSet tmp = null;
 			try {
 				tmp = RD.parse();
+			//	Log.i("trig", tmp);
 				Log.i("trig", ((Boolean)(tmp == null)).toString());
+				Log.i("trig", "instance:" + ((Boolean)(tmp instanceof RepeatSet)).toString());
+				Log.i("trig","time:" + (((Boolean)(((RepeatSet)(tmp)).time == null)).toString()));
 			} catch (Exception e) {
 				Log.i("bg", "repeater error: "+e.toString());
 			}
