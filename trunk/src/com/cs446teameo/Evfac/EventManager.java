@@ -142,10 +142,14 @@ public class EventManager implements EventAccess{
 		Cursor c = selectEvent("where _id="+id);
 		c.moveToFirst();
 		if (c.getCount() > 0) {
-			return new Event(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 
+			Event e = new Event(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 
 					c.getString(4), c.getInt(5), c.getString(6));
+			
+			c.close();
+			return e;
 		}
 		else {
+			c.close();
 			return null;
 		}
 	}
@@ -247,10 +251,13 @@ public class EventManager implements EventAccess{
 		Cursor c = selectEvent(cond);
 		
 		if (c.getCount() > 0){
+			c.close();
 			return true;
 		}
-		else
+		else{
+			c.close();
 			return false;
+		}
 	}
 	
 	// Does any event occur on the specified year?
@@ -269,10 +276,13 @@ public class EventManager implements EventAccess{
 		Cursor c = selectEvent(cond);
 		
 		if (c.getCount() > 0){
+			c.close();
 			return true;
 		}
-		else
+		else {
+			c.close();
 			return false;
+		}
 		
 	}
 	/* CALVIN - FILL THESE METHODS - END */
