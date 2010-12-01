@@ -123,8 +123,9 @@ public class Database {
     	Cursor c = mDb.rawQuery("select max(" + EVENT_ID + ") from " + Event_TABLE_NAME+";", null);
     	if (c.moveToFirst()) {
     		//Since there could be only a single row
-    		return c.getInt(1);
+    		return c.getInt(0);
     	}
+    	c.close();
     	return -1;
     }
 }

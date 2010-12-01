@@ -61,6 +61,7 @@ public class BG extends Service {
 			emap.put(tmpelist.get(i).getEid(), tmpelist.get(i));
 			
 			Log.i("bg", "working on "+k);
+			Log.i("bg", "repeat text of "+tmpelist.get(i).getRepeatText());
 			RD.setString(tmpelist.get(i).getRepeatText());
 			
 			TimeSet tmp = null;

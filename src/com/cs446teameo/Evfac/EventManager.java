@@ -74,6 +74,7 @@ public class EventManager implements EventAccess{
 		
 		val.put(Database.EVENT_NAME, e.getName());
 		val.put(Database.EVENT_START, e.getStartTime());
+		val.put(Database.EVENT_REPEAT_TEXT, e.getRepeatText());
 		val.put(Database.EVENT_END, e.getEndTime());
 		val.put(Database.EVENT_LOCATION, e.getLocation());
 		val.put(Database.EVENT_PROFILE_ID, e.getPid());

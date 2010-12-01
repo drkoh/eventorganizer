@@ -59,6 +59,7 @@ public class ProfileManager {
 			String name = tempCursor.getString(tempCursor.getColumnIndex(Database.PROFILE_NAME));
 			int volume = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VOL));
 			boolean vibrate = intToBoolean(tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VIB)));
+			tempCursor.close();
 			return new Profile(id, name, vibrate, volume);
 		} else {
 			return null;
@@ -110,6 +111,7 @@ public class ProfileManager {
 	        } 
     		return 0;
         }
+        tempCursor.close();
 		return -1;
 	}
 
