@@ -62,9 +62,13 @@ Timeofday		:	HOUR DIV MINUTE TO HOUR DIV MINUTE
 					{
 						show("Timeofday");
 						$$.cal = new ArrayList<Integer>();
+						System.out.println("$1.ival=" + $1.ival);
 						$$.cal.add($1.ival);
+						System.out.println("$3.ival=" + $3.ival);
 						$$.cal.add($3.ival);
+						System.out.println("$5.ival=" + $5.ival);
 						$$.cal.add($5.ival);
+						System.out.println("$7.ival=" + $7.ival);
 						$$.cal.add($7.ival);
 					}
 				;				

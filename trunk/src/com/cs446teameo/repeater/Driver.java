@@ -1,4 +1,4 @@
-package com.cs446teameo.repeater;
+
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -9,8 +9,6 @@ import java.io.InputStreamReader;
 import java.io.StringBufferInputStream;
 import java.util.GregorianCalendar;
 import java.util.Vector;
-
-import android.util.Log;
 
 
 public class Driver {
@@ -46,7 +44,7 @@ public class Driver {
 	
 	@SuppressWarnings("deprecation")
 	public void setString(String s){
-		Log.i("repeater", ((Boolean)(s == null)).toString());
+		//Log.i("repeater", ((Boolean)(s == null)).toString());
 		is = new StringBufferInputStream(s);
 		lexer = new Lexer(is);
 		parser = new Parser();
@@ -60,10 +58,13 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException{
 		Driver driver = Driver.getInstance();
-		driver.setString(" h10:min24 @(Nov,dom28,y2010) _ h13:min59 @(Nov,dom28,y2010)");
-		TimeSet tset = driver.parse();
-		System.out.println(tset.toString());
-		System.out.println(tset.nextTrigger().getTime().toLocaleString());	
+	//	for(int i= 0 ; i < 3;i++){
+	//		System.out.println("the " +  i + " time");
+			driver.setString("h16:min40@ (Dec,dom1,y2010) $ h16:min45@ (Dec,dom1,y2010)");
+			TimeSet tset = driver.parse();
+			System.out.println(tset.toString());
+			System.out.println(tset.nextTrigger().getTime().toLocaleString());
+	//	}
 		return;
 	}
 	
