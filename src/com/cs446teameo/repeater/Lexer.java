@@ -1,4 +1,4 @@
-
+package com.cs446teameo.repeater;
 
 public class Lexer extends BaseLexer{
 	private final int YY_BUFFER_SIZE = 512;

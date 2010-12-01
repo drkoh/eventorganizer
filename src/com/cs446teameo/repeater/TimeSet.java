@@ -1,4 +1,6 @@
+package com.cs446teameo.repeater;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -40,5 +42,5 @@ public abstract class TimeSet {
 	}
 	public abstract String toString();
 	public abstract GregorianCalendar nextTrigger();
-	//public abstract GregorianCalendar nextEndtime();
+	public abstract GregorianCalendar nextEndtime();
 }

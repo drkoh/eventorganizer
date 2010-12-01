@@ -122,8 +122,10 @@ public class Database {
     public int getNewestID(){
     	Cursor c = mDb.rawQuery("select max(" + EVENT_ID + ") from " + Event_TABLE_NAME+";", null);
     	if (c.moveToFirst()) {
+    		int tmp = c.getInt(0);
+    		c.close();
     		//Since there could be only a single row
-    		return c.getInt(0);
+    		return tmp;
     	}
     	c.close();
     	return -1;

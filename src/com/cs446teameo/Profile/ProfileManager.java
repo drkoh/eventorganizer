@@ -53,15 +53,17 @@ public class ProfileManager {
 	}
 	
 	public Profile getProfile(int pid) {
-		Cursor tempCursor = selectProfile("");
+		Cursor tempCursor = selectProfile("where _id="+pid);
+		tempCursor.moveToFirst();
 		if (tempCursor.getCount() > 0) {
-			int id = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_ID));
+			int id = tempCursor.getInt(1);
 			String name = tempCursor.getString(tempCursor.getColumnIndex(Database.PROFILE_NAME));
 			int volume = tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VOL));
 			boolean vibrate = intToBoolean(tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VIB)));
 			tempCursor.close();
 			return new Profile(id, name, vibrate, volume);
 		} else {
+			tempCursor.close();
 			return null;
 		}
 	}
@@ -84,7 +86,7 @@ public class ProfileManager {
 	public Cursor selectProfile(String cond){
 		String sel = "select * from " + ebase.getProfileTable();
 		
-		if (cond.length() > 0 || cond == null){
+		if (cond == null || cond.length() > 0){
 			sel = sel + " " + cond;
 		}
 		
