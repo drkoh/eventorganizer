@@ -36,6 +36,7 @@ public class Monthly extends RepeatSet{
 //		System.out.println("target?:" + now.getActualMaximum(GregorianCalendar.DATE));
 		while(start.get(GregorianCalendar.DAY_OF_MONTH) > now.getActualMaximum(GregorianCalendar.DATE));
 		now.set(GregorianCalendar.DAY_OF_MONTH, start.get(GregorianCalendar.DAY_OF_MONTH));
+		now.set(GregorianCalendar.SECOND, 0);
 		return now;
 	}
 

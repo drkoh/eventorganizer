@@ -32,6 +32,7 @@ public class Weekly extends RepeatSet{
 			now.add(GregorianCalendar.WEEK_OF_YEAR, 1);
 		}
 		now.set(GregorianCalendar.DAY_OF_WEEK, list.nextTrigger(now.get(GregorianCalendar.DAY_OF_WEEK)));
+		now.set(GregorianCalendar.SECOND, 0);
 		return now;
 	}
 

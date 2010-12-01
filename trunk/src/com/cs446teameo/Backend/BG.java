@@ -195,6 +195,9 @@ public class BG extends Service {
 		{
 			audioManager.setVibrateSetting (AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_ON);
 			audioManager.setVibrateSetting (AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
+		} else {
+			audioManager.setVibrateSetting (AudioManager.VIBRATE_TYPE_NOTIFICATION, AudioManager.VIBRATE_SETTING_OFF);
+			audioManager.setVibrateSetting (AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);
 		}
 	}
 	
@@ -219,12 +222,14 @@ public class BG extends Service {
 		TimeSet time;
 		
 		changeDefault(int defaultpid, int id, TimeSet time){
+			Log.i("bg", "changeDefault created******************");
 			this.pid = defaultpid;
 			this.eid = id;
 			this.time = time;
 		}
 		
 		public void run() {
+			Log.i("bg", "statusChange running******************");
 			Profile prof = PM.getProfile(pid);
 			setProfile(prof.getVolume(), prof.getVibrate());
 			GregorianCalendar tmp = time.nextTrigger();
