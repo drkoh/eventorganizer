@@ -124,13 +124,6 @@ public class Event {
 			this.time_text = tset.toString();
 		}else{
 			RepeatSet set = null;
-			StringBuffer buf = new StringBuffer();
-			Iterator<Integer> it = ((ArrayList<Integer>)list.get(4)).iterator();
-			while(it.hasNext()){
-				buf.append(it.next());
-				buf.append(" ");
-			}
-			Log.d("weekly error", buf.toString());
 			switch(integer){
 				case EventAdderUI.DAILY: set = new Daily();break;
 				case EventAdderUI.WEEKLY: set = new Weekly();break;
