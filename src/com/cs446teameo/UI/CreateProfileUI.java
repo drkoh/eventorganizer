@@ -78,15 +78,23 @@ public class CreateProfileUI extends Frame{
 			
 			@Override
 			public void onClick(View arg0) {
-				Profile profile = new Profile(name.getText().toString(), vibrate.isChecked(), volume.getProgress());
-				int res = ProfileManager.getInstance().createNewProfile(profile);
-				if(res != ErrorCode.SUCCESS){
-					//TODO: ADD AN NOTIFICATION TO THE USER
-					Log.e(field,"Add Event Error: " + res);
-					return;
+				if(name.getText().toString().equals(null) || name.getText().toString().equals(""))
+				{
+					Toast.makeText(owner, "You must enter a profile name!", Toast.LENGTH_SHORT).show();
+					CreateProfileUI.contextSwitch();
 				}
-				Log.i(field,"trigger create button");
-				ProfileUI.contextSwitch();
+				else
+				{
+					Profile profile = new Profile(name.getText().toString(), vibrate.isChecked(), volume.getProgress());
+					int res = ProfileManager.getInstance().createNewProfile(profile);
+					if(res != ErrorCode.SUCCESS){
+						//TODO: ADD AN NOTIFICATION TO THE USER
+						Log.e(field,"Add Event Error: " + res);
+						return;
+					}
+					Log.i(field,"trigger create button");
+					ProfileUI.contextSwitch();
+				}
 			}
 		});
 		

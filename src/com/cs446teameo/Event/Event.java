@@ -158,4 +158,17 @@ public class Event {
 			Log.i("repeater", time_text);
 		}
 	}
+	
+    public static long toUnixTime(GregorianCalendar time)
+    {
+            return time.getTimeInMillis() / 1000;
+    }
+    
+    public static GregorianCalendar toGregorianCalendar(long time)
+    {
+            GregorianCalendar temp = new GregorianCalendar();
+            temp.setTimeInMillis(time * 1000);
+            return temp;
+    }
+
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.cs446teameo.Main.R;
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -61,9 +62,10 @@ public class WeeklyEventAdder extends Dialog implements OnClickListener {
     			{
     				if(tempString != "")
     				{
-    					daysArray.add((i + 1));
     					tempString += ", ";
     				}
+					Log.d("Weekly", ""+(i + 1));
+					daysArray.add((i + 1));
     				tempString += dayNames[i];
     			}
     		}

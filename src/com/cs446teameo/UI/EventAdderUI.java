@@ -147,115 +147,124 @@ public class EventAdderUI extends Frame{
 				Log.i(field,"trigger create button");
 				
 				ArrayList<Object> src = new ArrayList<Object>();
-				
-				if((repeatOption.getSelectedItem()).toString().equals("None"))
+
+				if(description.getText().toString().equals(null) || description.getText().toString().equals(""))
 				{
-					src.add(NONE); 													// Add the repeat option
-					src.add(description.getText().toString()); 						// Add the event name
-					if(profile.getSelectedItem()!=null)
+					Toast.makeText(owner, "You must enter an event description!", Toast.LENGTH_SHORT).show();
+					EventAdderUI.contextSwitch();
+				}
+				else 
+				{
+					if((repeatOption.getSelectedItem()).toString().equals("None"))
+					{
+	
+						src.add(NONE); 													// Add the repeat option
+						src.add(description.getText().toString()); 						// Add the event name
+						if(profile.getSelectedItem()!=null)
+							src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+						else
+							src.add("");
+						src.add(location.getText().toString()); 						// Add the event location
+						
+						// Add the start time
+						src.add(sTimePicker.getCurrentHour());	//0
+						src.add(sTimePicker.getCurrentMinute());	//1
+						
+						// Add the start date
+						src.add(startDate.getYear());	//2
+						src.add(startDate.getMonth());	//3
+						src.add(startDate.getDayOfMonth());//4
+	
+						// Add the end time
+						src.add(eTimePicker.getCurrentHour()); //5
+						src.add(eTimePicker.getCurrentMinute()); //6
+						
+						// Add the end date
+						src.add(endDate.getYear());//7
+						src.add(endDate.getMonth());//8
+						src.add(endDate.getDayOfMonth());//9
+					}
+					else if((repeatOption.getSelectedItem()).toString().equals("Daily"))
+					{
+						src.add(DAILY);													// Add the repeat option
+						src.add(description.getText().toString()); 						// Add the event name
 						src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
-					else
-						src.add("");
-					src.add(location.getText().toString()); 						// Add the event location
-					
-					// Add the start time
-					src.add(sTimePicker.getCurrentHour());	//0
-					src.add(sTimePicker.getCurrentMinute());	//1
-					
-					// Add the start date
-					src.add(startDate.getYear());	//2
-					src.add(startDate.getMonth());	//3
-					src.add(startDate.getDayOfMonth());//4
-
-					// Add the end time
-					src.add(eTimePicker.getCurrentHour()); //5
-					src.add(eTimePicker.getCurrentMinute()); //6
-					
-					// Add the end date
-					src.add(endDate.getYear());//7
-					src.add(endDate.getMonth());//8
-					src.add(endDate.getDayOfMonth());//9
+						src.add(location.getText().toString()); 						// Add the event location
+						
+						// Add the start time
+						src.add(sTimePicker.getCurrentHour());	//0
+						src.add(sTimePicker.getCurrentMinute());	//1
+	
+						// Add the end time
+						src.add(eTimePicker.getCurrentHour());	//2
+						src.add(eTimePicker.getCurrentMinute());	//3
+					}
+					else if((repeatOption.getSelectedItem()).toString().equals("Weekly"))
+					{
+						src.add(WEEKLY);												// Add the repeat option
+						src.add(description.getText().toString()); 						// Add the event name
+						src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+						src.add(location.getText().toString()); 						// Add the event location
+						
+						// Add the start time
+						src.add(sTimePicker.getCurrentHour());	//0
+						src.add(sTimePicker.getCurrentMinute());	//1
+	
+						// Add the end time
+						src.add(eTimePicker.getCurrentHour());	//2
+						src.add(eTimePicker.getCurrentMinute());	//3
+						src.add((ArrayList <Integer>)WeeklyEventAdder.daysArray);	//4		// Add an array of days (as ints)
+					}
+					else if((repeatOption.getSelectedItem()).toString().equals("Monthly"))
+					{
+						src.add(MONTHLY);												// Add the repeat option
+						src.add(description.getText().toString()); 						// Add the event name
+						src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+						src.add(location.getText().toString()); 						// Add the event location
+						
+						// Add the start time
+						src.add(sTimePicker.getCurrentHour());
+						src.add(sTimePicker.getCurrentMinute());
+	
+						// Add the end time
+						src.add(eTimePicker.getCurrentHour());
+						src.add(eTimePicker.getCurrentMinute());
+						
+						src.add((int)MonthlyEventAdder.day);							// Add the day of the month
+					}
+					else if((repeatOption.getSelectedItem()).toString().equals("Yearly"))
+					{
+						src.add(YEARLY); 												// Add the repeat option
+						src.add(description.getText().toString()); 						// Add the event name
+						src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+						src.add(location.getText().toString()); 						// Add the event location
+						
+						// Add the start time
+						src.add(sTimePicker.getCurrentHour());
+						src.add(sTimePicker.getCurrentMinute());
+						
+						// Add the start date
+						src.add(startDate.getMonth());
+						src.add(startDate.getDayOfMonth());
+	
+						// Add the end time
+						src.add(eTimePicker.getCurrentHour());
+						src.add(eTimePicker.getCurrentMinute());
+						
+						// Add the end date
+						src.add(endDate.getMonth());
+						src.add(endDate.getDayOfMonth());
+					}
+					Log.d(field, "enter database create");
+					int res = EventFactory.getInstance().createEvent(src);
+					if(res != ErrorCode.SUCCESS){
+						//TODO: ADD AN NOTIFICATION TO THE USER
+						Log.e(field,"Add Event Error: " + res);
+						return;
+					}
+					Log.d("!!","goes2 here");
+					MenuUI.contextSwitch();
 				}
-				else if((repeatOption.getSelectedItem()).toString().equals("Daily"))
-				{
-					src.add(DAILY);													// Add the repeat option
-					src.add(description.getText().toString()); 						// Add the event name
-					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
-					src.add(location.getText().toString()); 						// Add the event location
-					
-					// Add the start time
-					src.add(sTimePicker.getCurrentHour());	//0
-					src.add(sTimePicker.getCurrentMinute());	//1
-
-					// Add the end time
-					src.add(eTimePicker.getCurrentHour());	//2
-					src.add(eTimePicker.getCurrentMinute());	//3
-				}
-				else if((repeatOption.getSelectedItem()).toString().equals("Weekly"))
-				{
-					src.add(WEEKLY);												// Add the repeat option
-					src.add(description.getText().toString()); 						// Add the event name
-					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
-					src.add(location.getText().toString()); 						// Add the event location
-					
-					// Add the start time
-					src.add(sTimePicker.getCurrentHour());	//0
-					src.add(sTimePicker.getCurrentMinute());	//1
-
-					// Add the end time
-					src.add(eTimePicker.getCurrentHour());	//2
-					src.add(eTimePicker.getCurrentMinute());	//3
-					src.add((ArrayList <Integer>)WeeklyEventAdder.daysArray);	//4		// Add an array of days (as ints)
-				}
-				else if((repeatOption.getSelectedItem()).toString().equals("Monthly"))
-				{
-					src.add(MONTHLY);												// Add the repeat option
-					src.add(description.getText().toString()); 						// Add the event name
-					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
-					src.add(location.getText().toString()); 						// Add the event location
-					
-					// Add the start time
-					src.add(sTimePicker.getCurrentHour());
-					src.add(sTimePicker.getCurrentMinute());
-
-					// Add the end time
-					src.add(eTimePicker.getCurrentHour());
-					src.add(eTimePicker.getCurrentMinute());
-					
-					src.add((int)MonthlyEventAdder.day);							// Add the day of the month
-				}
-				else if((repeatOption.getSelectedItem()).toString().equals("Yearly"))
-				{
-					src.add(YEARLY); 												// Add the repeat option
-					src.add(description.getText().toString()); 						// Add the event name
-					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
-					src.add(location.getText().toString()); 						// Add the event location
-					
-					// Add the start time
-					src.add(sTimePicker.getCurrentHour());
-					src.add(sTimePicker.getCurrentMinute());
-					
-					// Add the start date
-					src.add(startDate.getMonth());
-					src.add(startDate.getDayOfMonth());
-
-					// Add the end time
-					src.add(eTimePicker.getCurrentHour());
-					src.add(eTimePicker.getCurrentMinute());
-					
-					// Add the end date
-					src.add(endDate.getMonth());
-					src.add(endDate.getDayOfMonth());
-				}
-				Log.d(field, "enter database create");
-				int res = EventFactory.getInstance().createEvent(src);
-				if(res != ErrorCode.SUCCESS){
-					//TODO: ADD AN NOTIFICATION TO THE USER
-					Log.e(field,"Add Event Error: " + res);
-					return;
-				}
-				Log.d("!!","goes2 here");
-				MenuUI.contextSwitch();
 			}
 		});
 		
