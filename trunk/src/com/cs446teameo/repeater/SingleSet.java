@@ -72,5 +72,11 @@ public class SingleSet extends TimeSet{
 		return true;
 	}
 
+	@Override
+	public GregorianCalendar nextEndtime() {
+		// TODO Auto-generated method stub
+		return end;
+	}
+
 	
 }
