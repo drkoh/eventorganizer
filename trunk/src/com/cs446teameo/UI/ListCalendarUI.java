@@ -131,7 +131,7 @@ public class ListCalendarUI extends Frame{
 	public static void setUI ()
 	{
 		// To do!
-		//setEventsUI();
+		setEventsUI();
 	}
 
 	// Sets all the event-based UI components
@@ -153,7 +153,6 @@ public class ListCalendarUI extends Frame{
 	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
 	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
 	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
-	            //String profile = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_PROFILE_ID));
 
 	            // Create a button, add event info onto it, and add it to the event-table layout (should display events here!!!)
 	            eventButtons[count] = new Button(owner);

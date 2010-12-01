@@ -162,6 +162,10 @@ public class EditProfileUI extends Frame{
 	{
 		list.clear();
 		ProfileManager.getInstance().listProfile(list);
+		if(list.size() == 0)
+		{
+			ProfileUI.contextSwitch();
+		}
 		String profileNames[] = new String[list.size()];
 		Log.d(field, "Load Profiles: ");
 		for(int i = 0; i < list.size(); i++)

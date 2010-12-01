@@ -1,11 +1,15 @@
 package com.cs446teameo.UI;
 
+import java.util.ArrayList;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
 import com.cs446teameo.Main.R;
+import com.cs446teameo.Profile.Profile;
+import com.cs446teameo.Profile.ProfileManager;
 
 public class ProfileUI extends Frame{
 
@@ -48,9 +52,20 @@ public class ProfileUI extends Frame{
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO!!!
-				Log.i(field,"trigger create button");
-				EditProfileUI.contextSwitch();
+
+				ArrayList<Profile>list = new ArrayList<Profile>();
+				list.clear();
+				ProfileManager.getInstance().listProfile(list);
+				if(list.size() == 0)
+				{
+					Toast.makeText(owner, "You do not have any profiles to edit!", Toast.LENGTH_SHORT).show();
+					ProfileUI.contextSwitch();
+				}
+				else
+				{
+					Log.i(field,"trigger create button");
+					EditProfileUI.contextSwitch();
+				}
 			}
 		});
 		

@@ -96,6 +96,7 @@ public class MenuUI extends Frame{
 		this.ProfileButton = (Button)owner.findViewById(R.menuId.ProfileButton);
 		this.ExitButton = (Button)owner.findViewById(R.menuId.ExitButton);
 		this.SynchronizeButton = (Button)owner.findViewById(R.menuId.SynchronizeButton);
+		SynchronizeButton.setVisibility(View.GONE);
 		if(this.AddEventButton == null){
 			Log.e("field", "reg error");
 		}
