@@ -63,10 +63,12 @@ public class BG extends Service {
 			Log.i("bg", "working on "+k);
 			Log.i("bg", "repeat text of "+tmpelist.get(i).getRepeatText());
 			RD.setString(tmpelist.get(i).getRepeatText());
+			Log.i("trig", tmpelist.get(i).getRepeatText());
 			
 			TimeSet tmp = null;
 			try {
 				tmp = RD.parse();
+				Log.i("trig", ((Boolean)(tmp == null)).toString());
 			} catch (Exception e) {
 				Log.i("bg", "repeater error: "+e.toString());
 			}

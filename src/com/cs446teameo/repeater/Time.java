@@ -25,6 +25,6 @@ public class Time {
 		return true;
 	}
 	public String toString(){
-		return new String(startHour+ ":" + startMinute + " _ " + endHour + ":" + endMinute);
+		return new String("h" + startHour+ ":" + "min" + startMinute + " _ " + "h" + endHour + ":" +"min" +endMinute);
 	}
 }

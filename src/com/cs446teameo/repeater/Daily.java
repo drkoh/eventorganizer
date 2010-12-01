@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
+import android.util.Log;
+
 public class Daily extends RepeatSet{
 
 	@Override
@@ -20,13 +22,16 @@ public class Daily extends RepeatSet{
 	@Override
 	public GregorianCalendar nextTrigger() {
 		// TODO Auto-generated method stub
+		Log.i("trig", "enter 1");
 		GregorianCalendar now = new GregorianCalendar();
 		if(now.get(GregorianCalendar.HOUR_OF_DAY) > time.startHour ||(
 				now.get(GregorianCalendar.HOUR_OF_DAY) == time.startHour &&
 						now.get(GregorianCalendar.MINUTE) > time.startMinute)){
 			now.add(GregorianCalendar.DAY_OF_MONTH, 1);
 		}
+		Log.i("trig", "enter 2");
 		now.set(GregorianCalendar.HOUR_OF_DAY, time.startHour);
+		Log.i("trig", "enter 1");
 		now.set(GregorianCalendar.MINUTE, time.startMinute);
 		return now;
 	}

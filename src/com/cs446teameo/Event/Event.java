@@ -137,6 +137,13 @@ public class Event {
 			switch(integer){
 				case EventAdderUI.DAILY:break;
 				case EventAdderUI.WEEKLY: {
+					StringBuffer buf = new StringBuffer();
+					Iterator<Integer> it = ((ArrayList<Integer>)list.get(4)).iterator();
+					while(it.hasNext()){
+						buf.append(it.next());
+						buf.append(" ");
+					}
+					Log.d("weekly", buf.toString());
 					set.setField(RepeatSet.DATE, ((ArrayList<Integer>)list.get(4)));
 					break;
 				}
