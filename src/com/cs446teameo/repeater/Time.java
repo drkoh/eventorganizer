@@ -1,4 +1,3 @@
-package com.cs446teameo.repeater;
 
 import java.util.GregorianCalendar;
 
@@ -25,6 +24,6 @@ public class Time {
 		return true;
 	}
 	public String toString(){
-		return new String("h" + startHour+ ":" + "min" + startMinute + " _ " + "h" + endHour + ":" +"min" +endMinute);
+		return new String(startHour+ ":" + startMinute + " _ " + endHour + ":" + endMinute);
 	}
 }

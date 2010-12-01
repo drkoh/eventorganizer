@@ -1,5 +1,3 @@
-package com.cs446teameo.repeater;
-
 import java.io.IOException;
 import java.util.*;
 //#line 8 "Parser.java"
@@ -487,14 +485,18 @@ case 4:
 {
 						show("Timeofday");
 						yyval.cal = new ArrayList<Integer>();
+						System.out.println("$1.ival=" + val_peek(6).ival);
 						yyval.cal.add(val_peek(6).ival);
+						System.out.println("$3.ival=" + val_peek(4).ival);
 						yyval.cal.add(val_peek(4).ival);
+						System.out.println("$5.ival=" + val_peek(2).ival);
 						yyval.cal.add(val_peek(2).ival);
+						System.out.println("$7.ival=" + val_peek(0).ival);
 						yyval.cal.add(val_peek(0).ival);
 					}
 break;
 case 5:
-//#line 73 "parser.y"
+//#line 77 "parser.y"
 {
 						show("RepeatSet");
 						yyval.cal = new ArrayList<Integer>();
@@ -504,7 +506,7 @@ case 5:
 					}
 break;
 case 6:
-//#line 81 "parser.y"
+//#line 85 "parser.y"
 {
 						show("RepeatSet");
 						yyval.cal = new ArrayList<Integer>();
@@ -513,7 +515,7 @@ case 6:
 					}
 break;
 case 7:
-//#line 88 "parser.y"
+//#line 92 "parser.y"
 {
 						show("RepeatSet");
 						yyval.cal = val_peek(0).cal;
@@ -521,21 +523,21 @@ case 7:
 					}
 break;
 case 8:
-//#line 94 "parser.y"
+//#line 98 "parser.y"
 {
 						show("RepeatSet");
 						yyval.ival = 3;
 					}
 break;
 case 9:
-//#line 101 "parser.y"
+//#line 105 "parser.y"
 {
 						show("WEEKLIST");
 						yyval.cal.add(val_peek(0).ival);
 					}
 break;
 case 10:
-//#line 106 "parser.y"
+//#line 110 "parser.y"
 {
 						show("WEEKLIST");
 						yyval.cal = new ArrayList<Integer>();
@@ -543,120 +545,120 @@ case 10:
 					}
 break;
 case 11:
-//#line 114 "parser.y"
+//#line 118 "parser.y"
 {
 						yyval.ival = 0;
 					}
 break;
 case 12:
-//#line 118 "parser.y"
+//#line 122 "parser.y"
 {
 						yyval.ival = 1;
 					}
 break;
 case 13:
-//#line 122 "parser.y"
+//#line 126 "parser.y"
 {
 						yyval.ival = 2;
 					}
 break;
 case 14:
-//#line 126 "parser.y"
+//#line 130 "parser.y"
 {
 						yyval.ival = 3;
 					}
 break;
 case 15:
-//#line 130 "parser.y"
+//#line 134 "parser.y"
 {
 						yyval.ival = 4;
 					}
 break;
 case 16:
-//#line 134 "parser.y"
+//#line 138 "parser.y"
 {
 						yyval.ival = 5;
 					}
 break;
 case 17:
-//#line 138 "parser.y"
+//#line 142 "parser.y"
 {
 						yyval.ival = 6;
 					}
 break;
 case 18:
-//#line 142 "parser.y"
+//#line 146 "parser.y"
 {
 						yyval.ival = 7;
 					}
 break;
 case 19:
-//#line 146 "parser.y"
+//#line 150 "parser.y"
 {
 						yyval.ival = 8;
 					}
 break;
 case 20:
-//#line 150 "parser.y"
+//#line 154 "parser.y"
 {
 						yyval.ival = 9;
 					}
 break;
 case 21:
-//#line 154 "parser.y"
+//#line 158 "parser.y"
 {
 						yyval.ival = 10;
 					}
 break;
 case 22:
-//#line 158 "parser.y"
+//#line 162 "parser.y"
 {
 						yyval.ival = 11;
 					}
 break;
 case 23:
-//#line 164 "parser.y"
+//#line 168 "parser.y"
 {
 						yyval.ival = GregorianCalendar.MONDAY;
 					}
 break;
 case 24:
-//#line 168 "parser.y"
+//#line 172 "parser.y"
 {
 						yyval.ival = GregorianCalendar.TUESDAY;
 					}
 break;
 case 25:
-//#line 172 "parser.y"
+//#line 176 "parser.y"
 {
 						yyval.ival = GregorianCalendar.WEDNESDAY;
 					}
 break;
 case 26:
-//#line 176 "parser.y"
+//#line 180 "parser.y"
 {
 						yyval.ival = GregorianCalendar.THURSDAY;
 					}
 break;
 case 27:
-//#line 180 "parser.y"
+//#line 184 "parser.y"
 {
 						yyval.ival = GregorianCalendar.FRIDAY;
 					}
 break;
 case 28:
-//#line 184 "parser.y"
+//#line 188 "parser.y"
 {
 						yyval.ival = GregorianCalendar.SATURDAY;
 					}
 break;
 case 29:
-//#line 188 "parser.y"
+//#line 192 "parser.y"
 {
 						yyval.ival = GregorianCalendar.SUNDAY;
 					}
 break;
-//#line 596 "Parser.java"
+//#line 600 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####
