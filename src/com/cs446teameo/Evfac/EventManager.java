@@ -153,6 +153,18 @@ public class EventManager implements EventAccess{
 			return null;
 		}
 	}
+	
+	public boolean updateEventTime(int eid, long start_time, long end_time) {
+		String cond = "_id="+eid;
+		ContentValues val = new ContentValues();
+		
+		val.put(Database.EVENT_START, start_time);
+		val.put(Database.EVENT_END, end_time);
+		
+		ebase.update(ebase.getEventTable(), val, cond);
+		notifyBG("ACTION_UPDATE_EVENT", ""+eid);
+		return true;
+	}
 
 	/* CALVIN - FILL THESE METHODS - START */	
 	/*
