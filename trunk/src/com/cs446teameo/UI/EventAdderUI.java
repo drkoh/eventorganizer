@@ -152,7 +152,10 @@ public class EventAdderUI extends Frame{
 				{
 					src.add(NONE); 													// Add the repeat option
 					src.add(description.getText().toString()); 						// Add the event name
-					src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					if(profile.getSelectedItem()!=null)
+						src.add(getProfileID((profile.getSelectedItem()).toString())); 	// Add the profile id of the event
+					else
+						src.add("");
 					src.add(location.getText().toString()); 						// Add the event location
 					
 					// Add the start time
@@ -244,7 +247,7 @@ public class EventAdderUI extends Frame{
 					src.add(endDate.getMonth());
 					src.add(endDate.getDayOfMonth());
 				}
-				
+				Log.d(field, "enter database create");
 				int res = EventFactory.getInstance().createEvent(src);
 				if(res != ErrorCode.SUCCESS){
 					//TODO: ADD AN NOTIFICATION TO THE USER
