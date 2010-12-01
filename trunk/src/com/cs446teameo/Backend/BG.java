@@ -69,7 +69,7 @@ public class BG extends Service {
 			TimeSet tmp = null;
 			try {
 				tmp = RD.parse();
-			//	Log.i("trig", tmp);
+				Log.i("trig", ""+tmp);
 				Log.i("trig", ((Boolean)(tmp == null)).toString());
 				Log.i("trig", "instance:" + ((Boolean)(tmp instanceof RepeatSet)).toString());
 				Log.i("trig","time:" + (((Boolean)(((RepeatSet)(tmp)).time == null)).toString()));
@@ -77,18 +77,22 @@ public class BG extends Service {
 				Log.i("bg", "repeater error: "+e.toString());
 			}
 			
-			if (tmp == null) return; //return since the event does not exist anymore
+			if (tmp == null) {
+				Log.i("bg", "tmp is null will quite function");
+				return; //return since the event does not exist anymore
+			}
 			
-			TimerTask start = new StatusChange(eid);
 			Timer schEvent = new Timer();
 			timerMap.put(eid, schEvent);
 			
+			Log.i("bg", "setting the events******************");
 			//set the start event
-			schEvent.schedule(start, currEvt.getStartTime());
+			TimerTask start = new StatusChange(eid);
+			schEvent.schedule(start, tmp.nextTrigger().getTime());
 			
 			//Set the end time event
-			TimerTask end = new changeDefault(1, eid, currEvt, tmp);
-			schEvent.schedule(end, currEvt.getEndTime());
+			TimerTask end = new changeDefault(1, eid, tmp);
+			schEvent.schedule(end, tmp.nextEndtime().getTime());
 		}
 	}
 	
@@ -174,6 +178,7 @@ public class BG extends Service {
 	
 	private void setProfile(int volume, boolean vibrate)
 	{
+		Log.i("bg", "setProfile: volume is:"+volume+"; vibrate is:"+vibrate);
 		// Set all of their volumes to be same (notify them with a vibration)
 		audioManager.setStreamVolume (AudioManager.STREAM_VOICE_CALL, volscale(volume, AudioManager.STREAM_VOICE_CALL), AudioManager.FLAG_VIBRATE);
 		audioManager.setStreamVolume (AudioManager.STREAM_SYSTEM, volscale(volume, AudioManager.STREAM_SYSTEM), AudioManager.FLAG_VIBRATE);
@@ -192,11 +197,13 @@ public class BG extends Service {
 		private int eventid;
 
 		StatusChange(int id){
+			Log.i("bg", "statusChange created******************");
 			this.eventid = id;
 		}
 		
 		public void run() {
 			Profile prof = PM.getProfile(emap.get(eventid).getPid());
+			Log.i("bg", "statusChange running******************");
 			setProfile(prof.getVolume(), prof.getVibrate());
 		}
 	}
@@ -204,21 +211,18 @@ public class BG extends Service {
 	class changeDefault extends TimerTask {
 		int pid;
 		int eid;
-		Event event;
 		TimeSet time;
 		
-		changeDefault(int defaultpid, int id, Event e, TimeSet time){
+		changeDefault(int defaultpid, int id, TimeSet time){
 			this.pid = defaultpid;
 			this.eid = id;
-			this.event = e;
 			this.time = time;
 		}
 		
 		public void run() {
 			Profile prof = PM.getProfile(pid);
 			setProfile(prof.getVolume(), prof.getVibrate());
-			//EM.updateEventTime(eid, time.nextTrigger(), time.nextEndTime);
-			//EM.updateEvent(event, eid);
+			EM.updateEventTime(eid, time.nextTrigger().getTimeInMillis(), time.nextEndtime().getTimeInMillis());
 		}
 	}
 }

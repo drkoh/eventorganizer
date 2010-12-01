@@ -105,6 +105,7 @@ public class Event {
 
 	public void setTime(short integer, List<Object> list) {
 		// TODO Auto-generated method stub
+		Log.i("repeater", ""+integer);
 		if(integer == EventAdderUI.NONE){
 			GregorianCalendar start = new GregorianCalendar((Integer)list.get(2),(Integer)list.get(3),
 					(Integer)list.get(4),(Integer)list.get(0),(Integer)list.get(1));
@@ -122,6 +123,7 @@ public class Event {
 				this.end_time = end.getTimeInMillis() / 1000;
 			}
 			this.time_text = tset.toString();
+			Log.i("repeater", this.time_text);
 		}else{
 			RepeatSet set = null;
 			switch(integer){

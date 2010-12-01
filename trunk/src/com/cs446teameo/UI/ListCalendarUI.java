@@ -36,8 +36,6 @@ public class ListCalendarUI extends Frame{
 		}
 		owner.setContentView(R.layout.listcalendar);
 		_instance.init();
-		
-		setUI();
 	}
 
 	@Override

@@ -36,7 +36,7 @@ public class SingleSet extends TimeSet{
 		buf.append("y");
 		buf.append(start.get(GregorianCalendar.YEAR));
 		buf.append(")");
-		buf.append(" _ ");
+		buf.append(" $ ");
 		buf.append("h");
 		buf.append(end.get(GregorianCalendar.HOUR_OF_DAY));
 		buf.append(":");
