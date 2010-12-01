@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
+import android.util.Log;
+
 
 public abstract class RepeatSet extends TimeSet{
 	Time time = null;
@@ -13,12 +15,15 @@ public abstract class RepeatSet extends TimeSet{
 
 	public void setField(int field,ArrayList<Integer> target){
 		if(field == TIME_OF_DAY){
+			Log.d("ev", "enter set ddd");
 			if(time == null)
 				time = new Time();
 			time.set(target.get(0), target.get(1), target.get(2), target.get(3));
 		}
-		else if(field == DATE)
+		else if(field == DATE){
+			Log.d("ev", "enter set field");
 			setDate(target);
+		}
 		else{
 			//TODO:
 		}

@@ -3,16 +3,17 @@ package com.cs446teameo.Event;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 
 import android.R;
+import android.util.Log;
 
 import com.cs446teameo.Actor.BgProcesser;
 import com.cs446teameo.Parameter.ErrorCode;
 import com.cs446teameo.UI.EventAdderUI;
-import com.cs446teameo.repeater.Anniversary;
 import com.cs446teameo.repeater.*;
 import com.cs446teameo.Main.Main;
 
@@ -123,6 +124,13 @@ public class Event {
 			this.time_text = tset.toString();
 		}else{
 			RepeatSet set = null;
+			StringBuffer buf = new StringBuffer();
+			Iterator<Integer> it = ((ArrayList<Integer>)list.get(4)).iterator();
+			while(it.hasNext()){
+				buf.append(it.next());
+				buf.append(" ");
+			}
+			Log.d("weekly error", buf.toString());
 			switch(integer){
 				case EventAdderUI.DAILY: set = new Daily();break;
 				case EventAdderUI.WEEKLY: set = new Weekly();break;
@@ -130,13 +138,13 @@ public class Event {
 				case EventAdderUI.YEARLY: set = new Anniversary();break;
 			}
 			ArrayList<Integer> src = new ArrayList<Integer>();
-			for(int i=0;i<3;i++)
+			for(int i=0;i<4;i++)
 				src.add((Integer) list.get(i));
 			set.setField(RepeatSet.TIME_OF_DAY, src);
 			switch(integer){
 				case EventAdderUI.DAILY:break;
 				case EventAdderUI.WEEKLY: {
-					set.setField(RepeatSet.DATE, (ArrayList<Integer>) list.get(4));
+					set.setField(RepeatSet.DATE, ((ArrayList<Integer>)list.get(4)));
 					break;
 				}
 				case EventAdderUI.MONTHLY:{
@@ -154,6 +162,7 @@ public class Event {
 			this.time_text = set.toString();
 			this.start_time = set.nextTrigger().getTimeInMillis() / 1000;
 			this.end_time = this.start_time + set.period();
+			Log.i("repeater", time_text);
 		}
 	}
 }

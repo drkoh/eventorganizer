@@ -10,6 +10,8 @@ import java.io.StringBufferInputStream;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
+import android.util.Log;
+
 
 public class Driver {
 	private static Driver _instance = null;
@@ -44,6 +46,7 @@ public class Driver {
 	
 	@SuppressWarnings("deprecation")
 	public void setString(String s){
+		Log.i("repeater", ((Boolean)(s == null)).toString());
 		is = new StringBufferInputStream(s);
 		lexer = new Lexer(is);
 		parser = new Parser();
