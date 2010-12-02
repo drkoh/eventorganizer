@@ -1,6 +1,7 @@
 package com.cs446teameo.UI;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import android.database.Cursor;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class DailyCalendarUI extends Frame{
 	Button rightButton = null;
 	Button exitButton = null;
 	Button createButton = null;
-	TableLayout eventTable = null;
+	static TableLayout eventTable = null;
 	int currentYear, currentMonth, currentDay, currentDayOfTheWeek;
 	String dateString;
 	public static boolean calendarSet = false;
@@ -160,12 +161,12 @@ public class DailyCalendarUI extends Frame{
 		{
 			calendarSet = false;
 		}
-		setUI(calendar);
 		this.leftButton = (Button) owner.findViewById(R.dailycalendar.leftButton);
 		this.rightButton = (Button) owner.findViewById(R.dailycalendar.rightButton);	
 		this.createButton = (Button) owner.findViewById(R.dailycalendar.createButton);
 		this.exitButton = (Button) owner.findViewById(R.dailycalendar.exitButton);	
-		this.eventTable = (TableLayout) owner.findViewById(R.dailycalendar.eventTable);	
+		this.eventTable = (TableLayout) owner.findViewById(R.dailycalendar.eventTable);
+		setUI(calendar);
 	}
 
 	// Sets all the text-based UI components
@@ -177,13 +178,79 @@ public class DailyCalendarUI extends Frame{
         currentDayOfTheWeek = c.get(Calendar.DAY_OF_WEEK);
         dateString = dayNames[currentDayOfTheWeek - 1] + ", " + monthNames[currentMonth]  + " " + currentDay + ", " + currentYear;
         date.setText(dateString);
-        setEventsUI(c);
+        setEventsUI();
 	}
 
 	// Sets all the event-based UI components
-	public void setEventsUI(Calendar c)
+	public void setEventsUI()
 	{
-        
+		eventTable.removeAllViews();
+		Log.i(field,"Start Set UI!");
+		Cursor tempCursor = EventManager.allEventsOfDay(calendar);
+        int cursorSize = tempCursor.getCount();
+        Log.e("cal", "count=" + cursorSize);
+        Button eventButtons[] = new Button[cursorSize];
+		Log.i("ListCalendar","Cursor size = " + cursorSize);
+        int count = 0;
+        if(cursorSize != 0)
+        {
+    		Log.i("ListCalendar","Cursor size != 0");
+			Log.i("ListCalendar", ""+ count);
+    		while (tempCursor.moveToNext())
+    		{
+    			eventButtons[count] = new Button(owner);
+	            
+    			// Get the "ListCalendar" values of each event
+	            int eventID = tempCursor.getInt(tempCursor.getColumnIndex(Database.EVENT_ID));
+	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
+	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
+	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
+	            Date sday = new Date(startTime);
+	            Date eday = new Date(endTime); 
+	            
+	            
+	            Calendar today = Calendar.getInstance();
+	            Calendar thisDayStart = CalendarSetting.toGregorianCalendar(startTime);
+	            Calendar thisDayEnd = CalendarSetting.toGregorianCalendar(endTime);
+	            if(today.equals(thisDayStart) || today.equals(thisDayEnd) || (today.after(thisDayStart) && today.before(thisDayEnd)))
+	            {
+	            	CalendarSetting.setPresentStyle(eventButtons[count]);
+	            }
+	            else if(thisDayStart.after(today))
+	            {
+	            	CalendarSetting.setFutureStyle(eventButtons[count]);
+	            }
+	            else
+	            {
+	            	CalendarSetting.setPastStyle(eventButtons[count]);
+	            }
+
+	            // Create a button, add event info onto it, and add it to the event-table layout (should display events here!!!)	            
+	            eventButtons[count].setText("Name: " + name + "\nStart: " + sday.toLocaleString() + "\nEnd:" + eday.toLocaleString());
+	            eventTable.addView(eventButtons[count]);
+
+	            final String Name = name;
+	    		final int EventID = eventID;
+				
+				// Add functionality to the button
+	    		eventButtons[count].setOnClickListener(new OnClickListener(){
+					@Override
+					public void onClick(View arg0) 
+					{
+						EditEvent.editedEventName = Name.toString();
+						EditEvent.editedEventID = EventID;
+						EditEvent.contextSwitch();
+					}
+				});
+	    		count++;
+	        } 
+        }
+        else
+        {
+    		Log.i("ListCalendar","Cursor size == 0");
+        }
+
+		Log.i("ListCalendar","End Set UI!");
 	}
 
 }

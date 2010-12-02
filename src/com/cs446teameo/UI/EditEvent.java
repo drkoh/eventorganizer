@@ -1,6 +1,7 @@
 package com.cs446teameo.UI;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.cs446teameo.Actor.EventFactory;
 import com.cs446teameo.Event.Event;
@@ -61,6 +62,9 @@ public class EditEvent extends Frame{
 	ArrayList<Profile> profileList = null;	
 	ArrayList<Event> eventList = null;	
 	private static EditEvent _instance = null;
+	public static Calendar editedCalendar = null;
+	public static String editedEventName = null;
+	public static int editedEventID = -1;
 	
 	private EditEvent() {
 		super("EditEvent");
@@ -142,7 +146,7 @@ public class EditEvent extends Frame{
 		deleteButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				int res = ProfileManager.getInstance().deleteProfile(getEventID(description.getText().toString()));
+				int res = EventManager.getInstance().deleteEvent(editedEventID);
 				MenuUI.contextSwitch();
 			}
 		});
@@ -263,7 +267,7 @@ public class EditEvent extends Frame{
 						src.add(endDate.getDayOfMonth());
 					}
 					Log.d(field, "enter database create");
-					int res = EventFactory.getInstance().createEvent(src);
+					int res = EventFactory.getInstance().editEvent(src, editedEventID);
 					if(res != ErrorCode.SUCCESS){
 						//TODO: ADD AN NOTIFICATION TO THE USER
 						Log.e(field,"Add Event Error: " + res);
@@ -310,6 +314,10 @@ public class EditEvent extends Frame{
 		this.endDateLayout = (LinearLayout) owner.findViewById(R.editevent.endDateLayout);
 		this.repeatStatusLayout = (LinearLayout) owner.findViewById(R.editevent.repeatStatusLayout);
 		this.repeatStatusText = (TextView) owner.findViewById(R.editevent.repeatStatusText);
+		if(editedEventName != null)
+		{
+			this.description.setText(editedEventName);
+		}
 	}
 	
 	// Load all the profile names onto the profile spinner

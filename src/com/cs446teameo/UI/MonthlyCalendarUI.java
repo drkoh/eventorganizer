@@ -216,7 +216,7 @@ public class MonthlyCalendarUI extends Frame{
 					CalendarSetting.setPastStyle(monthlyButton[x][y]);
 				}
 			}
-			else if(thisDay.equals(today))
+			if(CalendarSetting.dayEquals(today, thisDay))
 			{
 				CalendarSetting.setCurrentStyle(monthlyButton[x][y]);
 			}
