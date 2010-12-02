@@ -39,7 +39,6 @@ public class EventAdderUI extends Frame{
 	EditText location = null;
 	Spinner profile = null;
 	Spinner repeatOption = null;
-	AutoCompleteTextView repeatEvery = null;
 	DatePicker startDate = null;
 	DatePicker endDate = null;
 	LinearLayout startDateLayout = null;
@@ -136,7 +135,6 @@ public class EventAdderUI extends Frame{
 				description.setText("");
 				profile.setSelection(0);
 				repeatOption.setSelection(0);
-				repeatEvery.setText("");
 			}
 		});
 		
@@ -291,8 +289,6 @@ public class EventAdderUI extends Frame{
 		ArrayAdapter<CharSequence> repeatAdapter = ArrayAdapter.createFromResource(Frame.owner, R.array.repeat_array, android.R.layout.simple_spinner_item);
 		repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    repeatOption.setAdapter(repeatAdapter);
-		this.repeatEvery = (AutoCompleteTextView) owner.findViewById(R.eventadder.repeatEvery);
-		this.repeatEvery.setSingleLine();
 		this.startDate = (DatePicker) owner.findViewById(R.eventadder.startDate);
 		this.endDate = (DatePicker) owner.findViewById(R.eventadder.endDate);
 		this.sTimePicker = (TimePicker) owner.findViewById(R.eventadder.startTime);

@@ -2,6 +2,7 @@ package com.cs446teameo.Event;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
@@ -114,16 +115,14 @@ public class Event {
 			SingleSet tset = new SingleSet();
 			tset.setField(SingleSet.START, start);
 			tset.setField(SingleSet.END, end);
-			if(tset.nextTrigger() == null){
-				this.start_time = -1;
-				this.end_time = -1;
-			}
-			else{
-				this.start_time = start.getTimeInMillis() / 1000;
-				this.end_time = end.getTimeInMillis() / 1000;
-			}
+			this.start_time = start.getTimeInMillis() ;
+			this.end_time = end.getTimeInMillis();
 			this.time_text = tset.toString();
 			Log.i("repeater", this.time_text);
+			Date sday = new Date(start_time);
+			Date eday = new Date(end_time);
+			Log.d("repeater","startTime:" + sday.toLocaleString() );
+			Log.d("repeater","endTime:" + eday.toLocaleString());
 		}else{
 			RepeatSet set = null;
 			switch(integer){
@@ -135,7 +134,10 @@ public class Event {
 			ArrayList<Integer> src = new ArrayList<Integer>();
 			for(int i=0;i<4;i++)
 				src.add((Integer) list.get(i));
+			Log.i("eeee", list.toString());
 			set.setField(RepeatSet.TIME_OF_DAY, src);
+			Log.i("eeee", "field = " + integer);
+			Log.i("eeee", set.time.toString());
 			switch(integer){
 				case EventAdderUI.DAILY:break;
 				case EventAdderUI.WEEKLY: {
@@ -156,16 +158,18 @@ public class Event {
 					break;
 				}
 				case EventAdderUI.YEARLY:{
-			//		you forget to do something here;
-			//		set = new Anniversary();
+				//	set = new Anniversary();
 					break;
 				}
 			}
 			this.time_text = set.toString();
-			this.start_time = set.nextTrigger().getTimeInMillis() / 1000;
+			this.start_time = set.nextTrigger().getTimeInMillis();
 			this.end_time = this.start_time + set.period();
 			Log.i("repeater", time_text);
 		}
+		
+		
+		
 	}
 	
     public static long toUnixTime(GregorianCalendar time)

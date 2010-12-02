@@ -24,7 +24,9 @@ public class ProfileManager {
 	}
 	
 	private ProfileManager(){
+		Log.d("P", "1");
 		ebase = Database.open(owner);
+		Log.d("P", "2");
 	}
 	
 	public static ProfileManager getInstance(){

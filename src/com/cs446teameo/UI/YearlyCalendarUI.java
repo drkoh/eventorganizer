@@ -302,29 +302,17 @@ public class YearlyCalendarUI extends Frame{
 	private void setEventsUI()
 	{
 		int eventOccurs = CalendarSetting.NO_EVENT_OCCURS;
-		eventOccurs = CalendarSetting.eventOccursWhen(0, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, januaryButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(1, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, februaryButton);	
-		eventOccurs = CalendarSetting.eventOccursWhen(2, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, marchButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(3, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, aprilButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(4, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, mayButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(5, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, juneButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(6, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, julyButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(7, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, augustButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(8, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, septemberButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(9, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, octoberButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(10, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, novemberButton);
-		eventOccurs = CalendarSetting.eventOccursWhen(11, Calendar.MONTH, calendar);
 		CalendarSetting.setEventsTime(eventOccurs, decemberButton);
 	}
 	
