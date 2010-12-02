@@ -156,6 +156,7 @@ public class ListCalendarUI extends Frame{
     			// Get the "ListCalendar" values of each event
 	            int eventID = tempCursor.getInt(tempCursor.getColumnIndex(Database.EVENT_ID));
 	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
+	            String location = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_LOCATION));
 	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
 	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
 	            Date sday = new Date(startTime);
@@ -180,10 +181,11 @@ public class ListCalendarUI extends Frame{
 	            
 	            
 	            // Create a button, add event info onto it, and add it to the event-table layout (should display events here!!!)
-	            eventButtons[count].setText("Name: " + name + "\nStart: " + sday.toLocaleString() + "\nEnd:" + eday.toLocaleString());
+	            eventButtons[count].setText("Name: " + name + ", Location: " + location + "\nStart: " + sday.toLocaleString() + "\nEnd:" + eday.toLocaleString());
 	    		eventTable.addView(eventButtons[count]);
 	    		
 	    		final String Name = name;
+	            final String Location = location;
 	    		final int EventID = eventID;
 				
 				// Add functionality to the button
@@ -193,6 +195,7 @@ public class ListCalendarUI extends Frame{
 					{
 						EditEvent.editedEventName = Name.toString();
 						EditEvent.editedEventID = EventID;
+						EditEvent.editedEventLocation = Location.toString();
 						EditEvent.contextSwitch();
 					}
 				});
