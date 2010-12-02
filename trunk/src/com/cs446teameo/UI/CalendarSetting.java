@@ -57,7 +57,7 @@ public class CalendarSetting {
         d.setColorFilter(filter);
 	}
 	
-	// Set the color and style for the past event
+	// Set the color and style for the future event
 	public static void setFutureStyle(Button button)
 	{
 		button.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);

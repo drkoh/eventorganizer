@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.*;
 
+import com.cs446teameo.Evfac.EventManager;
 import com.cs446teameo.Main.R;
 
 public class MonthlyCalendarUI extends Frame{
@@ -173,6 +174,7 @@ public class MonthlyCalendarUI extends Frame{
 			{
 				monthlyButton[i][j].setText("");
 				monthlyButton[i][j].setEnabled(false);
+				CalendarSetting.clearStyle(monthlyButton[i][j]);
 			}
 		}
 		int x = 0, y = 0;
@@ -184,6 +186,7 @@ public class MonthlyCalendarUI extends Frame{
 		Calendar tempCalendar = (Calendar)calendar.clone();
 		tempCalendar.set(Calendar.DAY_OF_MONTH, 1);
 		y = (tempCalendar.get(Calendar.DAY_OF_WEEK) - 1);
+		Calendar today = (Calendar)Calendar.getInstance();
 		for(int i = 1; i <= maxDays; i++)
 		{
 			if(y == 7)
@@ -195,13 +198,29 @@ public class MonthlyCalendarUI extends Frame{
 			monthlyButton[x][y].setText("" + i);
 			monthlyButton[x][y].setEnabled(true);
 			
-			// Clear the button's style
-			CalendarSetting.clearStyle(monthlyButton[x][y]);
+			// Set the colors and styles of each day based on the events
+			Calendar thisDay = (Calendar)calendar.clone();
+			thisDay.set(Calendar.DAY_OF_MONTH, i);
+			if(EventManager.getInstance().eventOccursOnDay(thisDay))
+			{
+				if(CalendarSetting.dayEquals(thisDay, today))
+				{
+					CalendarSetting.setPresentStyle(monthlyButton[x][y]);
+				}
+				else if(thisDay.after(today))
+				{
+					CalendarSetting.setFutureStyle(monthlyButton[x][y]);
+				}
+				else if(thisDay.before(today))
+				{
+					CalendarSetting.setPastStyle(monthlyButton[x][y]);
+				}
+			}
+			else if(thisDay.equals(today))
+			{
+				CalendarSetting.setCurrentStyle(monthlyButton[x][y]);
+			}
 			
-			// Set the button's style based on the event
-			int eventOccurs = CalendarSetting.NO_EVENT_OCCURS;
-			//eventOccurs = CalendarSetting.eventOccursWhen(i, Calendar.DAY_OF_MONTH, calendar);
-			//CalendarSetting.setEventsTime(eventOccurs, monthlyButton[x][y]);
 			
 			final int xx = x;
 			final int yy = y;
