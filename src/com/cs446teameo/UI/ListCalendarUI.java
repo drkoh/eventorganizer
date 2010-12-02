@@ -172,13 +172,13 @@ public class ListCalendarUI extends Frame{
 
     public static long toUnixTime(GregorianCalendar time)
     {
-            return time.getTimeInMillis() / 1000;
+            return time.getTimeInMillis();
     }
     
     public static GregorianCalendar toGregorianCalendar(long time)
     {
             GregorianCalendar temp = new GregorianCalendar();
-            temp.setTimeInMillis(time * 1000);
+            temp.setTimeInMillis(time);
             return temp;
     }
 
