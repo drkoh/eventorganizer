@@ -200,8 +200,8 @@ public class MonthlyCalendarUI extends Frame{
 			
 			// Set the button's style based on the event
 			int eventOccurs = CalendarSetting.NO_EVENT_OCCURS;
-			eventOccurs = CalendarSetting.eventOccursWhen(i, Calendar.DAY_OF_MONTH, calendar);
-			CalendarSetting.setEventsTime(eventOccurs, monthlyButton[x][y]);
+			//eventOccurs = CalendarSetting.eventOccursWhen(i, Calendar.DAY_OF_MONTH, calendar);
+			//CalendarSetting.setEventsTime(eventOccurs, monthlyButton[x][y]);
 			
 			final int xx = x;
 			final int yy = y;

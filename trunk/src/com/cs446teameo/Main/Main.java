@@ -26,10 +26,11 @@ public class Main extends Activity{
         super.onCreate(savedInstanceState);
         Log.e("www","10");
         Frame.setActivity(this);
-        MenuUI.contextSwitch();
         Log.e("www","2");
         Intent bgtimer = new Intent(this, BG.class);
         EventManager.setActivity(this);
+        ProfileManager.setActivity(this);
         this.startService(bgtimer);
+        MenuUI.contextSwitch();
     }
 }

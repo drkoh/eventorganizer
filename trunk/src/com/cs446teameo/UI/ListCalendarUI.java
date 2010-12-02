@@ -1,6 +1,8 @@
 package com.cs446teameo.UI;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import android.database.Cursor;
 import android.util.Log;
@@ -151,10 +153,11 @@ public class ListCalendarUI extends Frame{
 	            String name = tempCursor.getString(tempCursor.getColumnIndex(Database.EVENT_NAME));
 	            long startTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_START));
 	            long endTime = tempCursor.getLong(tempCursor.getColumnIndex(Database.EVENT_END));
-
+	            Date sday = new Date(startTime);
+	            Date eday = new Date(endTime); 
 	            // Create a button, add event info onto it, and add it to the event-table layout (should display events here!!!)
 	            eventButtons[count] = new Button(owner);
-	            eventButtons[count].setText("Name: " + name + "\nStart: " + startTime + "\nEnd:" + endTime);
+	            eventButtons[count].setText("Name: " + name + "\nStart: " + sday.toLocaleString() + "\nEnd:" + eday.toLocaleString());
 	    		eventTable.addView(eventButtons[count]);
 	    		count++;
 	        } 
@@ -166,5 +169,17 @@ public class ListCalendarUI extends Frame{
 
 		Log.i("ListCalendar","End Set UI!");
 	}
+
+    public static long toUnixTime(GregorianCalendar time)
+    {
+            return time.getTimeInMillis() / 1000;
+    }
+    
+    public static GregorianCalendar toGregorianCalendar(long time)
+    {
+            GregorianCalendar temp = new GregorianCalendar();
+            temp.setTimeInMillis(time * 1000);
+            return temp;
+    }
 
 }

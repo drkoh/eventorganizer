@@ -1,5 +1,7 @@
 package com.cs446teameo.UI;
 
+import java.util.ArrayList;
+
 import com.cs446teameo.Main.R;
 import com.cs446teameo.Profile.Profile;
 import com.cs446teameo.Profile.ProfileManager;
@@ -99,6 +101,24 @@ public class MenuUI extends Frame{
 		SynchronizeButton.setVisibility(View.GONE);
 		if(this.AddEventButton == null){
 			Log.e("field", "reg error");
+		}
+		loadDefaultProfiles();
+	}
+	
+	private void loadDefaultProfiles()
+	{
+		ArrayList<Profile> profileList = new ArrayList<Profile>();
+		profileList.clear();
+		ProfileManager tempPManager = ProfileManager.getInstance();
+		int res = tempPManager.listProfile(profileList);
+		if(res == -1)
+		{
+			Profile profile1 = new Profile("Default", false, 50);
+			ProfileManager.getInstance().createNewProfile(profile1);
+			Profile profile2 = new Profile("Silent", false, 0);
+			ProfileManager.getInstance().createNewProfile(profile2);
+			Profile profile3 = new Profile("Vibrate", true, 0);
+			ProfileManager.getInstance().createNewProfile(profile3);
 		}
 	}
 }

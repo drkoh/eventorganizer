@@ -43,7 +43,7 @@ public abstract class RepeatSet extends TimeSet{
 		GregorianCalendar ret = this.nextTrigger();
 		if(ret == null)
 			return null;
-		ret.add(GregorianCalendar.MILLISECOND, (int) (period()*1000));
+		ret.add(GregorianCalendar.MILLISECOND, (int) (period()));
 		return ret;
 	}
 }

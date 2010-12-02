@@ -32,6 +32,7 @@ public class EventFactory {
 		event.setPid((Integer)src.get(2)); //The second parameter of this should be the volume to pass, which is either -1 or a positive number
 		event.setLocation((String) src.get(3));
 		
+		Log.i("west", src.subList(4, src.size()).toString());
 		event.setTime((Short)src.get(0),src.subList(4, src.size()));
 		Log.i("eventfac", "go here");
 		return accessor.createNewEvent(event) << ErrorCode.DB_BITS;
