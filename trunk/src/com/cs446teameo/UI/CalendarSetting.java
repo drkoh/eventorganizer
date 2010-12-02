@@ -1,6 +1,7 @@
 package com.cs446teameo.UI;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import android.graphics.Color;
 import android.graphics.PorterDuffColorFilter;
@@ -34,7 +35,6 @@ public class CalendarSetting {
 	// Set the color and style for the present event
 	public static void setCurrentStyle(Button button)
 	{
-		button.setTextColor(Color.RED);
 		button.setTextSize(16);
 		button.setTypeface(Typeface.SERIF, Typeface.BOLD);
 	}
@@ -42,6 +42,7 @@ public class CalendarSetting {
 	// Set the color and style for the present event
 	public static void setPresentStyle(Button button)
 	{
+		button.setTextColor(Color.WHITE);
 		button.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		Drawable d = button.getBackground();
         PorterDuffColorFilter filter = new PorterDuffColorFilter(presentEventColor, Mode.SRC_ATOP );
@@ -51,6 +52,7 @@ public class CalendarSetting {
 	// Set the color and style for the past event
 	public static void setPastStyle(Button button)
 	{
+		button.setTextColor(Color.WHITE);
 		button.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
 		Drawable d = button.getBackground();
         PorterDuffColorFilter filter = new PorterDuffColorFilter(pastEventColor, Mode.SRC_ATOP );
@@ -60,6 +62,7 @@ public class CalendarSetting {
 	// Set the color and style for the future event
 	public static void setFutureStyle(Button button)
 	{
+		button.setTextColor(Color.WHITE);
 		button.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
 		Drawable d = button.getBackground();
         PorterDuffColorFilter filter = new PorterDuffColorFilter(futureEventColor, Mode.SRC_ATOP );
@@ -101,4 +104,16 @@ public class CalendarSetting {
 		return c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH)
 				&& c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR);
 	}
+	
+    public static long toUnixTime(GregorianCalendar time)
+    {
+            return time.getTimeInMillis();
+    }
+    
+    public static GregorianCalendar toGregorianCalendar(long time)
+    {
+            GregorianCalendar temp = new GregorianCalendar();
+            temp.setTimeInMillis(time);
+            return temp;
+    }
 }

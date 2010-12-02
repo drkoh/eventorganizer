@@ -213,7 +213,7 @@ public class EventManager implements EventAccess{
 	}
 
 	// Returns all the events from the event table, that occur at the same time as calendar. Must be sorted by Start Time.
-	public ArrayList<Event> allEventsOfDay(Calendar calendar)
+	public static Cursor allEventsOfDay(Calendar calendar)
 	{
 		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
 				calendar.get(Calendar.DAY_OF_MONTH), 0, 0);
@@ -228,21 +228,7 @@ public class EventManager implements EventAccess{
 						Database.EVENT_START + "<=" + ed + " order by " + Database.EVENT_START;
 		
 		Cursor c = selectEvent(cond);
-		
-		if (c.getCount() > 0){
-			ArrayList<Event> l = new ArrayList<Event>();
-			Log.i("bg", "here2");
-			while (c.moveToNext()){
-				Event e = new Event(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), c.getString(4), c.getInt(5), c.getString(6));
-				l.add(e);
-			}
-			Log.i("bg", "here3");
-			c.close();
-			return l;
-		}
-		else
-			return null;
-		
+		return c;
 	}
 
 	// Does any event occur on the specified day?
@@ -272,19 +258,20 @@ public class EventManager implements EventAccess{
 		}
 	}
 	
-	// Does any event occur on the specified year?
+	// Does any event occur on the specified month?
 	public static boolean eventOccursOnMonth(Calendar calendar)
 	{
-		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) ,1, 0, 0);
-		long st = calendar.getTimeInMillis();
+		Calendar tempCalendar = (Calendar) calendar.clone();
+		tempCalendar.set(tempCalendar.get(Calendar.YEAR), tempCalendar.get(Calendar.MONTH) ,1, 0, 0);
+		long st = tempCalendar.getTimeInMillis();
 		
-		if (calendar.get(Calendar.MONTH) == 12){
-			calendar.set(calendar.get(Calendar.YEAR)+1, 1, 1, 0, 0);	
+		if (tempCalendar.get(Calendar.MONTH) == 12){
+			tempCalendar.set(tempCalendar.get(Calendar.YEAR)+1, 1, 1, 0, 0);	
 		}
 		else{
-			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, 1, 0, 0);
+			tempCalendar.set(tempCalendar.get(Calendar.YEAR), tempCalendar.get(Calendar.MONTH)+1, 1, 0, 0);
 		}
-		long ed = calendar.getTimeInMillis();
+		long ed = tempCalendar.getTimeInMillis();
 		
 		String cond = "where " + Database.EVENT_START + ">=" + st + " and " + 
 						Database.EVENT_START + "<" + ed + " order by " + Database.EVENT_START;

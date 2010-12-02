@@ -302,18 +302,61 @@ public class YearlyCalendarUI extends Frame{
 	private void setEventsUI()
 	{
 		int eventOccurs = CalendarSetting.NO_EVENT_OCCURS;
-		CalendarSetting.setEventsTime(eventOccurs, januaryButton);
-		CalendarSetting.setEventsTime(eventOccurs, februaryButton);	
-		CalendarSetting.setEventsTime(eventOccurs, marchButton);
-		CalendarSetting.setEventsTime(eventOccurs, aprilButton);
-		CalendarSetting.setEventsTime(eventOccurs, mayButton);
-		CalendarSetting.setEventsTime(eventOccurs, juneButton);
-		CalendarSetting.setEventsTime(eventOccurs, julyButton);
-		CalendarSetting.setEventsTime(eventOccurs, augustButton);
-		CalendarSetting.setEventsTime(eventOccurs, septemberButton);
-		CalendarSetting.setEventsTime(eventOccurs, octoberButton);
-		CalendarSetting.setEventsTime(eventOccurs, novemberButton);
-		CalendarSetting.setEventsTime(eventOccurs, decemberButton);
+		
+		Calendar thisMonth = (Calendar) calendar.clone();
+		Calendar today = Calendar.getInstance();
+		today.set(Calendar.DAY_OF_MONTH, 1);
+		thisMonth.set(Calendar.DAY_OF_MONTH, 1);
+		thisMonth.set(Calendar.MONTH, 0);
+		setButtonStyle(januaryButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 1);
+		setButtonStyle(februaryButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 2);
+		setButtonStyle(marchButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 3);
+		setButtonStyle(aprilButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 4);
+		setButtonStyle(mayButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 5);
+		setButtonStyle(juneButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 6);
+		setButtonStyle(julyButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 7);
+		setButtonStyle(augustButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 8);
+		setButtonStyle(septemberButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 9);
+		setButtonStyle(octoberButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 10);
+		setButtonStyle(novemberButton, thisMonth, today);
+		thisMonth.set(Calendar.MONTH, 11);
+		setButtonStyle(decemberButton, thisMonth, today);
+	}
+	
+	public void setButtonStyle(Button button, Calendar thisMonth, Calendar today)
+	{
+		Log.d(field, "- Today: " + today.get(Calendar.MONTH) + ", This: " + thisMonth.get(Calendar.MONTH) + " " + button.getText());
+		if(CalendarSetting.monthEquals(thisMonth, today))
+		{
+			Log.d(field, "* Today: " + today.get(Calendar.MONTH) + ", This: " + thisMonth.get(Calendar.MONTH) + " " + button.getText());
+			CalendarSetting.setCurrentStyle(button);
+		}
+		if(EventManager.eventOccursOnMonth(thisMonth))
+		{
+			if(CalendarSetting.monthEquals(thisMonth, today))
+			{
+				Log.d(field, "Today: " + today.get(Calendar.MONTH) + ", This: " + thisMonth.get(Calendar.MONTH) + " " + button.getText());
+				CalendarSetting.setPresentStyle(button);
+			}
+			else if(thisMonth.after(today))
+			{
+				CalendarSetting.setFutureStyle(button);
+			}
+			else if(thisMonth.before(today))
+			{
+				CalendarSetting.setPastStyle(button);
+			}
+		}
 	}
 	
 }
