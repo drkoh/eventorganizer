@@ -55,6 +55,7 @@ public class WeeklyEventAdder extends Dialog implements OnClickListener {
 			days[6] = saturdayCheckbox.isChecked();
 			String[] dayNames = new String[] { "Sunday", "Monday", "Tuesday", 
 								"Wednesday", "Thursday", "Friday", "Saturday"};
+			daysArray.clear();
 			String tempString = "";
     		for(int i = 0; i < 7; i++)
     		{

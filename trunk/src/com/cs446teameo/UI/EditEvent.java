@@ -329,7 +329,7 @@ public class EditEvent extends Frame{
 	// Load all the event information
 	private void loadEvents()
 	{
-		eventList = EventManager.allEvents();
+		eventList = EventManager.getInstance().allEvents();
 	}
 	
 	private int getProfileID (String profileName)
