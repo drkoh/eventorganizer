@@ -112,7 +112,8 @@ public class ProfileManager {
 	            boolean vibrate = intToBoolean(tempCursor.getInt(tempCursor.getColumnIndex(Database.PROFILE_VIB)));
 	            Profile tempProfile = new Profile(pid, name, vibrate, volume);
 	            profileList.add(tempProfile);
-	        } 
+	        }
+    		tempCursor.close();
     		return 0;
         }
         tempCursor.close();

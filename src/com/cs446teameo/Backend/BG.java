@@ -26,6 +26,7 @@ public class BG extends Service {
 	Driver RD = null;
 	AudioManager audioManager;
 	Context context;
+	NotificationManager mNotificationManager;
 	
 	public class LocalBinder extends Binder {
         public BG getService() {
@@ -57,14 +58,10 @@ public class BG extends Service {
 			
 			Event currEvt = tmpelist.get(i);
 			int eid = currEvt.getEid();
-			
-			Log.i("bg", "saving eid: "+ tmpelist.get(i).getEid());
-			emap.put(tmpelist.get(i).getEid(), tmpelist.get(i));
-			
+					
 			Log.i("bg", "working on "+eid);
 			Log.i("bg", "repeat text of "+tmpelist.get(i).getRepeatText());
 			RD.setString(tmpelist.get(i).getRepeatText());
-			Log.i("trig", tmpelist.get(i).getRepeatText());
 			
 			TimeSet tmp = null;
 			try {
@@ -79,24 +76,25 @@ public class BG extends Service {
 			
 			if (tmp == null) {
 				Log.i("bg", "tmp is null will quite function");
-				return; //return since the event does not exist anymore
+				continue; //return since the event does not exist anymore
 			}
 			Profile prof = PM.getProfile(1);
 			
-			Timer schEvent = new Timer();
-			timerMap.put(eid, schEvent);
-			
+			GregorianCalendar cal = tmp.nextTrigger();
+			if (cal == null) continue;
 			Log.i("bg", "setting the events******************");
 			
-			GregorianCalendar cal = tmp.nextTrigger();
-			if (cal == null) return;
-			
+			Timer schEvent = new Timer();
+			timerMap.put(eid, schEvent);
+			emap.put(tmpelist.get(i).getEid(), tmpelist.get(i));
 			//set the start event
 			TimerTask start = new StatusChange(eid);
+			Log.i("bg", "starttime: "+tmp.nextTrigger().getTime().toLocaleString());
 			schEvent.schedule(start, tmp.nextTrigger().getTime());
 			
 			//Set the end time event
 			TimerTask end = new changeDefault(1, eid, tmp);
+			Log.i("bg", "endtime: "+tmp.nextEndtime().getTime().toLocaleString());
 			schEvent.schedule(end, tmp.nextEndtime().getTime());
 		}
 	}
@@ -142,6 +140,9 @@ public class BG extends Service {
 			Log.i("bg", "Error repeater: "+e.toString());
 		}
 		context = getApplicationContext();
+		String ns = Context.NOTIFICATION_SERVICE;
+		mNotificationManager = (NotificationManager) getSystemService(ns);
+		
 		audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		Log.i("bg", "end create");
 	}
@@ -181,12 +182,21 @@ public class BG extends Service {
 		return (vol * audioManager.getStreamMaxVolume(stype))/100;
 	}
 	
-	private void setProfile(int volume, boolean vibrate)
+	private void setProfile(int volume, boolean vibrate, String profName)
 	{
+		Notification notification = new Notification(Notification.DEFAULT_ALL, "EO Notification", 0);
+		CharSequence contentTitle = "EO Notification";
+		CharSequence contentText = "Phone profile changed to "+profName;
+		Intent notificationIntent = new Intent(this, BG.class);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+		
+		mNotificationManager.notify(1, notification);
+		
 		Log.i("bg", "setProfile: volume is:"+volume+"; vibrate is:"+vibrate);
 		// Set all of their volumes to be same (notify them with a vibration)
 		audioManager.setStreamVolume (AudioManager.STREAM_VOICE_CALL, volscale(volume, AudioManager.STREAM_VOICE_CALL), AudioManager.FLAG_VIBRATE);
-		audioManager.setStreamVolume (AudioManager.STREAM_SYSTEM, volscale(volume, AudioManager.STREAM_SYSTEM), AudioManager.FLAG_SHOW_UI);
+		audioManager.setStreamVolume (AudioManager.STREAM_SYSTEM, volscale(volume, AudioManager.STREAM_SYSTEM), AudioManager.FLAG_VIBRATE);
 		audioManager.setStreamVolume (AudioManager.STREAM_RING, volscale(volume, AudioManager.STREAM_RING), AudioManager.FLAG_VIBRATE);
 		audioManager.setStreamVolume (AudioManager.STREAM_ALARM, volscale(volume, AudioManager.STREAM_ALARM), AudioManager.FLAG_VIBRATE);
 
@@ -212,7 +222,7 @@ public class BG extends Service {
 		public void run() {
 			Profile prof = PM.getProfile(emap.get(eventid).getPid());
 			Log.i("bg", "statusChange running******************");
-			setProfile(prof.getVolume(), prof.getVibrate());
+			setProfile(prof.getVolume(), prof.getVibrate(), prof.getDescription());
 		}
 	}
 	
@@ -231,10 +241,13 @@ public class BG extends Service {
 		public void run() {
 			Log.i("bg", "statusChange running******************");
 			Profile prof = PM.getProfile(pid);
-			setProfile(prof.getVolume(), prof.getVibrate());
+			setProfile(prof.getVolume(), prof.getVibrate(), prof.getDescription());
 			GregorianCalendar tmp = time.nextTrigger();
 			if (tmp != null) {
 				EM.updateEventTime(eid, time.nextTrigger().getTimeInMillis(), time.nextEndtime().getTimeInMillis());
+			} else {
+				emap.remove(eid);
+				timerMap.remove(eid);
 			}
 		}
 	}

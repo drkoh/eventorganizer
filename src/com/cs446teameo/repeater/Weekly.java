@@ -44,7 +44,7 @@ public class Weekly extends RepeatSet{
 		for(int i=0;i<7;i++)
 			if(list.dset[i]){
 				buf.append(toDay(i));
-				buf.append(",");
+				buf.append(" ");
 			}
 		buf.deleteCharAt(buf.length()-1);
 		return buf.toString();
