@@ -64,6 +64,7 @@ public class EditEvent extends Frame{
 	private static EditEvent _instance = null;
 	public static Calendar editedCalendar = null;
 	public static String editedEventName = null;
+	public static String editedEventLocation = null;
 	public static int editedEventID = -1;
 	
 	private EditEvent() {
@@ -317,6 +318,10 @@ public class EditEvent extends Frame{
 		if(editedEventName != null)
 		{
 			this.description.setText(editedEventName);
+		}
+		if(editedEventLocation != null)
+		{
+			this.location.setText(editedEventLocation);
 		}
 	}
 	
