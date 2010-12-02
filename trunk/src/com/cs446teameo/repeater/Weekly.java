@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
+import android.util.Log;
+
 
 public class Weekly extends RepeatSet{
 	WeekView list;
@@ -22,16 +24,17 @@ public class Weekly extends RepeatSet{
 		GregorianCalendar now = new GregorianCalendar();
 		if(now.get(GregorianCalendar.HOUR_OF_DAY) > time.startHour ||(
 				now.get(GregorianCalendar.HOUR_OF_DAY) == time.startHour &&
-						now.get(GregorianCalendar.MINUTE) > time.startMinute)){
+						now.get(GregorianCalendar.MINUTE) >= time.startMinute)){
 			now.add(GregorianCalendar.DAY_OF_MONTH, 1);
 		}
 		now.set(GregorianCalendar.HOUR_OF_DAY, time.startHour);
 		now.set(GregorianCalendar.MINUTE, time.startMinute);
-		if(list.nextTrigger(now.get(GregorianCalendar.DAY_OF_WEEK))==-1){
+		//Log.i("","" + now.get(GregorianCalendar.DAY_OF_WEEK)-1));
+		if(list.nextTrigger(now.get(GregorianCalendar.DAY_OF_WEEK)-1)==-1){
 			now.set(GregorianCalendar.DAY_OF_WEEK, GregorianCalendar.SUNDAY);
 			now.add(GregorianCalendar.WEEK_OF_YEAR, 1);
 		}
-		now.set(GregorianCalendar.DAY_OF_WEEK, list.nextTrigger(now.get(GregorianCalendar.DAY_OF_WEEK)));
+		now.set(GregorianCalendar.DAY_OF_WEEK, list.nextTrigger(now.get(GregorianCalendar.DAY_OF_WEEK)-1)+1);
 		now.set(GregorianCalendar.SECOND, 0);
 		return now;
 	}
@@ -62,7 +65,8 @@ class WeekView{
 		//check the date mode
 		// I am not sure
 		while((now) <= 6 && !dset[now]) now++;
-		return now % 7;
+		if(now == 7) return -1;
+		return now;
 	}
 }
 
